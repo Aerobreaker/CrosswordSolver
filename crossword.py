@@ -322,7 +322,8 @@ class Slot(object):
         self.position = position
         self.direction = direction
         self.overlaps = {}
-        self.word = self._empty = [''] * size
+        self.word = self._word = [''] * size
+        self._empty = size
         self.has_word = False
     
     def __repr__(self):
@@ -369,8 +370,8 @@ class Slot(object):
             #letter which will be overlapping, the word won't fit
             if other[other_ind] and other[other_ind] != word[ind]:
                 return False
-        for ind, char in enumerate(word):
-            if self.word[ind] and self.word[ind] != char:
+        for cur, new in zip(self.word, word):
+            if cur and cur != new:
                 return False
         return True
     
@@ -396,8 +397,30 @@ class Slot(object):
     
     def rem_word(self):
         """Removes the stored word from the Slot."""
-        self.word = self._empty
         self.has_word = False
+        if self._empty < self.size:
+            self.word = self._word
+        else:
+            self.word = [''] * self.size
+    
+    def set_letter(self, ind, let):
+        if self.word[ind] and self.word[ind] != let:
+            raise AttributeError('target letter is already set')
+        if self.word[ind] == let:
+            return
+        self.word[ind] = self._word[ind] = let
+        self._empty -= 1
+        if self._empty == 0:
+            self.has_word = True
+            self.word = ''.join(self.word)
+    
+    def rem_letter(self, ind):
+        if self.has_word:
+            self.word = list(self.word)
+            self.has_word = False
+        if self.word[ind]:
+            self._empty += 1
+        self.word[ind] = self._word[ind] = ''
     
     def add_overlap(self, ind, other, other_ind):
         """Adds an overlap with the specified Slot.
@@ -502,8 +525,6 @@ class Layout(object):
         from itertools import chain
         for slot in chain.from_iterable(self.slots.values()):
             slot.rem_word()
-            for ind in range(slot.size):
-                slot.word[ind] = ''
     
     def set_letter(self, letter, row, column):
         """Sets a letter in a specific position to constrain solutions.
@@ -522,12 +543,8 @@ class Layout(object):
         if not slots[0][0] and not slots[1][0]:
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
-            if not slot:
-                continue
-            if slot.has_word and slot.word[ind] != letter:
-                slot.rem_word()
-            if slot.word[ind] != letter:
-                slot.word[ind] = letter
+            if slot:
+                slot.set_letter(ind, letter)
     
     def rem_letter(self, row, column):
         """Removes a letter from a specified position.
@@ -545,12 +562,8 @@ class Layout(object):
         if not slots[0][0] and not slots[1][0]:
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
-            if not slot:
-                continue
-            if slot.has_word:
-                slot.rem_word()
-            if slot.word[ind]:
-                slot.word[ind] = ''
+            if slot:
+                slot.rem_letter(ind)
     
     def solve(self,
               words,
@@ -830,8 +843,8 @@ class Solver(object):
         """Initializes a Solver object to find words and fit them into a layout.
 
         Args:
-            letters: The letters to use to generate words
             checker: Spell checker used to build words
+            letters: The letters to use to generate words
             minlen: Optional.  The minimum word length to generate.  Defaults to
                     three
             maxlen: Optional.  The maximum word length to generate.  Defaults to

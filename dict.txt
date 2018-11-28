@@ -1,5 +1,0 @@
-else
-mate
-test
-time
-Capital

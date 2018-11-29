@@ -379,7 +379,7 @@ class Slot(object):
         """Stores the specified word into the Slot.
 
         Stores the specified word into this Slot, without checking overlaps.
-        To ensure there are no overlaps, use check_word first.
+        To ensure there are no overlap conflicts, use check_word first.
 
         Args:
             word: The word to insert into the Slot
@@ -396,14 +396,17 @@ class Slot(object):
         self.has_word = True
     
     def rem_word(self):
-        """Removes the stored word from the Slot."""
+        """Removes the stored word from the Slot, preserving any set letters."""
         self.has_word = False
-        if self._empty < self.size:
-            self.word = self._word
-        else:
-            self.word = [''] * self.size
+        self.word = self._word
     
     def set_letter(self, ind, let):
+        """Inserts a letter into the specified index.
+        
+        Args:
+            ind: The index in this Slot in which to insert the letter
+            let: The letter to insert
+        """
         if self.word[ind] and self.word[ind] != let:
             raise AttributeError('target letter is already set')
         if self.word[ind] == let:
@@ -415,6 +418,11 @@ class Slot(object):
             self.word = ''.join(self.word)
     
     def rem_letter(self, ind):
+        """Removes any set letters from the specified index
+        
+        Args:
+            ind: The index in this Slot from which to remove the letter
+        """
         if self.has_word:
             self.word = list(self.word)
             self.has_word = False
@@ -432,6 +440,12 @@ class Slot(object):
         """
         self.overlaps[other] = other_ind
         other.overlaps[self] = ind
+    
+    def clear(self):
+        """Removes the word and all letters from the Slot."""
+        self.word = self._word = [''] * self.size
+        self._empty = self.size
+        self.has_word = False
 #
 
 
@@ -524,7 +538,7 @@ class Layout(object):
         """Removes all words and letters from a Layout."""
         from itertools import chain
         for slot in chain.from_iterable(self.slots.values()):
-            slot.rem_word()
+            slot.clear()
     
     def set_letter(self, letter, row, column):
         """Sets a letter in a specific position to constrain solutions.

@@ -261,6 +261,13 @@ letters3 = 'candid'
 # D
 
 
+def fact(n, facts={0:1, 1:1, 2:2}):
+    if n < 0:
+        raise ValueError('illegal value')
+    if n not in facts:
+        facts[n] = n * fact(n-1)
+    return facts[n]
+
 
 def group_count(iterable):
     """Groups an iterable by values and counts the lengths of the groups."""
@@ -328,9 +335,9 @@ class Slot(object):
     
     def __repr__(self):
         """Returns an internal representation of a Slot object."""
-        return ('Slot(size={}, position={}, direction={})'.format(
-            self.size, self.position, self.direction)
-        )
+        return 'Slot(size={}, position={}, direction={})'.format(self.size,
+                                                                 self.position,
+                                                                 self.direction)
     
     #__hash__ and __eq__ are used to identify an object.  Two objects are
     #considered duplicates if the hashes are the same and they compare equal to
@@ -495,8 +502,7 @@ class Layout(object):
                 if val and count > 2:
                     slot = Slot(count,
                                 position=(row_ind, col_ind),
-                                direction=Direction.DOWN
-                               )
+                                direction=Direction.DOWN)
                     slots.setdefault(count, []).append(slot)
                     for i in range(count):
                         over_slot, over_ind = row_slots[row_ind+i][col_ind][0]
@@ -732,10 +738,8 @@ class Layout(object):
                 #DEBUG CODE
                 if Debug.VARS in debug:
                     fwrite('  Checking {}: {}'.format(word,
-                                                      slot.check_word(word)
-                                                     ),
-                           indent
-                          )
+                                                      slot.check_word(word)),
+                           indent)
                 #END DEBUG CODE
                 #If the word can fit into the slot
                 if slot.check_word(word):
@@ -853,26 +857,36 @@ class Solver(object):
         words: Dictionary of words which can be made, ordered by length
     """
 
-    def __init__(self, checker, letters=None, layout=None, minlen=3, maxlen=0):
+    def __init__(self,
+                 checker,
+                 letters=None,
+                 layout=None,
+                 minlen=3,
+                 maxlen=float('inf')):
         """Initializes a Solver object to find words and fit them into a layout.
 
         Args:
             checker: Spell checker used to build words
             letters: The letters to use to generate words
+            layout: Optional.  The layout of letter openings in a grid format
             minlen: Optional.  The minimum word length to generate.  Defaults to
                     three
             maxlen: Optional.  The maximum word length to generate.  Defaults to
-                    the number of provided letters
-            layout: Optional.  The layout of letter openings in a grid format
+                    infinite
+        Raises:
+            ValueError: The maximum length provided is less than the minimum
+                length provided
         """
         self.checker = checker
         self.letters = letters
+        self.layout = layout
         self.minlen = minlen
         self.maxlen = maxlen
-        if letters and self.maxlen <= self.minlen:
-            self.maxlen = len(letters) + 1
+        #Check this after, so that __repr__ can be evaluated in an error trap
+        #if an error occurs during __init__
+        if maxlen < minlen:
+            raise ValueError('maximum length is less than minimum length')
         self.refresh()
-        self.layout = layout
         if layout:
             self.solve(limit=10, maxstack=100)
 
@@ -888,7 +902,10 @@ class Solver(object):
     def print(self):
         """Prints the words in the Solver."""
         #Iterate through the words in key value pairs
-        for length, words in self.words.items():
+        for length in sorted(self.words):
+            words = self.words[length]
+            #Sort in place - that way, future sorts don't reduce the efficiency
+            words.sort()
             #Print the length, and then the words delimited by ", "
             print('{}: {}'.format(length, ', '.join(words)))
 
@@ -898,22 +915,42 @@ class Solver(object):
         Used to re-compute possible words after updating the spell checker.
         """
         from itertools import permutations
+        from collections import Counter
         self.words = {}
-        #Go through all possible permutations of letters from the min length to
-        #the max length.  If they make a word in the Checker, add it to the word
-        #list.
+        maxlen = self.maxlen
         if self.letters:
-            for i in range(self.minlen, self.maxlen):
-                words = set()
-                for p in permutations(self.letters, i):
-                    word = ''.join(p)
-                    if self.checker.check_word(word):
-                        words.add(word)
-                if words:
-                    self.words[i] = sorted(words)
+            n = len(self.letters)
+            if maxlen > n:
+                maxlen = n
+            lengths = set(range(self.minlen, maxlen+1))
+            #nPr = n! / (n-r)!
+            perm = sum(fact(n)/fact(n-r) for r in lengths)
+            #If letter restrictions and number of permutations exceeds length of
+            #dictionary, loop through dict to see which words can be built
+            if perm > len(self.checker.words):
+                avail = Counter(self.letters)
+                for word in self.checker.words:
+                    wordlen = len(word)
+                    if wordlen not in lengths:
+                        continue
+                    need = Counter(word)
+                    if need == avail or not (need - avail):
+                        self.words.setdefault(wordlen, []).append(word)
+            #If letter restrictions and permutations < dictionary length, loop
+            #through permutations to see which of them are words
+            else:
+                for i in lengths:
+                    for p in permutations(self.letters, i):
+                        word = ''.join(p)
+                        if self.checker.check_word(word):
+                            self.words.setdefault(i, []).append(word)
+        #If no letter restrictions, grab all words within the length limits
         else:
             for word in self.checker.words:
-                self.words.setdefault(len(word), []).append(word)
+                wordlen = len(word)
+                if wordlen >= self.minlen and wordlen <= maxlen:
+                    self.words.setdefault(wordlen, []).append(word)
+        #Can sort keys and words here, but for speed, sort at print time
 
     def solve(self, limit=None, maxstack=None):
         """Fits possible words into the layout.
@@ -951,6 +988,7 @@ class Checker(object):
         """
         self._wordfile = wordfile
         self._encoding = encoding
+        #Use the custom setter to cast to bool and refresh the word list
         self.case = case
 
     def __repr__(self):
@@ -958,8 +996,7 @@ class Checker(object):
         return "Checker(wordfile='{}', encoding='{}', case={})".format(
             self._wordfile,
             self._encoding,
-            self._case
-        )
+            self._case)
 
     def refresh(self):
         """Re-builds the word list from the word file."""
@@ -1044,8 +1081,10 @@ class Checker(object):
 
     @property
     def words(self):
-        """Returns a sorted set of words in the Checker."""
-        return sorted(self._words)
+        """Returns a set of words in the Checker."""
+        #Let the other side take care of sorting the words
+        #Still keep this as a property so that Checker.words can't be set
+        return self._words
 
     @property
     def case(self):

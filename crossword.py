@@ -1,61 +1,5 @@
-from enum import auto, IntEnum, IntFlag
-
-
-#This one has TONS of solutions.  Like thousands.  Because there are so many
-#overlapping 3-letter words
-#556 - Flora -> Seed 12
-#Further investigation has revealed that there are 58296 solutions
-#
-layout0 = [[0,0,0,1,1,1,1,0,0,0,0],
-          [0,0,0,0,0,0,1,0,0,0,0],
-          [0,0,1,0,1,1,1,1,1,1,0],
-          [0,1,1,1,1,0,1,0,0,0,0],
-          [0,0,1,0,1,0,0,0,1,1,1],
-          [1,1,1,0,1,0,0,0,1,0,1],
-          [0,1,0,0,0,0,1,0,1,0,1],
-          [0,1,0,0,0,0,1,1,1,0,0],
-          [1,1,1,0,1,1,1,0,0,0,0],
-          [1,0,1,1,1,0,0,0,0,0,0],
-          [1,1,1,0,1,0,0,0,0,0,0]]
-letters0 = 'revamp'
-#Examples:
-layout1 = [[0,0,0,1,1,1,1,1,1,0],
-           [0,1,0,1,0,0,0,1,0,1],
-           [0,1,1,1,0,0,0,1,0,1],
-           [0,1,0,0,0,0,0,1,1,1],
-           [1,1,1,0,0,0,0,0,0,1],
-           [0,0,1,0,0,0,1,0,0,1],
-           [0,1,1,1,1,0,1,0,0,0],
-           [0,1,0,0,1,0,1,0,0,0],
-           [0,1,1,1,1,0,1,0,0,0]]
-letters1 = 'plunge'
-layout2 = [[0,0,1,0,0,0,0,0,0,0,1],
-           [0,0,1,0,0,0,0,0,1,0,1],
-           [0,0,1,0,0,1,0,0,1,0,1],
-           [0,0,1,1,1,1,0,0,1,1,1],
-           [1,1,1,0,0,1,1,1,1,0,0],
-           [1,0,0,0,0,1,0,0,1,0,0],
-           [1,1,1,0,0,0,0,0,1,0,0],
-           [0,0,1,0,1,0,1,1,1,0,0],
-           [0,1,1,1,1,0,1,0,0,0,0],
-           [0,0,0,0,1,1,1,0,0,0,0]]
-letters2 = 'fiction'
-layout3 = [[0,1,1,1,1,0,0],
-           [0,1,0,0,1,0,0],
-           [1,1,1,0,1,1,1],
-           [0,0,1,0,0,1,0],
-           [1,1,1,1,1,1,0],
-           [1,0,0,0,0,0,0],
-           [1,0,0,0,0,0,0]]
-letters3 = 'candid'
-
-
-def fact(n, facts={0:1, 1:1, 2:2}):
-    if n < 0:
-        raise ValueError('illegal value')
-    if n not in facts:
-        facts[n] = n * fact(n-1)
-    return facts[n]
+"""Creates objects utilized for solving crossword puzzles."""
+from enum import auto, Enum, Flag
 
 
 def group_count(iterable):
@@ -69,32 +13,50 @@ def group_count(iterable):
 #
 
 
-def prep(iterable):
-    return [[int(j) for j in i] for i in iterable]
-#
+def get_words(words):
+    """Splits out a parameter set into individual words.
+
+    First, it splits the input parameters by space.  Then, it chains them
+    together.  Then, it joins them together delimited by , and splits them
+    out once again.  The end result is that words can be provided as
+    individual parameters, or a single comma separated string or a single
+    space separated string or some combination thereof.
+
+    Args:
+        words: The word list to split out
+    Returns:
+        A set (hash set) of words which were in the provided input
+    """
+    from itertools import chain
+    #Split on spaces, then chain the resulting arrays together
+    words = chain.from_iterable(i.split() for i in words)
+    #Join the previously split arrays, then split out on a different
+    #delimiter.  Ignore empty sub-strings
+    return set(i for i in ','.join(words).split(',') if i)
 
 
-class Direction(IntEnum):
+class Direction(Enum):
     """Enumerator to indicate right or down direction."""
-    RIGHT = 0
+    RIGHT = auto()
     DOWN = auto()
 #
 
 
-class Debug(IntFlag):
+class Debug(Flag):
+    """Enumerator to represent debug flags."""
     NONE = 0
     VARS = auto()
     SOLUTIONS = auto()
 #
 
 
-class Slot(object):
+class Slot:
     """Creates a slot to track an opening to put a word into.
-    
+
     This object is created as a helper to the Layout object.  It tracks
     location, length, and direction of a word slot.  Notably, it's possible to
     have two words which wholly overlap as long as they're different lengths.
-    
+
     Attributes:
         direction: The direction of the word (Direction.DOWN / Direction.RIGHT)
         has_word: Boolean indicating whether or not the Slot has a word assigned
@@ -103,10 +65,10 @@ class Slot(object):
         size: The length of the word
         word: The word which has been inserted into the Slot
     """
-    
+
     def __init__(self, size, position=(0, 0), direction=Direction.RIGHT):
         """Initializes a Slot object to track an open slot for a word.
-        
+
         Args:
             size: The length of the word slot
             position: Optional.  Tuple indicating the (row, column) on which the
@@ -121,35 +83,35 @@ class Slot(object):
         self.word = self._word = [''] * size
         self._empty = size
         self.has_word = False
-    
+
     def __repr__(self):
         """Returns an internal representation of a Slot object."""
         return 'Slot(size={}, position={}, direction={})'.format(self.size,
                                                                  self.position,
                                                                  self.direction)
-    
+
     #__hash__ and __eq__ are used to identify an object.  Two objects are
     #considered duplicates if the hashes are the same and they compare equal to
     #one another.
-    
+
     def __hash__(self):
         """Returns a hash for the Slot object."""
         return hash((self.size, self.position, self.direction))
-    
+
     def __eq__(self, other):
         """Returns true if equal to other."""
         return (self.size, self.position, self.direction) == other
-    
+
     def __getitem__(self, key):
         """Indexes into the word contained in the Slot."""
         return self.word[key]
-    
+
     def check_word(self, word):
         """Checks to see if the specified word will fit in the Slot.
-        
+
         Checks the overlaps with this slot to ensure that inserting the target
         word will not cause letter conflicts.
-        
+
         Args:
             word: The word to check.
         Returns:
@@ -170,7 +132,7 @@ class Slot(object):
             if cur and cur != new:
                 return False
         return True
-    
+
     def set_word(self, word):
         """Stores the specified word into the Slot.
 
@@ -190,18 +152,20 @@ class Slot(object):
             raise TypeError('slot word is already set')
         self.word = word
         self.has_word = True
-    
+
     def rem_word(self):
         """Removes the stored word from the Slot, preserving any set letters."""
         self.has_word = False
         self.word = self._word
-    
+
     def set_letter(self, ind, let):
         """Inserts a letter into the specified index.
-        
+
         Args:
             ind: The index in this Slot in which to insert the letter
             let: The letter to insert
+        Raises:
+            AttributeError: The target index already contains a different letter
         """
         if self.word[ind] and self.word[ind] != let:
             raise AttributeError('target letter is already set')
@@ -212,10 +176,10 @@ class Slot(object):
         if self._empty == 0:
             self.has_word = True
             self.word = ''.join(self.word)
-    
+
     def rem_letter(self, ind):
         """Removes any set letters from the specified index
-        
+
         Args:
             ind: The index in this Slot from which to remove the letter
         """
@@ -225,7 +189,7 @@ class Slot(object):
         if self.word[ind]:
             self._empty += 1
         self.word[ind] = self._word[ind] = ''
-    
+
     def add_overlap(self, ind, other, other_ind):
         """Adds an overlap with the specified Slot.
 
@@ -236,7 +200,7 @@ class Slot(object):
         """
         self.overlaps[other] = other_ind
         other.overlaps[self] = ind
-    
+
     def clear(self):
         """Removes the word and all letters from the Slot."""
         self.word = self._word = [''] * self.size
@@ -245,23 +209,23 @@ class Slot(object):
 #
 
 
-class Layout(object):
+class Layout:
     """Creates a Layout object to find and track slots in the provided board.
-    
+
     Attributes:
         layout: Grid which mimics the original, but with pointers to the
                 appropriate slots and indicies from which to draw letters
         slots: Dictionary of Slots indexed by length
     """
-    
+
     def __init__(self, layout):
         """Initializes a Layout object with the provided layout.
-        
+
         Args:
             layout: The grid (list of lists) to parse into a Layout
         """
         #For convenience, push all of the rows out to match the longest row
-        length = len(max(layout, key=len))
+        length = max(len(_) for _ in layout)
         for ind, row in enumerate(layout):
             rowlen = len(row)
             if rowlen < length:
@@ -273,7 +237,7 @@ class Layout(object):
         #Iterate through the rows groupwise, creating and logging Slots with a
         #right directionality
         for row_ind, row in enumerate(layout):
-            row_slot = [[(None, 0), (None, 0)] for _ in range(len(row))]
+            row_slot = [[(None, 0), (None, 0)] for _ in range(length)]
             col_ind = 0
             for val, count in group_count(row):
                 if val and count > 2:
@@ -302,20 +266,20 @@ class Layout(object):
         #Save off the dict of slots and the layout of slots
         self.slots = slots
         self.layout = row_slots
-    
+
     def __repr__(self):
         """Returns an internal represntation of the Layout."""
         return 'Layout(layout={})'.format(self._layout)
-    
+
     def __getitem__(self, key):
         """Gets the slots at the specified position.
-        
+
         Args:
             key: The key to get
         Raises:
             IndexError: row or column is outside the bounds of the layout
         """
-        if hasattr(key, '__iter__'):
+        if isinstance(key, tuple) and len(key) == 2:
             row, column = key
             if abs(row) > len(self.layout):
                 raise IndexError('row index out of range')
@@ -326,21 +290,20 @@ class Layout(object):
             if column < 0:
                 column = len(self.layout[row]) + column
             return self.layout[row][column]
-        else:
-            return self.layout[key]
-    
+        return self.layout[key]
+
     def clear(self):
         """Removes all words and letters from a Layout."""
         from itertools import chain
         for slot in chain.from_iterable(self.slots.values()):
             slot.clear()
-    
+
     def set_letter(self, letter, row, column):
         """Sets a letter in a specific position to constrain solutions.
-        
+
         Notably, when using this method, if any slots at the specified position
         contain a word with a conflicting letter, the word will be removed.
-        
+
         Args:
             letter: The letter to insert
             row: The row at which to insert
@@ -354,13 +317,13 @@ class Layout(object):
         for slot, ind in slots:
             if slot:
                 slot.set_letter(ind, letter)
-    
+
     def rem_letter(self, row, column):
         """Removes a letter from a specified position.
-        
+
         Notably, when using this method, if any slots at the specified position
         contain a word, the word will also be removed.
-        
+
         Args:
             row: The row at which to insert
             column: The column at which to insert
@@ -373,7 +336,7 @@ class Layout(object):
         for slot, ind in slots:
             if slot:
                 slot.rem_letter(ind)
-    
+
     def solve(self,
               words,
               limit=None,
@@ -381,10 +344,10 @@ class Layout(object):
               debug=Debug.NONE,
               filename=''):
         """Fits words from the provided list into the Layout.
-        
+
         Provided a dictionary of words indexed by size, fit them into the Layout
         while ensuring that there will be no conflicting overlaps.
-        
+
         Args:
             words: Dictionary of words to use indexed by size
             limit: Optional.  Limit to the number of solutions which will be
@@ -395,7 +358,7 @@ class Layout(object):
             filename: Optional.  Filename to write debug logs to.  Defaults to
                       a null string.  If empty, turns off the debug flag
         Returns:
-            A list of Solution objects.  Each solution found for the Layout will
+        A list of Solution objects.  Each solution found for the Layout will
             have a Solution object.
         Raises:
             KeyError: More slots of a specific length exist than words provided
@@ -414,10 +377,10 @@ class Layout(object):
             #7. Next word
             #8. Stop
         from itertools import chain
-        
+
         if debug and not filename:
             debug = Debug.NONE
-        
+
         #First, turn the listings of words at each length into sets
         words = {k: set(v) for k, v in words.items()}
         for length in self.slots:
@@ -469,12 +432,11 @@ class Layout(object):
         #Define a function to recursively solve the Layout
         def solve(stacklev, indent=2):
             if ((maxstack is not None and stacklev >= maxstack)
-                or (limit is not None and len(solutions) >= limit)):
+                    or (limit is not None and len(solutions) >= limit)):
                 return
             #Find the open slots
             open_slots = slots - checked
             #DEBUG CODE
-            lev = indent // 2
             if Debug.VARS in debug:
                 fwrite('', indent)
                 fwrite('Before:', indent)
@@ -568,18 +530,18 @@ class Layout(object):
 #
 
 
-class Solution(object):
+class Solution:
     """Creates a Solution object to save off the current solution.
-    
+
     Attributes:
         data: Array of lines in the solved layout
         data_vertical: Transposed version of data
         extra: The leftover "extra" words
     """
-    
-    def __init__(self, layout, extra = None):
+
+    def __init__(self, layout, extra=None):
         """Initializes a Solution object with the specified Layout object.
-        
+
         Args:
             layout: The Layout object to utilize for reading the solution
             extra: Optional.  Any leftover words to include in the Solution.
@@ -611,11 +573,11 @@ class Solution(object):
         self.data_vertical.append('')
         self.data.append('')
         self.extra = extra
-    
+
     def __repr__(self):
         """Returns an internal represntation of the Solution."""
         return 'Solution(layout={}, extra={})'.format(self._layout, self.extra)
-    
+
     def disp(self):
         """Yields lines in the provided layout with the letters filled in."""
         for line in self.data:
@@ -623,13 +585,13 @@ class Solution(object):
         if self.extra:
             extra = sorted(sorted(self.extra), key=len)
             yield 'Bonus words: {}'.format(', '.join(extra))
-    
+
     def print(self):
         """Prints the provided Layout with the letters filled in."""
         print('\n'.join(self.disp()))
 
 
-class Solver(object):
+class Solver:
     """Creates a Solver to determine possible words and layouts.
 
     This object takes letters and an optional layout, as well as a spell checker
@@ -682,12 +644,15 @@ class Solver(object):
 
     def __repr__(self):
         """Returns an internal representation for the object."""
+        maxlenstr = repr(self.maxlen)
+        if self.maxlen == float('inf'):
+            maxlenstr = "float('inf')"
         return ("Solver(letters='{}', checker={}, layout={}, minlen={}, "
                 "maxlen={})").format(self.letters,
                                      self.checker,
                                      self.layout,
                                      self.minlen,
-                                     self.maxlen)
+                                     maxlenstr)
 
     def print(self):
         """Prints the words in the Solver."""
@@ -704,17 +669,18 @@ class Solver(object):
 
         Used to re-compute possible words after updating the spell checker.
         """
-        from itertools import permutations
         from collections import Counter
-        self.words = {}
+        from itertools import permutations
+        from math import factorial
+        words = {}
         maxlen = self.maxlen
         if self.letters:
-            n = len(self.letters)
-            if maxlen > n:
-                maxlen = n
+            count = len(self.letters)
+            if maxlen > count:
+                maxlen = count
             lengths = set(range(self.minlen, maxlen+1))
             #nPr = n! / (n-r)!
-            perm = sum(fact(n)/fact(n-r) for r in lengths)
+            perm = sum(factorial(count)/factorial(count-num) for num in lengths)
             #If letter restrictions and number of permutations exceeds length of
             #dictionary, loop through dict to see which words can be built
             if perm > len(self.checker.words):
@@ -724,43 +690,58 @@ class Solver(object):
                     if wordlen not in lengths:
                         continue
                     need = Counter(word)
-                    if need == avail or not (need - avail):
-                        self.words.setdefault(wordlen, []).append(word)
+                    if need == avail or not need - avail:
+                        words.setdefault(wordlen, set()).add(word)
             #If letter restrictions and permutations < dictionary length, loop
             #through permutations to see which of them are words
             else:
                 for i in lengths:
-                    for p in permutations(self.letters, i):
-                        word = ''.join(p)
+                    for perm in permutations(self.letters, i):
+                        word = ''.join(perm)
                         if self.checker.check_word(word):
-                            self.words.setdefault(i, []).append(word)
+                            words.setdefault(i, set()).add(word)
         #If no letter restrictions, grab all words within the length limits
         else:
             for word in self.checker.words:
                 wordlen = len(word)
-                if wordlen >= self.minlen and wordlen <= maxlen:
-                    self.words.setdefault(wordlen, []).append(word)
+                if self.minlen <= wordlen <= maxlen:
+                    words.setdefault(wordlen, set()).add(word)
         #Can sort keys and words here, but for speed, sort at print time
+        self.words = {key: list(val) for key, val in words.items()}
 
     def solve(self, limit=None, maxstack=None):
         """Fits possible words into the layout.
-        
+
         Args:
             limit: Optional.  Limit to the number of solutions to find.  None
                    indicates no limit.  Defaults to None.
             maxstack: Optional.  Limit to the number of stack frames which will
                       be used while solving.  None indicates no limit.  Defaults
                       to None.
-        
+
         Returns:
             A list of possible matrixes with words filled in such that there
             will be no conflicting letters and all letters will form words
         """
         self.solutions = self.layout.solve(self.words, limit, maxstack)
+    
+    def print_solutions(num=None):
+        """Prints the provided number of solutions.
+        
+        Args:
+            num: Optional.  The number of solutions to print.  None indicates
+                 that all solutions are to be printed.  Defaults to None.
+        """
+        if num is None:
+            for sol in self.solutions:
+                sol.print()
+        else:
+            for sol in self.solutions[:num]:
+                sol.print()
 #
 
 
-class Checker(object):
+class Checker:
     """Creates a spell-checker to check that words are spelled correctly.
 
     Attributes:
@@ -778,6 +759,8 @@ class Checker(object):
         """
         self._wordfile = wordfile
         self._encoding = encoding
+        self._words = None
+        self._case = None
         #Use the custom setter to cast to bool and refresh the word list
         self.case = case
 
@@ -799,32 +782,11 @@ class Checker(object):
                     words |= set(i.lower() for i in line.strip().split())
         self._words = words
 
-    def _getwords(self, words):
-        """Splits out a parameter set into individual words.
-
-        First, it splits the input parameters by space.  Then, it chains them
-        together.  Then, it joins them together delimited by , and splits them
-        out once again.  The end result is that words can be provided as
-        individual parameters, or a single comma separated string or a single
-        space separated string or some combination thereof.
-
-        Args:
-            words: The word list to split out
-        Returns:
-            A set (hash set) of words which were in the provided input
-        """
-        from itertools import chain
-        #Split on spaces, then chain the resulting arrays together
-        words = chain.from_iterable(i.split() for i in words)
-        #Join the previously split arrays, then split out on a different
-        #delimiter.  Ignore empty sub-strings
-        return set(i for i in ','.join(words).split(',') if i)
-
     def check_word(self, word):
         """Returns a boolean indicating whether a word is in the Checker."""
         if self._case:
-            return word.lower() in self._words
-        return word in self._words
+            return word in self._words
+        return word.lower() in self._words
 
     def check_pref(self, pref):
         """Returns a boolean indicating whether a prefix is in the Checker."""
@@ -838,7 +800,7 @@ class Checker(object):
     def add(self, *words):
         """Adds one or more words to the Checker and it's word file."""
         #Split out individual words
-        words = self._getwords(words)
+        words = get_words(words)
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
         #Convert to a set to remove duplicates, add in new words to set
@@ -854,7 +816,7 @@ class Checker(object):
     def remove(self, *words):
         """Removes one or more words from the Checker and it's word file."""
         #Split out individual words
-        words = self._getwords(words)
+        words = get_words(words)
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
         #Convert to a set to remove duplicates, remove target words from set
@@ -878,19 +840,11 @@ class Checker(object):
 
     @property
     def case(self):
+        """Returns the case-sensitivity of the Checker."""
         return self._case
 
     @case.setter
     def case(self, value):
+        """Sets the case-sensitivity of the Checker."""
         self._case = bool(value)
         self.refresh()
-#
-
-
-d = Checker('words.txt')
-l1 = Layout(layout1)
-s1 = Solver(d, letters1, l1)
-l2 = Layout(layout2)
-s2 = Solver(d, letters2, l2)
-l3 = Layout(layout3)
-s3 = Solver(d, letters3, l3)

@@ -1,6 +1,7 @@
 """Creates objects utilized for solving crossword puzzles."""
-from enum import auto as _auto, Enum
+from enum import auto as _auto, Enum, Flag
 from functools import wraps
+from itertools import chain, groupby, permutations
 from gc import collect
 from math import inf
 
@@ -52,7 +53,6 @@ def group_count(iterable):
     #Groupby splits it into groups.  But the items consists of each individual
     #element in the group.  So convert to a list and read the length of said
     #list
-    from itertools import groupby
     for grp, items in groupby(iterable):
         yield grp, len(list(items))
 #
@@ -72,7 +72,6 @@ def get_words(words):
     Returns:
         A set (hash set) of words which were in the provided input
     """
-    from itertools import chain
     #Split on spaces, then chain the resulting arrays together
     words = chain.from_iterable(i.split() for i in words)
     #Join the previously split arrays, then split out on a different
@@ -308,7 +307,6 @@ class Layout(BaseClass):
         Args:
             layout: The grid (list of lists) to parse into a Layout
         """
-        from itertools import chain
         super().__init__()
         #For convenience, push all of the rows out to match the longest row
         length = max(len(row) for row in layout)
@@ -317,10 +315,10 @@ class Layout(BaseClass):
                 layout[row_ind].extend([0]*(length-len(row)))
         self._layout = layout
         self.slots = {}
-        layout = []
+        row_slots = []
         #Iterate through the rows groupwise, creating and logging Slots with a
         #right directionality
-        for row_ind, row in enumerate(self._layout):
+        for row_ind, row in enumerate(layout):
             row_slot = [[(None, 0), (None, 0)] for _ in range(length)]
             col_ind = 0
             for val, count in group_count(row):
@@ -330,10 +328,10 @@ class Layout(BaseClass):
                     for i in range(count):
                         row_slot[col_ind+i][0] = (slot, i)
                 col_ind += count
-            layout.append(row_slot)
+            row_slots.append(row_slot)
         #Iterate through the columns groupwise, creating and logging Slots with
         #a down directionality
-        for col_ind, col in enumerate(zip(*self._layout)):
+        for col_ind, col in enumerate(zip(*layout)):
             row_ind = 0
             for val, count in group_count(col):
                 if val and count > 2:
@@ -342,13 +340,13 @@ class Layout(BaseClass):
                                 direction=Direction.DOWN)
                     self.slots.setdefault(count, []).append(slot)
                     for i in range(count):
-                        overlap = layout[row_ind+i][col_ind][0]
+                        overlap = row_slots[row_ind+i][col_ind][0]
                         if overlap[0]:
                             slot.add_overlap(i, *overlap)
-                        layout[row_ind+i][col_ind][1] = (slot, i)
+                        row_slots[row_ind+i][col_ind][1] = (slot, i)
                 row_ind += count
         #Save off the dict of slots and the layout of slots
-        self.layout = layout
+        self.layout = row_slots
         self.all_slots = set(chain.from_iterable(self.slots.values()))
 
     def __repr__(self):
@@ -427,7 +425,8 @@ class Layout(BaseClass):
 
     def solve(self,
               words,
-              limit=None):
+              limit=None,
+              maxstack=None):
         """Fits words from the provided list into the Layout.
 
         Provided a dictionary of words indexed by size, fit them into the Layout
@@ -447,7 +446,6 @@ class Layout(BaseClass):
                 for that length.  No possible solutions exist as the Layout can
                 never be completely filled.
         """
-        from itertools import chain
         #Available words = words at length - used words
         #Available slots = slots - checked slots
         #Algo:
@@ -466,35 +464,34 @@ class Layout(BaseClass):
                 raise KeyError(('not enough {} letter words to fit the '
                                 'available slots').format(length))
         used_words = set()
-        #This is currently a recursive DFS.  To switch to BFS or djikstra,
-        #change slot_stack from a list to a deque or priority queue.  It is not
-        #known if there is a heuristic which can be used to prioritize the slots
-        #for djikstra, though
         slot_stack = []
         checked = set()
+        #Store all slots into a single set
+        slots = set(chain.from_iterable(self.slots.values()))
         solutions = []
         #Iterate through the slots and flag any that already have a word as
         #having been checked
-        for slot in self.all_slots:
+        for slot in slots:
             if slot.has_word:
                 checked.add(slot)
                 used_words.add(slot.word)
         #Define a function to get a Slot with the fewest number of possible
         #words left in the dictionary
-        def get_fewest(open_slots):
+        def get_fewest(slots):
             min_cnt = inf
-            for slot in open_slots:
+            for slot in slots:
                 words_left = len(words[slot.size]-used_words)
                 if words_left and words_left < min_cnt:
                     out = slot
                     min_cnt = words_left
             return out
         #Define a function to recursively solve the Layout
-        def solve(indent=2):
-            if limit is not None and len(solutions) >= limit:
+        def solve(stacklev, indent=2):
+            if ((maxstack is not None and stacklev >= maxstack)
+                    or (limit is not None and len(solutions) >= limit)):
                 return
             #Find the open slots
-            open_slots = self.all_slots - checked
+            open_slots = slots - checked
             slot = None
             #If there are intersections to be processed
             if slot_stack:
@@ -531,7 +528,7 @@ class Layout(BaseClass):
                         if other not in checked:
                             slot_stack.append(other)
                     #Recursively solve the next Slot
-                    solve(indent+2)
+                    solve(stacklev+1, indent+2)
                     #Remove the word from the used words and the slot from
                     #checked slots
                     used_words.discard(word)
@@ -539,7 +536,7 @@ class Layout(BaseClass):
                     #Remove the word from the Slot
                     slot.rem_word(False)
         #Start the recursive solution
-        solve()
+        solve(0)
         #Return ALL the solutions
         return solutions
 #
@@ -654,7 +651,7 @@ class Solver(BaseClass):
             raise ValueError('maximum length is less than minimum length')
         self.refresh()
         if layout:
-            self.solve(limit=10)
+            self.solve(limit=10, maxstack=100)
 
     def __repr__(self):
         """Returns an internal representation for the object."""
@@ -681,15 +678,9 @@ class Solver(BaseClass):
         Used to re-compute possible words after updating the spell checker.
         """
         from collections import Counter
-        from itertools import permutations
         from math import factorial
-        def find_words_with_letters(maxlen):
-            count = len(self.letters)
-            if maxlen > count:
-                maxlen = count
-            lengths = set(range(self.minlen, maxlen+1))
-            #nPr = n! / (n-r)!
-            perm = sum(factorial(count)/factorial(count-num) for num in lengths)
+        def find_words():
+            nonlocal perm
             #If letter restrictions and number of permutations exceeds length of
             #dictionary, loop through dict to see which words can be built
             if perm > len(self.checker.words):
@@ -712,7 +703,13 @@ class Solver(BaseClass):
         words = {}
         maxlen = self.maxlen
         if self.letters:
-            find_words_with_letters(maxlen)
+            count = len(self.letters)
+            if maxlen > count:
+                maxlen = count
+            lengths = set(range(self.minlen, maxlen+1))
+            #nPr = n! / (n-r)!
+            perm = sum(factorial(count)/factorial(count-num) for num in lengths)
+            find_words()
         #If no letter restrictions, grab all words within the length limits
         else:
             for word in self.checker.words:
@@ -724,7 +721,7 @@ class Solver(BaseClass):
         if hasattr(self, 'solutions'):
             self.solve(len(self.solutions))
 
-    def solve(self, limit=None):
+    def solve(self, limit=None, maxstack=None):
         """Fits possible words into the layout.
 
         Args:
@@ -738,7 +735,7 @@ class Solver(BaseClass):
             A list of possible matrixes with words filled in such that there
             will be no conflicting letters and all letters will form words
         """
-        self.solutions = self.layout.solve(self.words, limit)
+        self.solutions = self.layout.solve(self.words, limit, maxstack)
 
     def print_solutions(self, num=None):
         """Prints the provided number of solutions.

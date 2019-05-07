@@ -32,6 +32,7 @@ class _AutoFlag:
 
 
 _AUTO_ON = _AutoFlag()
+MIN_LEN = 3
 
 
 def auto(enabled=True):
@@ -136,11 +137,11 @@ class Slot(BaseClass):
                        Direction.RIGHT
         """
         self.attributes = (size, position, direction)
-        super().__init__()
         self.overlaps = {}
         self.word = self._word = [''] * size
         self._empty = size
         self.has_word = False
+        super().__init__()
 
 
     def __repr__(self):
@@ -215,8 +216,8 @@ class Slot(BaseClass):
         if _AUTO_ON and refresh:
             collect()
             for solver in Solver.instances:
-                if self in solver.layout.all_slots:
-                    solver.solve(len(getattr(solver, 'solutions', [])))
+                if self in getattr(solver.layout, 'all_slots', set()):
+                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
 
     def rem_word(self, refresh=True):
         """Removes the stored word from the Slot, preserving any set letters."""
@@ -225,8 +226,8 @@ class Slot(BaseClass):
         if _AUTO_ON and refresh:
             collect()
             for solver in Solver.instances:
-                if self in solver.layout.all_slots:
-                    solver.solve(len(getattr(solver, 'solutions', [])))
+                if self in getattr(solver.layout, 'all_slots', set()):
+                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
 
     def set_letter(self, ind, let, refresh=True):
         """Inserts a letter into the specified index.
@@ -249,8 +250,8 @@ class Slot(BaseClass):
         if _AUTO_ON and refresh:
             collect()
             for solver in Solver.instances:
-                if self in solver.layout.all_slots:
-                    solver.solve(len(getattr(solver, 'solutions', [])))
+                if self in getattr(solver.layout, 'all_slots', set()):
+                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
 
     def rem_letter(self, ind, refresh=True):
         """Removes any set letters from the specified index
@@ -267,8 +268,8 @@ class Slot(BaseClass):
         if _AUTO_ON and refresh:
             collect()
             for solver in Solver.instances:
-                if self in solver.layout.all_slots:
-                    solver.solve(len(getattr(solver, 'solutions', [])))
+                if self in getattr(solver.layout, 'all_slots', set()):
+                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
 
     def add_overlap(self, ind, other, other_ind):
         """Adds an overlap with the specified Slot.
@@ -289,8 +290,8 @@ class Slot(BaseClass):
         if _AUTO_ON and refresh:
             collect()
             for solver in Solver.instances:
-                if self in solver.layout.all_slots:
-                    solver.solve(len(getattr(solver, 'solutions', [])))
+                if self in getattr(solver.layout, 'all_slots', set()):
+                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
 #
 
 
@@ -309,13 +310,12 @@ class Layout(BaseClass):
             layout: The grid (list of lists) to parse into a Layout
         """
         from itertools import chain
-        super().__init__()
+        self._layout = layout
         #For convenience, push all of the rows out to match the longest row
         length = max(len(row) for row in layout)
         for row_ind, row in enumerate(layout):
             if len(row) < length:
                 layout[row_ind].extend([0]*(length-len(row)))
-        self._layout = layout
         self.slots = {}
         layout = []
         #Iterate through the rows groupwise, creating and logging Slots with a
@@ -324,7 +324,7 @@ class Layout(BaseClass):
             row_slot = [[(None, 0), (None, 0)] for _ in range(length)]
             col_ind = 0
             for val, count in group_count(row):
-                if val and count > 2:
+                if val and count >= MIN_LEN:
                     slot = Slot(count, position=(row_ind, col_ind))
                     self.slots.setdefault(count, []).append(slot)
                     for i in range(count):
@@ -336,7 +336,7 @@ class Layout(BaseClass):
         for col_ind, col in enumerate(zip(*self._layout)):
             row_ind = 0
             for val, count in group_count(col):
-                if val and count > 2:
+                if val and count >= MIN_LEN:
                     slot = Slot(count,
                                 position=(row_ind, col_ind),
                                 direction=Direction.DOWN)
@@ -350,6 +350,7 @@ class Layout(BaseClass):
         #Save off the dict of slots and the layout of slots
         self.layout = layout
         self.all_slots = set(chain.from_iterable(self.slots.values()))
+        super().__init__()
 
     def __repr__(self):
         """Returns an internal represntation of the Layout."""
@@ -484,7 +485,7 @@ class Layout(BaseClass):
         def get_fewest(open_slots):
             min_cnt = inf
             for slot in open_slots:
-                words_left = len(words[slot.size]-used_words)
+                words_left = len(words[slot.attributes[0]]-used_words)
                 if words_left and words_left < min_cnt:
                     out = slot
                     min_cnt = words_left
@@ -516,7 +517,7 @@ class Layout(BaseClass):
                     solutions.append(solution)
                     return
             #Get the remaining words that can fit into the slot
-            slot_words = words[slot.size] - used_words
+            slot_words = words[slot.attributes[0]] - used_words
             #Iterate through the remaining words
             for word in slot_words:
                 #If the word can fit into the slot
@@ -561,12 +562,12 @@ class Solution(BaseClass):
             extra: Optional.  Any leftover words to include in the Solution.
                    Defaults to an empty list
         """
-        super().__init__()
+        self.extra = extra
+        self._layout = []
         self.data = ['']
         data_vertical = []
         #Log _layout as an alternative to the Layout object used, for internal
         #representation of the Solution object
-        self._layout = []
         for row in layout:
             new_row = [' ']
             _layout = []
@@ -587,7 +588,7 @@ class Solution(BaseClass):
         self.data_vertical.extend(' '+''.join(s) for s in zip(*data_vertical))
         self.data_vertical.append('')
         self.data.append('')
-        self.extra = extra
+        super().__init__()
 
     def __repr__(self):
         """Returns an internal represntation of the Solution."""
@@ -626,51 +627,48 @@ class Solver(BaseClass):
                  checker,
                  letters=None,
                  layout=None,
-                 lengths=(3, inf)):
+                 lengths=(0, inf)):
         """Initializes a Solver object to find words and fit them into a layout.
 
         Args:
             checker: Spell checker used to build words
             letters: The letters to use to generate words
             layout: Optional.  The layout of letter openings in a grid format
-            minlen: Optional.  The minimum word length to generate.  Defaults to
-                    three
+            minlen: Optional.  The minimum word length to generate.  0 or less
+                    gets changed to MIN_LEN.  Defaults to 0
             maxlen: Optional.  The maximum word length to generate.  Defaults to
                     infinite
         Raises:
             ValueError: The maximum length provided is less than the minimum
                 length provided
         """
-        minlen, maxlen = lengths
-        super().__init__()
         self.checker = checker
         self.letters = letters
         self.layout = layout
-        self._minlen = minlen
-        self._maxlen = maxlen
+        self._minlen, self._maxlen = lengths
+        if self._minlen < 1:
+            self._minlen = MIN_LEN
         #Check this after, so that __repr__ can be evaluated in an error trap
         #if an error occurs during __init__
-        if maxlen < minlen:
+        if self._maxlen < self._minlen:
             raise ValueError('maximum length is less than minimum length')
         self.refresh()
-        if layout:
-            self.solve(limit=10)
+        super().__init__()
 
     def __repr__(self):
         """Returns an internal representation for the object."""
-        return ("Solver(letters={}, checker={}, layout={}, minlen={}, "
-                "maxlen={})").format(repr(self.letters),
-                                     repr(self.checker),
-                                     repr(self.layout),
-                                     repr(self.minlen),
-                                     repr(self.maxlen))
+        reprstr = 'Solver(letters={}, checker={}, layout={}, lengths={})'
+        return reprstr.format(repr(self.letters),
+                              repr(self.checker),
+                              repr(self.layout),
+                              (repr(self.minlen), repr(self.maxlen)))
 
     def print(self):
         """Prints the words in the Solver."""
         #Iterate through the words in key value pairs
         for length in sorted(self.words):
             words = self.words[length]
-            #Sort in place - that way, future sorts don't reduce the efficiency
+            #Sort in place - that way, future sorts don't suffer in efficiency
             words.sort()
             #Print the length, and then the words delimited by ", "
             print('{}: {}'.format(length, ', '.join(words)))
@@ -680,10 +678,10 @@ class Solver(BaseClass):
 
         Used to re-compute possible words after updating the spell checker.
         """
-        from collections import Counter
-        from itertools import permutations
-        from math import factorial
         def find_words_with_letters(maxlen):
+            from collections import Counter
+            from itertools import permutations
+            from math import factorial
             count = len(self.letters)
             if maxlen > count:
                 maxlen = count
@@ -693,14 +691,13 @@ class Solver(BaseClass):
             #If letter restrictions and number of permutations exceeds length of
             #dictionary, loop through dict to see which words can be built
             if perm > len(self.checker.words):
-                avail = Counter(self.checker.words)
+                avail = Counter(self.letters)
                 for word in self.checker.words:
                     wordlen = len(word)
-                    if wordlen not in lengths:
-                        continue
-                    need = Counter(word)
-                    if need == avail or not need - avail:
-                        words.setdefault(wordlen, set()).add(word)
+                    if wordlen in lengths:
+                        need = Counter(word)
+                        if not need - avail:
+                            words.setdefault(wordlen, set()).add(word)
             #If letter restrictions and permutations < dictionary length, loop
             #through permutations to see which of them are words
             else:
@@ -710,19 +707,18 @@ class Solver(BaseClass):
                         if self.checker.check_word(word):
                             words.setdefault(i, set()).add(word)
         words = {}
-        maxlen = self.maxlen
         if self.letters:
-            find_words_with_letters(maxlen)
+            find_words_with_letters(self.maxlen)
         #If no letter restrictions, grab all words within the length limits
         else:
             for word in self.checker.words:
                 wordlen = len(word)
-                if self.minlen <= wordlen <= maxlen:
+                if self.minlen <= wordlen <= self.maxlen:
                     words.setdefault(wordlen, set()).add(word)
         #Can sort keys and words here, but for speed, sort at print time
         self.words = {key: list(val) for key, val in words.items()}
-        if hasattr(self, 'solutions'):
-            self.solve(len(self.solutions))
+        if self.layout:
+            self.solve(max(len(getattr(self, 'solutions', [])), 50))
 
     def solve(self, limit=None):
         """Fits possible words into the layout.
@@ -763,7 +759,7 @@ class Solver(BaseClass):
     def minlen(self, newlen):
         """Sets the minimum length of the Solver"""
         if newlen > self._maxlen:
-            raise ValueError('maximum length is less than minimum length')
+            raise ValueError('minimum length is more than maximum length')
         if newlen != self._minlen:
             self._minlen = newlen
             self.refresh()
@@ -800,13 +796,12 @@ class Checker(BaseClass):
                       utf-8
             case: Optional.  Boolean indicating the Checker's case sensitivity
         """
-        super().__init__()
         self._wordfile = wordfile
         self._encoding = encoding
         self._words = None
-        self._case = None
-        #Use the custom setter to cast to bool and refresh the word list
-        self.case = case
+        self._case = bool(case)
+        self.refresh()
+        super().__init__()
 
     def __repr__(self):
         """Returns an internal represntation of the Checker."""
@@ -853,7 +848,7 @@ class Checker(BaseClass):
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
         #Convert to a set to remove duplicates, add in new words to set
-        lines = set(i.strip() for i in lines) | words
+        lines = set().union(*(set(i.strip().split()) for i in lines), words)
         if self._case:
             self._words |= words
         else:
@@ -874,12 +869,13 @@ class Checker(BaseClass):
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
         #Convert to a set to remove duplicates, remove target words from set
-        lines = set(i.strip() for i in lines)
+        lines = set().union(*(set(i.strip().split()) for i in lines))
         if self._case:
             self._words -= words
-            lines -= set(i for i in lines if i in words)
+            lines -= words
         else:
-            self._words -= set(i.lower() for i in words)
+            words = set(i.lower() for i in words)
+            self._words -= words
             lines -= set(i for i in lines if i.lower() in words)
         #Sort and write to the file
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
@@ -905,5 +901,7 @@ class Checker(BaseClass):
     @case.setter
     def case(self, value):
         """Sets the case-sensitivity of the Checker."""
-        self._case = bool(value)
-        self.refresh()
+        value = bool(value)
+        if value != self._case:
+            self._case = value
+            self.refresh()

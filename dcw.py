@@ -35,14 +35,54 @@ Checker._instances = Checker.__bases__[0]._instances
 class Solver(Solver):
     @_wraps(Solver.__init__)
     def __init__(self, *args, **kwargs):
-        if args and isinstance(args[0], Checker.__bases__[0]):
-            super().__init__(*args, **kwargs)
-        elif isinstance(kwargs.get('checker'), Checker.__bases__[0]):
-            super().__init__(*args, **kwargs)
-        elif Checker.instances:
-            super().__init__(Checker.instances[0], *args, **kwargs)
+        from numbers import Real
+        #If first argument is a checker, use that
+        #If first argument isn't a checker, but checker is a kwarg, use that
+        #If neither, use first checker instance or a new instance
+        self.letters = self.layout = self.checker = self._minlen = self._maxlen = 'holding'
+        checker = kwargs.get('checker')
+        letters = kwargs.get('letters', '')
+        layout = kwargs.get('layout', None)
+        if 'lengths' in kwargs:
+            minlen, maxlen = kwargs['lengths']
         else:
-            super().__init__(Checker(), *args, **kwargs)
+            minlen = kwargs.pop('minlen', None)
+            maxlen = kwargs.pop('maxlen', None)
+        newargs = []
+        newkwargs = {}
+        for arg in args:
+            if not checker and isinstance(arg, Checker.__bases__[0]):
+                checker = arg
+            elif not letters and isinstance(arg, str):
+                letters = arg
+            elif not layout and isinstance(arg, Layout):
+                layout = arg
+            elif not minlen and isinstance(arg, tuple):
+                minlen, maxlen = arg
+            elif not minlen and isinstance(arg, Real):
+                minlen = arg
+            elif not maxlen and isinstance(arg, Real):
+                maxlen = arg
+            else:
+                newargs.append(arg)
+        if not checker:
+            if Checker.instances:
+                checker = Checker.instances[0]
+            else:
+                checker = Checker()
+        if not minlen:
+            minlen = 3
+        if not maxlen:
+            maxlen = inf
+        newkwargs = {**kwargs,
+                     'checker':checker,
+                     'letters':letters,
+                     'layout':layout,
+                     'lengths':(minlen, maxlen)}
+        super().__init__(*newargs, **newkwargs)
 Solver._instances = Solver.__bases__[0]._instances
+
+def show(l, m=3):
+    Solver(l, minlen=m).print()
 
 _collect()

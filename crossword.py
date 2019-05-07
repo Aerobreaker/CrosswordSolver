@@ -310,12 +310,12 @@ class Layout(BaseClass):
             layout: The grid (list of lists) to parse into a Layout
         """
         from itertools import chain
-        self._layout = layout
         #For convenience, push all of the rows out to match the longest row
         length = max(len(row) for row in layout)
         for row_ind, row in enumerate(layout):
             if len(row) < length:
                 layout[row_ind].extend([0]*(length-len(row)))
+        self._layout = layout
         self.slots = {}
         layout = []
         #Iterate through the rows groupwise, creating and logging Slots with a

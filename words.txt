@@ -9933,7 +9933,6 @@ betaking
 betas
 betatron
 betatrons
-bete
 beteem
 beteeme
 beteemed
@@ -9942,8 +9941,6 @@ beteeming
 beteems
 betel
 betels
-betes
-beth
 bethankit
 bethankits
 bethel
@@ -9953,7 +9950,6 @@ bethinking
 bethinks
 bethought
 bethrall
-beths
 bethump
 bethumped
 bethumping
@@ -36178,7 +36174,6 @@ errs
 ersatz
 ersatzes
 erses
-erst
 erstwhile
 erubescent
 erubescite
@@ -36528,7 +36523,6 @@ ethambutol
 ethanal
 ethane
 ethanol
-ethe
 ethene
 ether
 ethereal
@@ -44851,7 +44845,6 @@ ghettoize
 ghettoized
 ghettoizes
 ghettos
-ghi
 ghillie
 ghillies
 ghis
@@ -44869,7 +44862,6 @@ ghoul
 ghoulish
 ghoulishly
 ghouls
-ghyll
 ghylls
 gi
 giambeux
@@ -45012,7 +45004,6 @@ gilling
 gillion
 gillions
 gills
-gilly
 gillying
 gilpy
 gilravage
@@ -45166,9 +45157,7 @@ girons
 giros
 girosol
 girosols
-girr
 girrs
-girt
 girted
 girth
 girthed
@@ -45189,7 +45178,6 @@ git
 gitana
 gitano
 gitanos
-gite
 gites
 gits
 gittern
@@ -46999,7 +46987,6 @@ grifter
 grifters
 grifting
 grifts
-grig
 grigris
 grigs
 grike
@@ -50090,7 +50077,6 @@ hesperid
 hesperids
 hessian
 hessonite
-hest
 hesternal
 hests
 hetaera
@@ -50109,7 +50095,6 @@ hetairism
 hetairisms
 hetairist
 hetairists
-hete
 hetero
 heterodont
 heterodox
@@ -50133,7 +50118,6 @@ hetmanate
 hetmanates
 hetmans
 hetmanship
-hets
 heuch
 heuchera
 heuchs
@@ -52846,7 +52830,6 @@ illocution
 illogic
 illogical
 ills
-illth
 illude
 illuded
 illudes
@@ -61041,7 +61024,6 @@ lifting
 liftman
 liftmen
 lifts
-lig
 ligament
 ligamental
 ligaments
@@ -61594,7 +61576,6 @@ literatus
 literose
 literosity
 lites
-lith
 litharge
 lithate
 lithe
@@ -62247,7 +62228,6 @@ loquacity
 loquat
 loquats
 loquitur
-loral
 loran
 lorans
 lorate
@@ -62696,7 +62676,6 @@ lumpkins
 lumps
 lumpsucker
 lumpy
-lums
 lunacies
 lunacy
 lunar
@@ -66444,14 +66423,12 @@ milreises
 mils
 milsey
 milseys
-milt
 milted
 milter
 milters
 milting
 miltonia
 miltonias
-milts
 milvine
 mim
 mimbar
@@ -69074,7 +69051,6 @@ mugwumps
 muids
 muirburn
 muirs
-muist
 mujaheddin
 mujahedin
 mujahidin
@@ -69138,6 +69114,7 @@ mulmull
 mulse
 multeities
 multeity
+multi
 multicycle
 multifaced
 multifid
@@ -69461,7 +69438,6 @@ musimons
 musing
 musingly
 musings
-musit
 musive
 musk
 musked
@@ -69563,7 +69539,6 @@ muted
 mutely
 muteness
 mutes
-muti
 muticous
 mutilate
 mutilated
@@ -73827,6 +73802,7 @@ orbits
 orbs
 orby
 orc
+orca
 orcein
 orchard
 orcharding
@@ -86923,7 +86899,6 @@ rabbling
 rabblings
 rabboni
 rabbonis
-rabi
 rabic
 rabid
 rabidity
@@ -91155,7 +91130,6 @@ retroverts
 retrovirus
 retry
 retrying
-rets
 retsina
 retsinas
 retted
@@ -91898,7 +91872,6 @@ rig
 rigadoon
 rigadoons
 rigatoni
-rigg
 riggald
 riggalds
 rigged
@@ -98187,7 +98160,6 @@ sherry
 sherwani
 sherwanis
 shes
-shet
 shetland
 shetlands
 sheuch
@@ -99472,7 +99444,6 @@ simplistic
 simplists
 simply
 simps
-simul
 simulacra
 simulacre
 simulacres
@@ -100825,7 +100796,6 @@ sluiced
 sluices
 sluicing
 sluicy
-sluit
 slum
 slumber
 slumbered
@@ -100881,7 +100851,6 @@ slushiest
 slushing
 slushy
 slusing
-slut
 sluts
 slutteries
 sluttery
@@ -101080,7 +101049,6 @@ smirred
 smirring
 smirrs
 smirs
-smit
 smite
 smiter
 smiters
@@ -106630,13 +106598,11 @@ stuffy
 stuggy
 stull
 stulls
-stulm
 stulms
 stultified
 stultifier
 stultifies
 stultify
-stum
 stumble
 stumblebum
 stumbled
@@ -106721,7 +106687,6 @@ sturgeon
 sturgeons
 sturnine
 sturnoid
-sturt
 sturted
 sturting
 sturts
@@ -107521,7 +107486,6 @@ suede
 sueded
 suedes
 sueding
-suer
 suers
 sues
 suet
@@ -110733,7 +110697,6 @@ teffs
 tefillah
 tefillin
 tefs
-teg
 tegmen
 tegmenta
 tegmental
@@ -111434,7 +111397,6 @@ tertians
 tertiary
 tertias
 tertius
-terts
 tervalent
 terzetti
 terzetto
@@ -111732,7 +111694,6 @@ thee
 theed
 theeing
 theek
-thees
 theft
 theftboot
 theftboots
@@ -111975,7 +111936,6 @@ thieving
 thievings
 thievish
 thievishly
-thig
 thigger
 thiggers
 thigging
@@ -111984,7 +111944,6 @@ thigh
 thighs
 thigs
 thilk
-thill
 thiller
 thillers
 thills
@@ -112585,8 +112544,6 @@ tift
 tifted
 tifting
 tifts
-tig
-tige
 tiger
 tigerish
 tigerishly
@@ -112661,7 +112618,6 @@ tilling
 tillings
 tillite
 tills
-tils
 tilt
 tiltable
 tilted
@@ -112925,7 +112881,6 @@ tirls
 tirocinium
 tiroes
 tiros
-tirr
 tirred
 tirring
 tirrit
@@ -114666,7 +114621,6 @@ tressures
 tressy
 trestle
 trestles
-trets
 trevallies
 trevally
 trews
@@ -114865,7 +114819,6 @@ triennia
 triennial
 triennium
 trienniums
-trier
 trierarch
 trierarchs
 trierarchy
@@ -115515,7 +115468,6 @@ truemen
 trueness
 truepenny
 truer
-trues
 truest
 truffle
 truffled
@@ -115774,8 +115726,6 @@ tuilles
 tuillette
 tuillettes
 tuilyie
-tuis
-tuism
 tuition
 tuitional
 tuitionary
@@ -115834,7 +115784,6 @@ tump
 tumped
 tumping
 tumps
-tums
 tumular
 tumulary
 tumuli
@@ -116437,7 +116386,6 @@ tye
 tyed
 tyeing
 tyes
-tyg
 tygs
 tying
 tyke
@@ -120668,7 +120616,6 @@ uremia
 uremic
 urenas
 urent
-ures
 ureses
 uresis
 ureter

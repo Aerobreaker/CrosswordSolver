@@ -5204,7 +5204,6 @@ areometer
 areometers
 areostyle
 areostyles
-arere
 arets
 arett
 aretted
@@ -25009,7 +25008,6 @@ culvers
 culvert
 culvertage
 culverts
-cum
 cumarin
 cumbent
 cumber
@@ -25175,7 +25173,6 @@ curdy
 cure
 cured
 cureless
-curer
 curers
 cures
 curettage
@@ -25221,7 +25218,6 @@ curmudgeon
 curmurring
 curney
 curns
-curr
 currach
 currachs
 curragh
@@ -37900,7 +37896,6 @@ exuviating
 exuviation
 eyalet
 eyalets
-eyas
 eyases
 eye
 eyeball
@@ -60619,7 +60614,6 @@ leptons
 leptosome
 leptosomes
 leptotene
-lere
 lered
 leres
 lering
@@ -62902,7 +62896,6 @@ lycopod
 lycopods
 lyddite
 lye
-lyes
 lying
 lyingly
 lyings
@@ -62959,7 +62952,6 @@ lyrism
 lyrisms
 lyrist
 lyrists
-lyse
 lysed
 lyses
 lysigenic
@@ -69337,18 +69329,15 @@ murrain
 murrains
 murray
 murrays
-murre
 murrelet
 murrelets
 murres
-murrey
 murreys
 murrha
 murrhine
 murries
 murrine
 murrion
-murry
 murther
 murthered
 murtherer
@@ -87488,7 +87477,6 @@ randoms
 randomwise
 rands
 randy
-ranee
 ranees
 rang
 rangatira
@@ -87982,7 +87970,6 @@ reagent
 reagents
 reaks
 real
-realer
 realest
 realgar
 realia
@@ -89626,6 +89613,7 @@ relay
 relayed
 relaying
 relays
+relearn
 releasable
 release
 released
@@ -93840,7 +93828,6 @@ sailors
 sailplane
 sailplanes
 sails
-saily
 saim
 saimiri
 saimiris
@@ -100473,7 +100460,6 @@ slew
 slewed
 slewing
 slews
-sley
 sleys
 slice
 sliced
@@ -126538,7 +126524,6 @@ yakow
 yakows
 yaks
 yakuza
-yales
 yam
 yamen
 yamens
@@ -127051,6 +127036,7 @@ yule
 yules
 yuletide
 yuletides
+yum
 yummier
 yummiest
 yummy

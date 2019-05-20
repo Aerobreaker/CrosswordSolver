@@ -7,6 +7,9 @@ from crossword.globs import _AUTO_ON, MIN_LEN, export
 from crossword.funcs import group_count, get_words, BaseClass, Direction
 
 
+__all__ = []
+
+
 @export
 class Slot(BaseClass):
     """Creates a slot to track an opening to put a word into.
@@ -526,6 +529,9 @@ class Solution(BaseClass):
         print('\n'.join(self.disp()))
 
 
+#Disable pylint flags: no value for cls argument (yeah, I'm using the hidden
+#wrapper version which has an undocumented signature)
+@_AUTO_ON.publish(refresh_method='refresh') #pylint: disable=no-value-for-parameter
 @export
 class Solver(BaseClass):
     """Creates a Solver to determine possible words and layouts.
@@ -599,13 +605,13 @@ class Solver(BaseClass):
 
         Used to re-compute possible words after updating the spell checker.
         """
-        def find_words_with_letters(maxlen):
-            from collections import Counter
-            from itertools import permutations
-            from math import factorial
+        from collections import Counter
+        from itertools import permutations
+        from math import factorial
+        words = {}
+        if self.letters:
             count = len(self.letters)
-            if maxlen > count:
-                maxlen = count
+            maxlen = min(count, self.maxlen)
             lengths = set(range(self.minlen, maxlen+1))
             #nPr = n! / (n-r)!
             perm = sum(factorial(count)/factorial(count-num) for num in lengths)
@@ -615,10 +621,8 @@ class Solver(BaseClass):
                 avail = Counter(self.letters)
                 for word in self.checker.words:
                     wordlen = len(word)
-                    if wordlen in lengths:
-                        need = Counter(word)
-                        if not need - avail:
-                            words.setdefault(wordlen, set()).add(word)
+                    if wordlen in lengths and not Counter(word) - avail:
+                        words.setdefault(wordlen, set()).add(word)
             #If letter restrictions and permutations < dictionary length, loop
             #through permutations to see which of them are words
             else:
@@ -627,9 +631,6 @@ class Solver(BaseClass):
                         word = ''.join(perm)
                         if self.checker.check_word(word):
                             words.setdefault(i, set()).add(word)
-        words = {}
-        if self.letters:
-            find_words_with_letters(self.maxlen)
         #If no letter restrictions, grab all words within the length limits
         else:
             for word in self.checker.words:
@@ -826,6 +827,3 @@ class Checker(BaseClass):
         if value != self._case:
             self._case = value
             self.refresh()
-
-
-_AUTO_ON.publish(Solver, 'refresh')

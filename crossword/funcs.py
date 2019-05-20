@@ -1,10 +1,12 @@
 """Create package-level functions and classes for use in crossword solvers."""
-from enum import auto as _auto, Enum
+from enum import auto, Enum
 from functools import wraps
-from gc import collect
 
 
 from crossword.globs import export
+
+
+__all__ = []
 
 
 @export
@@ -58,26 +60,18 @@ class BaseClassProperties(type):
         return list(cls._instances)
 
 
+#Disable pylint flags: too few public methods (this is only here as a template
+#for other classes to inherit from; public methods are unnecessary)
 @export
-class BaseClass(metaclass=BaseClassProperties):
+class BaseClass(metaclass=BaseClassProperties): #pylint: disable=too-few-public-methods
     """Creates a class which tracks it's instances"""
     def __init__(self):
         """Create a weak reference to self for instance tracking"""
         type(self)._instances.add(self)
 
-    def get_instances(self):
-        """Return instances of the object's class"""
-        return type(self).instances
-
-    @classmethod
-    def collect(cls):
-        """Collect garbage"""
-        if cls.instances:
-            collect()
-
 
 @export
 class Direction(Enum):
     """Enumerator to indicate right or down direction."""
-    RIGHT = _auto()
-    DOWN = _auto()
+    RIGHT = auto()
+    DOWN = auto()

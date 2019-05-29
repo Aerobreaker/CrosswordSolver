@@ -1,5 +1,5 @@
 """Create package-level functions and classes for use in crossword solvers."""
-from enum import auto, Enum
+from enum import auto as _auto, Enum
 from functools import wraps
 
 
@@ -7,6 +7,21 @@ from crossword.globs import export
 
 
 __all__ = []
+
+
+@export
+def auto(enabled=True):
+    """Enable or disable automatic updates of dependant classes."""
+    #Disable pylint flags: Cyclic import (I know, but it's necessary; that's why
+    #the import is inside the function - so that when the function gets called,
+    #this module is already imported and there won't be problems)
+    from crossword.clses import _AUTO_ON #pylint: disable=cyclic-import
+    prev = bool(_AUTO_ON)
+    if enabled and not prev:
+        _AUTO_ON.enable()
+    if prev and not enabled:
+        _AUTO_ON.disable()
+    return prev, enabled
 
 
 @export
@@ -50,14 +65,14 @@ class BaseClassProperties(type):
     @wraps(type.__init__)
     def __init__(cls, *args, **kwargs):
         """Instantiate a class"""
-        from weakref import WeakSet
         super().__init__(*args, **kwargs)
-        cls._instances = WeakSet()
+        cls._instances = []
 
     @property
     def instances(cls):
         """Return the instances of a class"""
-        return list(cls._instances)
+        cls._instances = [i for i in cls._instances if i() is not None]
+        return cls._instances
 
 
 #Disable pylint flags: too few public methods (this is only here as a template
@@ -65,13 +80,18 @@ class BaseClassProperties(type):
 @export
 class BaseClass(metaclass=BaseClassProperties): #pylint: disable=too-few-public-methods
     """Creates a class which tracks it's instances"""
-    def __init__(self):
-        """Create a weak reference to self for instance tracking"""
-        type(self)._instances.add(self)
+    #Disable pylint flags: unused argument (yeah, I don't need them here but I
+    #have to take them so they can be passed to __init__)
+    def __new__(cls, *args, **kwargs): #pylint: disable=unused-argument
+        """Create a new object and log the object in the instances"""
+        from weakref import ref
+        new = super().__new__(cls)
+        cls._instances.append(ref(new))
+        return new
 
 
 @export
 class Direction(Enum):
     """Enumerator to indicate right or down direction."""
-    RIGHT = auto()
-    DOWN = auto()
+    RIGHT = _auto()
+    DOWN = _auto()

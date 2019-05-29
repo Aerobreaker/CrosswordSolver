@@ -1,13 +1,88 @@
 """Create classes for use in crossword solvers."""
-from gc import collect
 from math import inf
+from functools import wraps, WRAPPER_ASSIGNMENTS
 
 
-from crossword.globs import _AUTO_ON, MIN_LEN, export
+from crossword.globs import MIN_LEN, export
 from crossword.funcs import group_count, get_words, BaseClass, Direction
 
 
 __all__ = []
+
+
+class _AutoFlag:
+    """Autoflag boolean"""
+    def __init__(self, default=True):
+        """Create an autoflag"""
+        self.classes = {}
+        self._value = default
+
+    def __bool__(self):
+        """Get value from autoflag"""
+        return self._value
+
+    def enable(self):
+        """Enable the autoflag"""
+        self._value = True
+        for cls, (method, args, kwargs) in self.classes.items():
+            if hasattr(cls, 'instances') and method:
+                for obj in cls.instances:
+                    if hasattr(obj, method):
+                        getattr(obj, method)(*args, **kwargs)
+
+    def disable(self):
+        """Disable the autoflag"""
+        self._value = False
+
+    #Disable pylint flags: kwarg before varargs (this is fine, why is this even
+    #a pylint error?), missing docstring (I don't need one, I'm just creating
+    #this function for the signature)
+    def publish(self, cls, refresh_method=None, *args, **kwargs): #pylint: disable=keyword-arg-before-vararg, missing-docstring
+        pass
+
+    #Disable pylint flags: inconsistent return statements (I know - when used as
+    #a wrapper, it needs to return a function; when called with a class arg,
+    #there's no need to return anything), method already defined (yeah, exactly;
+    #I want this functionality with the original signature)
+    #Idea: Perhaps just return the wrapper function in all cases?  It can still
+    #be called directly with:
+    #_AutoFlag().publish(refresh_method, *args, **kwargs)(cls)
+    @wraps(publish, assigned=set(WRAPPER_ASSIGNMENTS)-{'__doc__'})
+    def publish(self, *args, **kwargs): #pylint: disable=inconsistent-return-statements, function-redefined
+        """Publish a class to be auto-refreshed when the auto flag is toggled"""
+        refresh_method = kwargs.pop('refresh_method', None)
+        cls = kwargs.pop('cls', None)
+        newargs = []
+        for arg in args:
+            if isinstance(arg, type) and not cls:
+                cls = arg
+            elif isinstance(arg, str) and not refresh_method:
+                refresh_method = arg
+            else:
+                newargs.append(arg)
+        if cls:
+            self.classes[cls] = (refresh_method, newargs, kwargs)
+            return
+        def pub(cls):
+            self.classes[cls] = (refresh_method, newargs, kwargs)
+            return cls
+        return pub
+
+    def unpublish(self, cls):
+        """Un-publish a class to be auto-refreshed."""
+        self.classes.pop(cls, None)
+
+    def refresh(self, tester=lambda obj: True):
+        """Refreshes all published classes"""
+        from gc import collect
+        collect()
+        for cls, (method, args, kwargs) in self.classes.items():
+            for obj in cls.instances:
+                if tester(obj):
+                    getattr(obj, method)(*args, **kwargs)
+
+
+_AUTO_ON = _AutoFlag()
 
 
 @export
@@ -39,8 +114,6 @@ class Slot(BaseClass):
         self.word = self._word = [''] * size
         self._empty = size
         self.has_word = False
-        super().__init__()
-
 
     def __repr__(self):
         """Returns an internal representation of a Slot object."""
@@ -68,6 +141,11 @@ class Slot(BaseClass):
     def __getitem__(self, key):
         """Indexes into the word contained in the Slot."""
         return self.word[key]
+
+    def _test(self, solver):
+        if not getattr(solver, 'layout'):
+            return False
+        return self in getattr(solver.layout, 'all_slots', set())
 
     def check_word(self, word):
         """Checks to see if the specified word will fit in the Slot.
@@ -116,20 +194,14 @@ class Slot(BaseClass):
         self.word = word
         self.has_word = True
         if _AUTO_ON and refresh:
-            collect()
-            for solver in Solver.instances:
-                if self in getattr(solver.layout, 'all_slots', set()):
-                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
+            _AUTO_ON.refresh(self._test)
 
     def rem_word(self, refresh=True):
         """Removes the stored word from the Slot, preserving any set letters."""
         self.has_word = False
         self.word = self._word
         if _AUTO_ON and refresh:
-            collect()
-            for solver in Solver.instances:
-                if self in getattr(solver.layout, 'all_slots', set()):
-                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
+            _AUTO_ON.refresh(self._test)
 
     def set_letter(self, ind, let, refresh=True):
         """Inserts a letter into the specified index.
@@ -150,10 +222,7 @@ class Slot(BaseClass):
             self.has_word = True
             self.word = ''.join(self.word)
         if _AUTO_ON and refresh:
-            collect()
-            for solver in Solver.instances:
-                if self in getattr(solver.layout, 'all_slots', set()):
-                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
+            _AUTO_ON.refresh(self._test)
 
     def rem_letter(self, ind, refresh=True):
         """Removes any set letters from the specified index
@@ -168,10 +237,7 @@ class Slot(BaseClass):
             self._empty += 1
         self.word[ind] = self._word[ind] = ''
         if _AUTO_ON and refresh:
-            collect()
-            for solver in Solver.instances:
-                if self in getattr(solver.layout, 'all_slots', set()):
-                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
+            _AUTO_ON.refresh(self._test)
 
     def add_overlap(self, ind, other, other_ind):
         """Adds an overlap with the specified Slot.
@@ -190,10 +256,7 @@ class Slot(BaseClass):
         self._empty = self.attributes[0]
         self.has_word = False
         if _AUTO_ON and refresh:
-            collect()
-            for solver in Solver.instances:
-                if self in getattr(solver.layout, 'all_slots', set()):
-                    solver.solve(max(len(getattr(solver, 'solutions', [])), 50))
+            _AUTO_ON.refresh(self._test)
 
 
 @export
@@ -253,7 +316,6 @@ class Layout(BaseClass):
         #Save off the dict of slots and the layout of slots
         self.layout = layout
         self.all_slots = set(chain.from_iterable(self.slots.values()))
-        super().__init__()
 
     def __repr__(self):
         """Returns an internal represntation of the Layout."""
@@ -284,15 +346,15 @@ class Layout(BaseClass):
             return self.layout[row][column]
         return self.layout[key]
 
+    def _test(self, solver):
+        return self is getattr(solver, 'layout', None)
+
     def clear(self):
         """Removes all words and letters from a Layout."""
         for slot in self.all_slots:
             slot.clear(False)
         if _AUTO_ON:
-            collect()
-            for solver in Solver.instances:
-                if self is solver.layout:
-                    solver.solve(len(getattr(solver, 'solutions', [])))
+            _AUTO_ON.refresh(self._test)
 
     def set_letter(self, letter, row, column):
         """Sets a letter in a specific position to constrain solutions.
@@ -333,13 +395,21 @@ class Layout(BaseClass):
             if slot:
                 slot.rem_letter(ind)
 
-    def set_extra(self, word):
+    def set_extra(self, *words):
         """Flags a word as an extra word when solving."""
-        self.extras.add(word)
+        words = get_words(words)
+        for word in words:
+            self.extras.add(word)
+        if _AUTO_ON:
+            _AUTO_ON.refresh(self._test)
 
-    def rem_extra(self, word):
+    def rem_extra(self, *words):
         """Removes a word from the extras for solving."""
-        self.extras.discard(word)
+        words = get_words(words)
+        for word in words:
+            self.extras.discard(word)
+        if _AUTO_ON:
+            _AUTO_ON.refresh(self._test)
 
     def solve(self,
               words,
@@ -511,22 +581,21 @@ class Solution(BaseClass):
             self.extra = sorted(sorted(extra), key=len)
         except TypeError:
             self.extra = None
-        super().__init__()
 
     def __repr__(self):
         """Returns an internal represntation of the Solution."""
         return 'Solution(layout={}, extra={})'.format(self._layout, self.extra)
 
-    def disp(self):
+    def disp(self, include_extra=True):
         """Yields lines in the provided layout with the letters filled in."""
         for line in self.data:
             yield line
-        if self.extra:
+        if self.extra and include_extra:
             yield 'Bonus words: {}'.format(', '.join(self.extra))
 
-    def print(self):
+    def print(self, include_extra=True):
         """Prints the provided Layout with the letters filled in."""
-        print('\n'.join(self.disp()))
+        print('\n'.join(self.disp(include_extra)))
 
 
 #Disable pylint flags: no value for cls argument (yeah, I'm using the hidden
@@ -571,16 +640,17 @@ class Solver(BaseClass):
         self.checker = checker
         self.letters = letters
         self.layout = layout
-        self._minlen, self._maxlen = lengths
+        self._lengths = lengths
         self.solutions = []
-        if self._minlen < 1:
-            self._minlen = MIN_LEN
+        if lengths[0] < 1:
+            lengths[0] = MIN_LEN
         #Check this after, so that __repr__ can be evaluated in an error trap
         #if an error occurs during __init__
-        if self._maxlen < self._minlen:
+        if lengths[1] < lengths[0]:
             raise ValueError('maximum length is less than minimum length')
+        self._signature = None
+        self.words = {}
         self.refresh()
-        super().__init__()
 
     def __repr__(self):
         """Returns an internal representation for the object."""
@@ -588,7 +658,7 @@ class Solver(BaseClass):
         return reprstr.format(repr(self.letters),
                               repr(self.checker),
                               repr(self.layout),
-                              (repr(self.minlen), repr(self.maxlen)))
+                              repr(self._lengths))
 
     def print(self):
         """Prints the words in the Solver."""
@@ -600,19 +670,14 @@ class Solver(BaseClass):
             #Print the length, and then the words delimited by ", "
             print('{}: {}'.format(length, ', '.join(words)))
 
-    def refresh(self):
-        """Generates words which can be created.
-
-        Used to re-compute possible words after updating the spell checker.
-        """
+    def _refresh_words(self):
         from collections import Counter
-        from itertools import permutations
+        from itertools import chain, permutations
         from math import factorial
         words = {}
         if self.letters:
             count = len(self.letters)
-            maxlen = min(count, self.maxlen)
-            lengths = set(range(self.minlen, maxlen+1))
+            lengths = set(range(self.minlen, min(count, self.maxlen)+1))
             #nPr = n! / (n-r)!
             perm = sum(factorial(count)/factorial(count-num) for num in lengths)
             #If letter restrictions and number of permutations exceeds length of
@@ -626,11 +691,13 @@ class Solver(BaseClass):
             #If letter restrictions and permutations < dictionary length, loop
             #through permutations to see which of them are words
             else:
-                for i in lengths:
-                    for perm in permutations(self.letters, i):
-                        word = ''.join(perm)
-                        if self.checker.check_word(word):
-                            words.setdefault(i, set()).add(word)
+                perms = chain.from_iterable(((i, ''.join(j))
+                                             for j in permutations(self.letters,
+                                                                   i))
+                                            for i in lengths)
+                for length, word in perms:
+                    if self.checker.check_word(word):
+                        words.setdefault(length, set()).add(word)
         #If no letter restrictions, grab all words within the length limits
         else:
             for word in self.checker.words:
@@ -639,6 +706,24 @@ class Solver(BaseClass):
                     words.setdefault(wordlen, set()).add(word)
         #Can sort keys and words here, but for speed, sort at print time
         self.words = {key: list(val) for key, val in words.items()}
+        #Disable pylint flags: access to a protected member (the user doesn't
+        #need to track whether the Checker has been updated, so the signature is
+        #private; I, however, do)
+        self._signature = self.checker._signature #pylint: disable=protected-access
+
+
+    def refresh(self):
+        """Generates words which can be created.
+
+        Used to re-compute possible words after updating the spell checker.
+        """
+        #Check the checker to see if it's been updated
+        #If the checker has been updated, find all the words again
+        #Disable pylint flags: access to a protected member (the user doesn't
+        #need to track whether the Checker has been updated, so the signature is
+        #private; I, however, do)
+        if self._signature is not self.checker._signature: #pylint: disable=protected-access
+            self._refresh_words()
         if self.layout:
             self.solve(max(len(getattr(self, 'solutions', [])), 50))
 
@@ -658,7 +743,7 @@ class Solver(BaseClass):
         """
         self.solutions = self.layout.solve(self.words, limit)
 
-    def print_solutions(self, num=None):
+    def print_solutions(self, num=None, include_extra=True):
         """Prints the provided number of solutions.
 
         Args:
@@ -667,37 +752,37 @@ class Solver(BaseClass):
         """
         if num is None:
             for sol in self.solutions:
-                sol.print()
+                sol.print(include_extra)
         else:
             for sol in self.solutions[:num]:
-                sol.print()
+                sol.print(include_extra)
 
     @property
     def minlen(self):
         """Returns the minimum length of the Solver"""
-        return self._minlen
+        return self._lengths[0]
 
     @minlen.setter
     def minlen(self, newlen):
         """Sets the minimum length of the Solver"""
-        if newlen > self._maxlen:
+        if newlen > self._lengths[1]:
             raise ValueError('minimum length is more than maximum length')
-        if newlen != self._minlen:
-            self._minlen = newlen
+        if newlen != self._lengths[0]:
+            self._lengths = (newlen, self._lengths[1])
             self.refresh()
 
     @property
     def maxlen(self):
         """Returns the maximum length of the Solver"""
-        return self._maxlen
+        return self._lengths[1]
 
     @maxlen.setter
     def maxlen(self, newlen):
         """Sets the maximum length of the Solver"""
-        if newlen < self._minlen:
+        if newlen < self._lengths[0]:
             raise ValueError('maximum length is less than minimum length')
-        if newlen != self._maxlen:
-            self._maxlen = newlen
+        if newlen != self._lengths[1]:
+            self._lengths = (self._lengths[0], newlen)
             self.refresh()
 
 
@@ -722,8 +807,8 @@ class Checker(BaseClass):
         self._encoding = encoding
         self._words = None
         self._case = bool(case)
+        self._signature = None
         self.refresh()
-        super().__init__()
 
     def __repr__(self):
         """Returns an internal represntation of the Checker."""
@@ -731,6 +816,9 @@ class Checker(BaseClass):
             self._wordfile,
             self._encoding,
             self._case)
+
+    def _test(self, solver):
+        return self is getattr(solver, 'checker')
 
     def refresh(self):
         """Re-builds the word list from the word file."""
@@ -742,11 +830,9 @@ class Checker(BaseClass):
                 else:
                     words |= set(i.lower() for i in line.strip().split())
         self._words = words
+        self._signature = object()
         if _AUTO_ON:
-            collect()
-            for solver in Solver.instances:
-                if self is solver.checker:
-                    solver.refresh()
+            _AUTO_ON.refresh(self._test)
 
     def check_word(self, word):
         """Returns a boolean indicating whether a word is in the Checker."""
@@ -778,11 +864,9 @@ class Checker(BaseClass):
         #Sort and write to the file
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
+        self._signature = object()
         if _AUTO_ON:
-            collect()
-            for solver in Solver.instances:
-                if self is solver.checker:
-                    solver.refresh()
+            _AUTO_ON.refresh(self._test)
 
     def remove(self, *words):
         """Removes one or more words from the Checker and it's word file."""
@@ -802,11 +886,9 @@ class Checker(BaseClass):
         #Sort and write to the file
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
+        self._signature = object()
         if _AUTO_ON:
-            collect()
-            for solver in Solver.instances:
-                if self is solver.checker:
-                    solver.refresh()
+            _AUTO_ON.refresh(self._test)
 
     @property
     def words(self):

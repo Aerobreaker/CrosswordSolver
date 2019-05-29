@@ -2190,7 +2190,6 @@ aircrews
 airdrome
 airdromes
 aired
-airer
 airers
 airfield
 airfields
@@ -7513,7 +7512,6 @@ badness
 baels
 baetyl
 baetyls
-baff
 baffed
 baffies
 baffing
@@ -8350,7 +8348,6 @@ barrator
 barrators
 barratrous
 barratry
-barre
 barred
 barrel
 barrelage
@@ -10460,7 +10457,6 @@ biocides
 biodynamic
 bioecology
 bioethics
-biog
 biogas
 biogases
 biogen
@@ -10608,7 +10604,6 @@ birlinn
 birlinns
 birls
 birostrate
-birr
 birrs
 birse
 birses
@@ -11090,7 +11085,6 @@ blimp
 blimpish
 blimps
 blimy
-blin
 blind
 blindage
 blindages
@@ -11109,6 +11103,7 @@ blindness
 blinds
 blindworm
 blindworms
+bling
 blini
 blinis
 blink
@@ -12610,7 +12605,6 @@ braise
 braised
 braises
 braising
-braize
 braizes
 brake
 braked
@@ -12797,7 +12791,6 @@ brayed
 brayer
 braying
 brays
-braze
 brazed
 brazen
 brazened
@@ -15032,7 +15025,6 @@ calzone
 calzones
 calzoni
 cam
-caman
 camans
 camarilla
 camarillas
@@ -36009,7 +36001,6 @@ erasion
 erasions
 erasure
 erasures
-erbia
 erbium
 ere
 erect
@@ -45085,7 +45076,6 @@ ginseng
 ginsengs
 ginshop
 ginshops
-gio
 giocoso
 gios
 gip
@@ -45503,7 +45493,6 @@ globby
 globe
 globed
 globes
-globin
 globing
 globoid
 globose
@@ -50749,7 +50738,6 @@ hogward
 hogwards
 hogwash
 hogwashes
-hohs
 hoick
 hoicked
 hoicking
@@ -51123,7 +51111,6 @@ honourers
 honouring
 honourless
 honours
-hoo
 hooch
 hooches
 hood
@@ -51204,7 +51191,6 @@ hoosegow
 hoosegows
 hoosgow
 hoosgows
-hoosh
 hooshed
 hooshes
 hooshing
@@ -51411,7 +51397,6 @@ hortation
 hortations
 hortative
 hortatory
-hos
 hosanna
 hosannas
 hose
@@ -51498,7 +51483,6 @@ hotplate
 hotplates
 hotpot
 hotpots
-hots
 hotshot
 hotshots
 hotted
@@ -54366,7 +54350,6 @@ ingles
 inglobe
 inglorious
 ingluvial
-ingo
 ingoes
 ingoing
 ingoings
@@ -61790,7 +61773,6 @@ lobelia
 lobelias
 lobeline
 lobes
-lobing
 lobings
 lobiped
 loblollies
@@ -61998,6 +61980,7 @@ logicizes
 logicizing
 logics
 logie
+login
 logion
 logistic
 logistical
@@ -62975,13 +62958,11 @@ lyttas
 l‰ndler
 l‰ndlers
 ma
-maa
 maaed
 maaing
 maar
 maars
 maas
-mac
 macabre
 macaco
 macacos
@@ -69803,7 +69784,6 @@ mzees
 mzungu
 mzungus
 na
-naam
 naams
 naan
 naans
@@ -71795,7 +71775,6 @@ nourishers
 nourishes
 nourishing
 nouriture
-nous
 nousle
 nousled
 nousles
@@ -72228,7 +72207,6 @@ nyctalopia
 nyctalopic
 nyctalops
 nyctinasty
-nyet
 nylghau
 nylghaus
 nylon
@@ -73047,11 +73025,8 @@ ohmic
 ohmmeter
 ohmmeters
 ohms
-oho
 ohone
 ohones
-ohos
-ohs
 oi
 oidia
 oidium
@@ -73419,7 +73394,6 @@ oogonium
 ooh
 oohed
 oohing
-oohs
 ooidal
 oolakan
 oolakans
@@ -74284,8 +74258,6 @@ otter
 ottered
 ottering
 otters
-otto
-ottos
 ottrelite
 ou
 ouabain
@@ -90845,7 +90817,6 @@ restringes
 restrings
 restrung
 rests
-resty
 restyle
 restyled
 restyles
@@ -92117,7 +92088,6 @@ rispings
 risps
 rissole
 rissoles
-risus
 risuses
 ritardando
 rite
@@ -92217,7 +92187,6 @@ rivulet
 rivulets
 riyal
 riyals
-riza
 rizas
 roach
 roached
@@ -96719,7 +96688,6 @@ seiners
 seines
 seining
 seinings
-seirs
 seise
 seised
 seises
@@ -98606,7 +98574,6 @@ shotgun
 shotguns
 shotmaker
 shots
-shott
 shotted
 shotten
 shotting
@@ -101922,7 +101889,6 @@ sogging
 soggings
 soggy
 sogs
-soh
 sohs
 soil
 soilage
@@ -105245,7 +105211,6 @@ stemson
 stemsons
 stemware
 stemwinder
-sten
 stench
 stenched
 stenches
@@ -105407,7 +105372,6 @@ stewpot
 stewpots
 stews
 stewy
-stey
 sthenic
 stibbler
 stibblers
@@ -105951,7 +105915,6 @@ storying
 storyings
 storyline
 stoss
-stot
 stotinka
 stotinki
 stotious
@@ -106684,7 +106647,6 @@ stutterers
 stuttering
 stutters
 sty
-stye
 styed
 styes
 stying
@@ -107472,7 +107434,6 @@ suede
 sueded
 suedes
 sueding
-suers
 sues
 suet
 suety
@@ -107834,7 +107795,6 @@ sunlight
 sunlike
 sunlit
 sunlounger
-sunn
 sunned
 sunnier
 sunniest
@@ -108123,7 +108083,6 @@ surefooted
 surely
 sureness
 surer
-sures
 surest
 sureties
 surety
@@ -113105,8 +113064,6 @@ togue
 togues
 toheroa
 toheroas
-toho
-tohos
 tohunga
 tohungas
 toil
@@ -113411,7 +113368,6 @@ toothlike
 toothpaste
 toothpick
 toothpicks
-tooths
 toothsome
 toothwash
 toothwort
@@ -113676,7 +113632,6 @@ torus
 tosa
 tosas
 toses
-tosh
 tosher
 toshers
 toshes
@@ -113694,7 +113649,6 @@ tossings
 tosspot
 tosspots
 tossy
-tost
 tostada
 tostadas
 tot
@@ -114612,7 +114566,6 @@ trevally
 trews
 trewsman
 trewsmen
-trey
 treys
 triable
 triacid
@@ -116368,10 +116321,8 @@ tycoonate
 tycoonates
 tycoons
 tyde
-tye
 tyed
 tyeing
-tyes
 tygs
 tying
 tyke
@@ -116403,9 +116354,7 @@ tympanum
 tympanums
 tympany
 tynd
-tyne
 tyned
-tynes
 tyning
 typal
 type
@@ -116469,7 +116418,6 @@ tyrannous
 tyranny
 tyrant
 tyrants
-tyre
 tyred
 tyres
 tyring
@@ -120603,7 +120551,6 @@ uremic
 urenas
 urent
 ureses
-uresis
 ureter
 ureteral
 ureteric
@@ -121589,7 +121536,6 @@ velveting
 velvetings
 velvets
 velvety
-vena
 venae
 venal
 venality
@@ -126768,7 +126714,6 @@ yeshivas
 yeshivot
 yeshivoth
 yesses
-yest
 yester
 yesterday
 yesterdays
@@ -126991,7 +126936,6 @@ ypight
 ypsiliform
 ypsiloid
 yrapt
-yrent
 yrivd
 ytterbia
 ytterbium
@@ -127070,7 +127014,6 @@ zag
 zagged
 zagging
 zags
-zaire
 zakat
 zakuska
 zakuski
@@ -127151,7 +127094,6 @@ zati
 zatis
 zax
 zaxes
-zea
 zeal
 zealful
 zealless
@@ -127233,7 +127175,6 @@ zerda
 zerdas
 zereba
 zerebas
-zeriba
 zeribas
 zero
 zeroed

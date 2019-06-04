@@ -1,10 +1,10 @@
 """Create classes for use in crossword solvers."""
 from math import inf
-from functools import wraps, WRAPPER_ASSIGNMENTS
 
 
 from crossword.globs import MIN_LEN, export
-from crossword.funcs import group_count, get_words, BaseClass, Direction
+from crossword.funcs import (group_count, get_words, InstanceTracker, Direction,
+                             nodoc_wraps)
 
 
 __all__ = []
@@ -47,7 +47,7 @@ class _AutoFlag:
     #Idea: Perhaps just return the wrapper function in all cases?  It can still
     #be called directly with:
     #_AutoFlag().publish(refresh_method, *args, **kwargs)(cls)
-    @wraps(publish, assigned=set(WRAPPER_ASSIGNMENTS)-{'__doc__'})
+    @nodoc_wraps(publish)
     def publish(self, *args, **kwargs): #pylint: disable=inconsistent-return-statements, function-redefined
         """Publish a class to be auto-refreshed when the auto flag is toggled"""
         refresh_method = kwargs.pop('refresh_method', None)
@@ -61,10 +61,12 @@ class _AutoFlag:
             else:
                 newargs.append(arg)
         if cls:
-            self.classes[cls] = (refresh_method, newargs, kwargs)
+            if hasattr(cls, 'instances'):
+                self.classes[cls] = (refresh_method, newargs, kwargs)
             return
         def pub(cls):
-            self.classes[cls] = (refresh_method, newargs, kwargs)
+            if hasattr(cls, 'instances'):
+                self.classes[cls] = (refresh_method, newargs, kwargs)
             return cls
         return pub
 
@@ -83,10 +85,11 @@ class _AutoFlag:
 
 
 _AUTO_ON = _AutoFlag()
+_CHECKER_SIGNATURES = {}
 
 
 @export
-class Slot(BaseClass):
+class Slot(InstanceTracker):
     """Creates a slot to track an opening to put a word into.
 
     This object is created as a helper to the Layout object.  It tracks
@@ -143,7 +146,7 @@ class Slot(BaseClass):
         return self.word[key]
 
     def _test(self, solver):
-        if not getattr(solver, 'layout'):
+        if not getattr(solver, 'layout', None):
             return False
         return self in getattr(solver.layout, 'all_slots', set())
 
@@ -260,7 +263,7 @@ class Slot(BaseClass):
 
 
 @export
-class Layout(BaseClass):
+class Layout(InstanceTracker):
     """Creates a Layout object to find and track slots in the provided board.
 
     Attributes:
@@ -536,7 +539,7 @@ class Layout(BaseClass):
 
 
 @export
-class Solution(BaseClass):
+class Solution(InstanceTracker):
     """Creates a Solution object to save off the current solution.
 
     Attributes:
@@ -602,7 +605,7 @@ class Solution(BaseClass):
 #wrapper version which has an undocumented signature)
 @_AUTO_ON.publish(refresh_method='refresh') #pylint: disable=no-value-for-parameter
 @export
-class Solver(BaseClass):
+class Solver(InstanceTracker):
     """Creates a Solver to determine possible words and layouts.
 
     This object takes letters and an optional layout, as well as a spell checker
@@ -706,10 +709,7 @@ class Solver(BaseClass):
                     words.setdefault(wordlen, set()).add(word)
         #Can sort keys and words here, but for speed, sort at print time
         self.words = {key: list(val) for key, val in words.items()}
-        #Disable pylint flags: access to a protected member (the user doesn't
-        #need to track whether the Checker has been updated, so the signature is
-        #private; I, however, do)
-        self._signature = self.checker._signature #pylint: disable=protected-access
+        self._signature = _CHECKER_SIGNATURES[self.checker]
 
 
     def refresh(self):
@@ -719,10 +719,7 @@ class Solver(BaseClass):
         """
         #Check the checker to see if it's been updated
         #If the checker has been updated, find all the words again
-        #Disable pylint flags: access to a protected member (the user doesn't
-        #need to track whether the Checker has been updated, so the signature is
-        #private; I, however, do)
-        if self._signature is not self.checker._signature: #pylint: disable=protected-access
+        if self._signature is not _CHECKER_SIGNATURES[self.checker]:
             self._refresh_words()
         if self.layout:
             self.solve(max(len(getattr(self, 'solutions', [])), 50))
@@ -769,6 +766,7 @@ class Solver(BaseClass):
             raise ValueError('minimum length is more than maximum length')
         if newlen != self._lengths[0]:
             self._lengths = (newlen, self._lengths[1])
+            self._signature = None
             self.refresh()
 
     @property
@@ -783,11 +781,12 @@ class Solver(BaseClass):
             raise ValueError('maximum length is less than minimum length')
         if newlen != self._lengths[1]:
             self._lengths = (self._lengths[0], newlen)
+            self._signature = None
             self.refresh()
 
 
 @export
-class Checker(BaseClass):
+class Checker(InstanceTracker):
     """Creates a spell-checker to check that words are spelled correctly.
 
     Attributes:
@@ -807,7 +806,7 @@ class Checker(BaseClass):
         self._encoding = encoding
         self._words = None
         self._case = bool(case)
-        self._signature = None
+        _CHECKER_SIGNATURES[self] = None
         self.refresh()
 
     def __repr__(self):
@@ -818,7 +817,7 @@ class Checker(BaseClass):
             self._case)
 
     def _test(self, solver):
-        return self is getattr(solver, 'checker')
+        return self is getattr(solver, 'checker', None)
 
     def refresh(self):
         """Re-builds the word list from the word file."""
@@ -830,7 +829,7 @@ class Checker(BaseClass):
                 else:
                     words |= set(i.lower() for i in line.strip().split())
         self._words = words
-        self._signature = object()
+        _CHECKER_SIGNATURES[self] = object()
         if _AUTO_ON:
             _AUTO_ON.refresh(self._test)
 
@@ -864,7 +863,7 @@ class Checker(BaseClass):
         #Sort and write to the file
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
-        self._signature = object()
+        _CHECKER_SIGNATURES[self] = object()
         if _AUTO_ON:
             _AUTO_ON.refresh(self._test)
 
@@ -886,7 +885,7 @@ class Checker(BaseClass):
         #Sort and write to the file
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
-        self._signature = object()
+        _CHECKER_SIGNATURES[self] = object()
         if _AUTO_ON:
             _AUTO_ON.refresh(self._test)
 

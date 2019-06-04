@@ -1,6 +1,6 @@
 """Create package-level functions and classes for use in crossword solvers."""
 from enum import auto as _auto, Enum
-from functools import wraps
+from functools import wraps, WRAPPER_ASSIGNMENTS, WRAPPER_UPDATES
 
 
 from crossword.globs import export
@@ -22,6 +22,13 @@ def auto(enabled=True):
     if prev and not enabled:
         _AUTO_ON.disable()
     return prev, enabled
+
+
+def nodoc_wraps(wrapped,
+                assigned=tuple(set(WRAPPER_ASSIGNMENTS)-{'__doc__'}),
+                updated=WRAPPER_UPDATES):
+    """Like functools.wraps but without updating __doc__.  See wraps for more"""
+    return wraps(wrapped, assigned, updated)
 
 
 @export
@@ -60,33 +67,32 @@ def get_words(words):
     return set(i for i in words.split(',') if i)
 
 
-class BaseClassProperties(type):
+class InstanceTrackerProperties(type):
     """Create a metaclass which has an instances property"""
     @wraps(type.__init__)
     def __init__(cls, *args, **kwargs):
         """Instantiate a class"""
+        from weakref import WeakValueDictionary
         super().__init__(*args, **kwargs)
-        cls._instances = []
+        cls._instances = WeakValueDictionary()
 
     @property
     def instances(cls):
         """Return the instances of a class"""
-        cls._instances = [i for i in cls._instances if i() is not None]
-        return cls._instances
+        return list(cls._instances.values())
 
 
 #Disable pylint flags: too few public methods (this is only here as a template
 #for other classes to inherit from; public methods are unnecessary)
 @export
-class BaseClass(metaclass=BaseClassProperties): #pylint: disable=too-few-public-methods
+class InstanceTracker(metaclass=InstanceTrackerProperties): #pylint: disable=too-few-public-methods
     """Creates a class which tracks it's instances"""
     #Disable pylint flags: unused argument (yeah, I don't need them here but I
     #have to take them so they can be passed to __init__)
     def __new__(cls, *args, **kwargs): #pylint: disable=unused-argument
         """Create a new object and log the object in the instances"""
-        from weakref import ref
         new = super().__new__(cls)
-        cls._instances.append(ref(new))
+        cls._instances[id(new)] = new
         return new
 
 

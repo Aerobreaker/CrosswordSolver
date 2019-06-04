@@ -28665,7 +28665,6 @@ dextrous
 dextrously
 dhak
 dhaks
-dhal
 dhals
 dharma
 dharmas
@@ -35534,7 +35533,6 @@ eoliths
 eon
 eonism
 eons
-eorls
 eosin
 eosinophil
 eothen
@@ -62233,7 +62231,6 @@ lordy
 lore
 lorel
 lorels
-lores
 lorette
 lorettes
 lorgnette
@@ -65577,7 +65574,6 @@ merling
 merlins
 merlon
 merlons
-merls
 mermaid
 mermaiden
 mermaidens
@@ -68446,9 +68442,7 @@ morro
 morros
 morrow
 morrows
-mors
 morsal
-morse
 morsel
 morselled
 morselling
@@ -73202,8 +73196,6 @@ omens
 omenta
 omental
 omentum
-omer
-omers
 omerta
 omicron
 omicrons
@@ -73963,7 +73955,6 @@ orioles
 orison
 orisons
 orleans
-orles
 orlop
 orlops
 ormer
@@ -86797,7 +86788,6 @@ quotative
 quotatives
 quote
 quoted
-quoter
 quoters
 quotes
 quoth
@@ -89886,7 +89876,6 @@ remover
 removers
 removes
 removing
-rems
 remuage
 remuda
 remudas
@@ -92465,7 +92454,6 @@ rompingly
 rompish
 rompishly
 romps
-roms
 roncador
 roncadors
 rondache
@@ -92602,9 +92590,7 @@ ropiness
 roping
 ropings
 ropy
-roque
 roquelaure
-roquet
 roqueted
 roqueting
 roquets
@@ -101090,7 +101076,6 @@ smoothpate
 smooths
 smooting
 smoots
-smore
 smored
 smores
 smoring
@@ -102009,7 +101994,6 @@ solenoid
 solenoidal
 solenoids
 solens
-soler
 solera
 solers
 soles
@@ -102435,7 +102419,6 @@ sorees
 sorehead
 sorehon
 sorehons
-sorel
 sorely
 soreness
 sorer

@@ -1,6 +1,5 @@
 """Creates objects utilized for solving crossword puzzles."""
 from importlib import reload
-from sys import modules
 import crossword.globs
 import crossword.funcs
 import crossword.clses

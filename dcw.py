@@ -6,8 +6,6 @@ from sys import modules as _modules
 
 if __name__ != '__main__':
     #If name != main, then this is being imported
-    #Don't need to worry about backing up the crossword variable, because
-    #we can't overwrite global crossword, only module level
     try:
         _crossword
     except NameError:
@@ -21,10 +19,14 @@ else:
         #has mucked with it.  Reload crossword to ensure everything is good
         with _suppress(NameError):
             if Checker is not _crossword.Checker:
+                _reload(_modules['crossword.clses'])
+                _reload(_modules['crossword.funcs'])
+                _reload(_modules['crossword.globs'])
                 _reload(_crossword)
     else:
         import crossword as _crossword
 from crossword import *
+from crossword.clses import inf
 
 class Checker(Checker):
     @_wraps(Checker.__init__)
@@ -39,7 +41,7 @@ class Solver(Solver):
         #If first argument is a checker, use that
         #If first argument isn't a checker, but checker is a kwarg, use that
         #If neither, use first checker instance or a new instance
-        self.letters = self.layout = self.checker = self._minlen = self._maxlen = 'holding'
+        self.letters = self.layout = self.checker = self._lengths = 'holding'
         checker = kwargs.get('checker')
         letters = kwargs.get('letters', '')
         layout = kwargs.get('layout', None)

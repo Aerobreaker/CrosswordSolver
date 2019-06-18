@@ -83,11 +83,32 @@ class _AutoFlag:
                 if tester(obj):
                     getattr(obj, method)(*args, **kwargs)
 
+    def auto_class(self, *auto_methods, test_method=''):
+        """Decorator to automatically refresh after specified methods"""
+        from functools import wraps
+        auto_self = self
+        def wrapper(method, test_method):
+            @wraps(method)
+            def wrapped(self, *args, _refresh=True, **kwargs):
+                method(self, *args, **kwargs)
+                if auto_self and refresh:
+                    auto_self.refresh(getattr(self, test_method))
+            return wrapped
+        def auto(cls):
+            for method in auto_methods:
+                meth = getattr(cls, method, None)
+                if meth and hasattr(cls, test_method):
+                    setattr(cls, method, wrapper(meth, test_method))
+            return cls
+        return auto
+
 
 _AUTO_ON = _AutoFlag()
 _CHECKER_SIGNATURES = {}
 
 
+_ = ('set_word', 'rem_word', 'set_letter', 'rem_letter', 'clear')
+@_AUTO_ON.auto_class(*_, test_method='_test')
 @export
 class Slot(InstanceTracker):
     """Creates a slot to track an opening to put a word into.
@@ -161,7 +182,7 @@ class Slot(InstanceTracker):
         Returns:
             Boolean indicating whether the word will cause conflicts
         """
-        if len(word) != self.attributes[0] or self.has_word:
+        if len(word) != len(self) or self.has_word:
             return False
         #Overlap dictionary has the slots as keys and the index of the overlap
         #as values.  Slot1.overlaps[Slot2] == index in Slot1 at which the
@@ -177,7 +198,7 @@ class Slot(InstanceTracker):
                 return False
         return True
 
-    def set_word(self, word, refresh=True):
+    def set_word(self, word):
         """Stores the specified word into the Slot.
 
         Stores the specified word into this Slot, without checking overlaps.
@@ -190,23 +211,19 @@ class Slot(InstanceTracker):
                 of the Slot
             TypeError: The Slot already contains a word
         """
-        if len(word) != self.attributes[0]:
+        if len(word) != len(self):
             raise AttributeError('target word is incorrect length')
         if self.has_word:
             raise TypeError('slot word is already set')
         self.word = word
         self.has_word = True
-        if _AUTO_ON and refresh:
-            _AUTO_ON.refresh(self._test)
 
-    def rem_word(self, refresh=True):
+    def rem_word(self):
         """Removes the stored word from the Slot, preserving any set letters."""
         self.has_word = False
         self.word = self._word
-        if _AUTO_ON and refresh:
-            _AUTO_ON.refresh(self._test)
 
-    def set_letter(self, ind, let, refresh=True):
+    def set_letter(self, ind, let):
         """Inserts a letter into the specified index.
 
         Args:
@@ -224,10 +241,8 @@ class Slot(InstanceTracker):
         if self._empty == 0:
             self.has_word = True
             self.word = ''.join(self.word)
-        if _AUTO_ON and refresh:
-            _AUTO_ON.refresh(self._test)
 
-    def rem_letter(self, ind, refresh=True):
+    def rem_letter(self, ind):
         """Removes any set letters from the specified index
 
         Args:
@@ -239,8 +254,6 @@ class Slot(InstanceTracker):
         if self.word[ind]:
             self._empty += 1
         self.word[ind] = self._word[ind] = ''
-        if _AUTO_ON and refresh:
-            _AUTO_ON.refresh(self._test)
 
     def add_overlap(self, ind, other, other_ind):
         """Adds an overlap with the specified Slot.
@@ -253,15 +266,15 @@ class Slot(InstanceTracker):
         self.overlaps[other] = other_ind
         other.overlaps[self] = ind
 
-    def clear(self, refresh=True):
+    def clear(self):
         """Removes the word and all letters from the Slot."""
-        self.word = self._word = [''] * self.attributes[0]
-        self._empty = self.attributes[0]
+        self.word = self._word = [''] * len(self)
+        self._empty = len(self)
         self.has_word = False
-        if _AUTO_ON and refresh:
-            _AUTO_ON.refresh(self._test)
 
 
+_ = ('clear', 'set_letter', 'rem_letter', 'set_extra', 'rem_extra')
+@_AUTO_ON.auto_class(*_, test_method='_test')
 @export
 class Layout(InstanceTracker):
     """Creates a Layout object to find and track slots in the provided board.
@@ -355,9 +368,7 @@ class Layout(InstanceTracker):
     def clear(self):
         """Removes all words and letters from a Layout."""
         for slot in self.all_slots:
-            slot.clear(False)
-        if _AUTO_ON:
-            _AUTO_ON.refresh(self._test)
+            slot.clear(_refresh=False)
 
     def set_letter(self, letter, row, column):
         """Sets a letter in a specific position to constrain solutions.
@@ -377,7 +388,7 @@ class Layout(InstanceTracker):
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
             if slot:
-                slot.set_letter(ind, letter)
+                slot.set_letter(ind, letter, _refresh=False)
 
     def rem_letter(self, row, column):
         """Removes a letter from a specified position.
@@ -396,23 +407,19 @@ class Layout(InstanceTracker):
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
             if slot:
-                slot.rem_letter(ind)
+                slot.rem_letter(ind, _refresh=False)
 
     def set_extra(self, *words):
         """Flags a word as an extra word when solving."""
         words = get_words(words)
         for word in words:
             self.extras.add(word)
-        if _AUTO_ON:
-            _AUTO_ON.refresh(self._test)
 
     def rem_extra(self, *words):
         """Removes a word from the extras for solving."""
         words = get_words(words)
         for word in words:
             self.extras.discard(word)
-        if _AUTO_ON:
-            _AUTO_ON.refresh(self._test)
 
     def solve(self,
               words,
@@ -477,7 +484,7 @@ class Layout(InstanceTracker):
         def get_fewest(open_slots):
             min_cnt = inf
             for slot in open_slots:
-                words_left = len(words[slot.attributes[0]]-used_words)
+                words_left = len(words[len(slot)]-used_words)
                 if words_left and words_left < min_cnt:
                     out = slot
                     min_cnt = words_left
@@ -510,7 +517,7 @@ class Layout(InstanceTracker):
                     solutions.append(solution)
                     return
             #Get the remaining words that can fit into the slot
-            slot_words = words[slot.attributes[0]] - used_words
+            slot_words = words[len(slot)] - used_words
             #Iterate through the remaining words
             for word in slot_words:
                 #If the word can fit into the slot
@@ -519,7 +526,7 @@ class Layout(InstanceTracker):
                     used_words.add(word)
                     checked.add(slot)
                     #Put the word into the slot
-                    slot.set_word(word, False)
+                    slot.set_word(word, _refresh=False)
                     #Flag the overlaps for processing next
                     for other in slot.overlaps:
                         if other not in checked:
@@ -531,7 +538,7 @@ class Layout(InstanceTracker):
                     used_words.discard(word)
                     checked.discard(slot)
                     #Remove the word from the Slot
-                    slot.rem_word(False)
+                    slot.rem_word(_refresh=False)
         #Start the recursive solution
         solve()
         #Return ALL the solutions
@@ -785,6 +792,7 @@ class Solver(InstanceTracker):
             self.refresh()
 
 
+@_AUTO_ON.auto_class('refresh', 'add', 'remove', test_method='_test')
 @export
 class Checker(InstanceTracker):
     """Creates a spell-checker to check that words are spelled correctly.
@@ -830,8 +838,6 @@ class Checker(InstanceTracker):
                     words |= set(i.lower() for i in line.strip().split())
         self._words = words
         _CHECKER_SIGNATURES[self] = object()
-        if _AUTO_ON:
-            _AUTO_ON.refresh(self._test)
 
     def check_word(self, word):
         """Returns a boolean indicating whether a word is in the Checker."""
@@ -864,8 +870,6 @@ class Checker(InstanceTracker):
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
         _CHECKER_SIGNATURES[self] = object()
-        if _AUTO_ON:
-            _AUTO_ON.refresh(self._test)
 
     def remove(self, *words):
         """Removes one or more words from the Checker and it's word file."""
@@ -886,8 +890,6 @@ class Checker(InstanceTracker):
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
         _CHECKER_SIGNATURES[self] = object()
-        if _AUTO_ON:
-            _AUTO_ON.refresh(self._test)
 
     @property
     def words(self):
@@ -908,3 +910,6 @@ class Checker(InstanceTracker):
         if value != self._case:
             self._case = value
             self.refresh()
+
+
+del _

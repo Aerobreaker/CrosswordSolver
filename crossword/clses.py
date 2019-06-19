@@ -7,7 +7,7 @@ from crossword.funcs import (group_count, get_words, InstanceTracker, Direction,
                              nodoc_wraps)
 
 
-__all__ = []
+__all__ = ['inf']
 
 
 class _AutoFlag:
@@ -91,7 +91,7 @@ class _AutoFlag:
             @wraps(method)
             def wrapped(self, *args, _refresh=True, **kwargs):
                 method(self, *args, **kwargs)
-                if auto_self and refresh:
+                if auto_self and _refresh:
                     auto_self.refresh(getattr(self, test_method))
             return wrapped
         def auto(cls):

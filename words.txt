@@ -85575,7 +85575,6 @@ purely
 pureness
 purenesses
 purer
-pures
 purest
 purfle
 purfled
@@ -85670,7 +85669,6 @@ purring
 purringly
 purrings
 purrs
-purs
 purse
 pursed
 purseful
@@ -103997,7 +103995,6 @@ spudded
 spudding
 spuddy
 spuds
-spue
 spued
 spues
 spuilzie
@@ -120558,7 +120555,6 @@ urticating
 urtication
 urubu
 urubus
-urus
 uruses
 us
 usability
@@ -120612,7 +120608,6 @@ usucapts
 usufruct
 usufructed
 usufructs
-usure
 usurer
 usurers
 usuress

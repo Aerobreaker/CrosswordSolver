@@ -26,7 +26,6 @@ else:
     else:
         import crossword as _crossword
 from crossword import *
-from crossword.clses import inf
 
 class Checker(Checker):
     @_wraps(Checker.__init__)
@@ -59,7 +58,11 @@ class Solver(Solver):
                 letters = arg
             elif not layout and isinstance(arg, Layout):
                 layout = arg
-            elif not minlen and isinstance(arg, tuple):
+            elif (not minlen and
+                  isinstance(arg, tuple) and
+                  len(arg) == 2 and 
+                  isinstance(arg[0], Real) and
+                  isinstance(arg[1], Real)):
                 minlen, maxlen = arg
             elif not minlen and isinstance(arg, Real):
                 minlen = arg

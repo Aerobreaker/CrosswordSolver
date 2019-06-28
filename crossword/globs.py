@@ -1,5 +1,11 @@
 """Create global variables to support crossword solvers"""
+from enum import IntEnum
+
+
 __all__ = ['MIN_LEN']
+
+
+MIN_LEN = 3
 
 
 def export(obj):
@@ -13,4 +19,8 @@ def export(obj):
     return obj
 
 
-MIN_LEN = 3
+@export
+class Direction(IntEnum):
+    """Enumerator to indicate right or down direction."""
+    RIGHT = 0
+    DOWN = 1

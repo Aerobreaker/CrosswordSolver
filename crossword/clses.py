@@ -2,8 +2,8 @@
 from math import inf
 
 
-from crossword.globs import MIN_LEN, export
-from crossword.funcs import (group_count, get_words, InstanceTracker, Direction,
+from crossword.globs import Direction, MIN_LEN, export
+from crossword.funcs import (group_count, get_words, InstanceTracker,
                              nodoc_wraps)
 
 
@@ -273,7 +273,8 @@ class Slot(InstanceTracker):
         self.has_word = False
 
 
-_ = ('clear', 'set_letter', 'rem_letter', 'set_extra', 'rem_extra')
+_ = ('clear', 'set_letter', 'rem_letter', 'set_extra', 'rem_extra', 'set_word',
+     'rem_word')
 @_AUTO_ON.auto_class(*_, test_method='_test')
 @export
 class Layout(InstanceTracker):
@@ -350,17 +351,30 @@ class Layout(InstanceTracker):
             IndexError: row or column is outside the bounds of the layout
         """
         if isinstance(key, tuple) and len(key) == 2:
-            row, column = key
+            row, col = key
             if abs(row) > len(self.layout):
                 raise IndexError('row index out of range')
-            if abs(column) > len(self.layout[row]):
+            if abs(col) > len(self.layout[row]):
                 raise IndexError('column index out of range')
             if row < 0:
                 row = len(self.layout) + row
-            if column < 0:
-                column = len(self.layout[row]) + column
-            return self.layout[row][column]
-        return self.layout[key]
+            if col < 0:
+                col = len(self.layout[row]) + col
+            rgt, lft = self.layout[row][col]
+            rgt = rgt[0]
+            lft = lft[0]
+            if rgt and lft:
+                return rgt, lft
+            if rgt:
+                return (rgt,)
+            if lft:
+                return (lft,)
+            return ()
+        return [self[key, i] for i in range(len(self.layout[key]))]
+
+    def __iter__(self):
+        """Iterate through the Layout"""
+        return self.layout.__iter__()
 
     def _test(self, solver):
         return self is getattr(solver, 'layout', None)
@@ -369,6 +383,7 @@ class Layout(InstanceTracker):
         """Removes all words and letters from a Layout."""
         for slot in self.all_slots:
             slot.clear(_refresh=False)
+        self.extras.clear()
 
     def set_letter(self, letter, row, column):
         """Sets a letter in a specific position to constrain solutions.
@@ -383,7 +398,7 @@ class Layout(InstanceTracker):
         Raises:
             KeyError: The specified position does not contain a letter
         """
-        slots = self[row, column]
+        slots = self.layout[row][column]
         if not slots[0][0] and not slots[1][0]:
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
@@ -402,7 +417,7 @@ class Layout(InstanceTracker):
         Raises:
             KeyError: The specified position does not contain a letter
         """
-        slots = self[row, column]
+        slots = self.layout[row][column]
         if not slots[0][0] and not slots[1][0]:
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
@@ -420,6 +435,55 @@ class Layout(InstanceTracker):
         words = get_words(words)
         for word in words:
             self.extras.discard(word)
+
+    def set_word(self, word, row, col, direction=None):
+        """Set a word into a slot.
+
+        Args:
+            word: The word to insert into the slot
+            row: The row at which to insert
+            col: The dolumn at which to insert
+            direction: If the specified row and column contain more than one
+                 slot, dir must be the directionality of the desired slot.
+                 Otherwise, it is ignored
+        Raises:
+            ValueError: The target position contains more than one slot but the
+                        direction was not specified
+            KeyError: The target position does not contain any slots
+        """
+        slots = self[row, col]
+        if len(slots) == 2 and direction is None:
+            raise ValueError('direction not specified')
+        if not slots:
+            raise KeyError('target position does not contain a word')
+        if not direction:
+            slots[0].set_word(word, _refresh=False)
+        else:
+            slots[direction].set_word(word, _refresh=False)
+
+    def rem_word(self, row, col, direction=None):
+        """Remove a word from a slot.
+
+        Args:
+            row: The row at which to insert
+            col: The dolumn at which to insert
+            direction: If the specified row and column contain more than one
+                 slot, dir must be the directionality of the desired slot.
+                 Otherwise, it is ignored
+        Raises:
+            ValueError: The target position contains more than one slot but the
+                        direction was not specified
+            KeyError: The target position does not contain any slots
+        """
+        slots = self[row, col]
+        if len(slots) == 2 and not direction:
+            raise ValueError('direction not specified')
+        if not slots:
+            raise KeyError('target position does not contain a word')
+        if not direction:
+            slots[0].rem_word(_refresh=False)
+        else:
+            slots[direction].rem_word(_refresh=False)
 
     def solve(self,
               words,

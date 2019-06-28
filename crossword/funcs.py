@@ -1,5 +1,4 @@
 """Create package-level functions and classes for use in crossword solvers."""
-from enum import auto as _auto, Enum
 from functools import wraps, WRAPPER_ASSIGNMENTS, WRAPPER_UPDATES
 
 
@@ -94,10 +93,3 @@ class InstanceTracker(metaclass=InstanceTrackerProperties): #pylint: disable=too
         new = super().__new__(cls)
         cls._instances[id(new)] = new
         return new
-
-
-@export
-class Direction(Enum):
-    """Enumerator to indicate right or down direction."""
-    RIGHT = _auto()
-    DOWN = _auto()

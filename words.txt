@@ -2888,9 +2888,7 @@ aloofness
 alopecia
 alopecoid
 aloud
-alow
 alowe
-alp
 alpaca
 alpacas
 alpargata
@@ -9506,7 +9504,6 @@ beloved
 beloves
 beloving
 below
-bels
 belshazzar
 belt
 belted
@@ -10997,7 +10994,6 @@ bleaters
 bleating
 bleatings
 bleats
-bleb
 blebs
 bled
 bleed
@@ -11310,7 +11306,6 @@ blowzes
 blowzier
 blowziest
 blowzy
-blub
 blubbed
 blubber
 blubbered
@@ -11697,7 +11692,6 @@ bolection
 bolections
 bolero
 boleros
-boles
 boleti
 boletus
 boletuses
@@ -12147,7 +12141,6 @@ bortsch
 bortsches
 borzoi
 borzois
-bos
 boscage
 boscages
 boschbok
@@ -13965,7 +13958,6 @@ buplever
 buppies
 buppy
 buprestid
-bur
 buran
 burans
 burble
@@ -39091,7 +39083,6 @@ ferine
 ferity
 ferlied
 ferlies
-ferly
 ferlying
 fermata
 fermatas
@@ -39495,7 +39486,6 @@ fiesta
 fiestas
 fife
 fifed
-fifer
 fifers
 fifes
 fifing
@@ -40492,7 +40482,6 @@ flexuous
 flexural
 flexure
 flexures
-fley
 fleyed
 fleying
 fleys
@@ -56568,7 +56557,6 @@ jerrycan
 jerrycans
 jersey
 jerseys
-jess
 jessamine
 jessamines
 jessamy
@@ -56885,9 +56873,7 @@ jokiest
 joking
 jokingly
 joky
-jole
 joled
-joles
 joling
 joliotium
 joll
@@ -56951,7 +56937,6 @@ joshes
 joshing
 joskin
 joskins
-joss
 josser
 jossers
 josses
@@ -60548,12 +60533,9 @@ leres
 lering
 lernaean
 lernean
-lerp
 lesbian
 lesbianism
 lesbians
-lesbo
-lesbos
 lesion
 lesions
 less
@@ -60684,7 +60666,6 @@ levity
 levulose
 levy
 levying
-lew
 lewd
 lewder
 lewdest
@@ -60711,7 +60692,6 @@ lexigraphy
 lexis
 ley
 leys
-lez
 lezes
 lezzes
 lezzy
@@ -62414,6 +62394,7 @@ lubbards
 lubber
 lubberly
 lubbers
+lube
 lubra
 lubras
 lubric
@@ -72347,7 +72328,6 @@ obos
 obovate
 obovoid
 obreption
-obs
 obscene
 obscenely
 obscener
@@ -75648,7 +75628,6 @@ owlishly
 owlishness
 owllike
 owls
-owly
 own
 owned
 owner
@@ -77670,7 +77649,6 @@ pawkily
 pawkiness
 pawks
 pawky
-pawl
 pawls
 pawn
 pawnbroker
@@ -78177,7 +78155,6 @@ peltast
 peltasts
 peltate
 pelted
-pelter
 peltered
 peltering
 pelters
@@ -79162,7 +79139,6 @@ petitions
 petitory
 petraries
 petrary
-petre
 petrel
 petrels
 petrific
@@ -81483,7 +81459,6 @@ pneumonia
 pneumonic
 pneumonics
 po
-poa
 poaceous
 poach
 poached
@@ -83251,7 +83226,6 @@ predoom
 predoomed
 predooming
 predooms
-pree
 preed
 preeing
 preemie
@@ -89291,7 +89265,6 @@ rehousings
 rehung
 rehydrate
 reichsmark
-reif
 reified
 reifies
 reify
@@ -89522,7 +89495,6 @@ relentings
 relentless
 relentment
 relents
-relet
 relets
 reletting
 relevance
@@ -90811,7 +90783,6 @@ retched
 retches
 retching
 retchless
-rete
 retell
 retelling
 retells
@@ -91711,7 +91682,6 @@ rievers
 rieves
 rieving
 rife
-rifely
 rifeness
 rifer
 rifest
@@ -93385,7 +93355,6 @@ rutty
 rybat
 rybats
 rye
-ryfe
 ryke
 ryked
 rykes
@@ -100499,7 +100468,6 @@ slockens
 sloe
 sloebush
 sloebushes
-sloes
 sloethorn
 sloethorns
 sloetree
@@ -110502,7 +110470,6 @@ teenty
 teeny
 teepee
 teepees
-teer
 teered
 teering
 teers
@@ -123464,7 +123431,6 @@ wanty
 wanwordy
 wanworth
 wanze
-wap
 wapentake
 wapentakes
 wapiti
@@ -124214,7 +124180,6 @@ welling
 wellings
 wellness
 wells
-welly
 welsh
 welshed
 welsher
@@ -124305,7 +124270,6 @@ wetter
 wettest
 wetting
 wettish
-wey
 weys
 whack
 whacked
@@ -125514,7 +125478,6 @@ wolfs
 wolfsbane
 wolfsbanes
 wollies
-wolly
 wolve
 wolved
 wolver
@@ -125726,7 +125689,6 @@ wooziest
 woozily
 wooziness
 woozy
-wop
 wopped
 wopping
 wops
@@ -126149,7 +126111,6 @@ wyandotte
 wyandottes
 wych
 wyches
-wye
 wyes
 wynd
 wynds
@@ -126347,7 +126308,6 @@ yammers
 yams
 yamulka
 yamulkas
-yang
 yangs
 yank
 yanked
@@ -126783,7 +126743,6 @@ youths
 youthsome
 youthy
 yow
-yowe
 yowes
 yowie
 yowies
@@ -126996,14 +126955,12 @@ zed
 zedoaries
 zedoary
 zeds
-zee
 zees
 zein
 zeist
 zeitgeist
 zek
 zeks
-zel
 zelator
 zelators
 zelatrice

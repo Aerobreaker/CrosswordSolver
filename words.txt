@@ -1882,7 +1882,6 @@ agaÁante
 age
 aged
 agedness
-agee
 ageing
 ageings
 ageism
@@ -1987,7 +1986,6 @@ agitators
 agitpop
 agitprop
 agleam
-aglee
 aglet
 aglets
 agley
@@ -33424,7 +33422,6 @@ efts
 eftsoons
 egad
 egads
-egal
 egalities
 egality
 egence
@@ -44227,7 +44224,6 @@ gazunder
 gazundered
 gazunders
 gazy
-geal
 gealed
 gealing
 geals

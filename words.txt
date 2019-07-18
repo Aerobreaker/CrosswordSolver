@@ -534,12 +534,10 @@ acanths
 acanthus
 acanthuses
 acapnia
-acari
 acarian
 acariasis
 acaricide
 acaricides
-acarid
 acaridan
 acaridans
 acaridean
@@ -14664,7 +14662,6 @@ caimans
 cains
 caique
 caiques
-caird
 cairds
 cairn
 cairned
@@ -15797,7 +15794,6 @@ cardecu
 carded
 carder
 carders
-cardi
 cardiac
 cardiacal
 cardiacs
@@ -17096,7 +17092,6 @@ cering
 ceriph
 ceriphs
 cerise
-cerite
 cerium
 cermet
 cermets
@@ -17178,7 +17173,6 @@ cetacean
 cetaceans
 cetaceous
 cetane
-cete
 ceterach
 ceterachs
 cetes
@@ -19114,7 +19108,6 @@ citatory
 cite
 citeable
 cited
-citer
 citers
 cites
 citess
@@ -24267,7 +24260,6 @@ cristae
 cristas
 cristate
 cristiform
-crit
 criteria
 criterion
 criterions
@@ -26024,7 +26016,6 @@ dared
 dareful
 dares
 darg
-daric
 darics
 daring
 daringly
@@ -78024,7 +78015,6 @@ pegmatitic
 pegs
 peignoir
 peignoirs
-pein
 peined
 peining
 peins
@@ -78214,7 +78204,6 @@ penguinry
 penguins
 penholder
 penholders
-peni
 penial
 penicillin
 penie
@@ -78804,7 +78793,6 @@ permute
 permuted
 permutes
 permuting
-pern
 pernancy
 pernicious
 pernickety
@@ -85524,8 +85512,6 @@ purifies
 purify
 purifying
 purims
-purin
-purine
 puring
 puris
 purism
@@ -86703,7 +86689,6 @@ rabidly
 rabidness
 rabies
 rabis
-raca
 raccoon
 raccoons
 race
@@ -88414,7 +88399,6 @@ rectally
 rectangle
 rectangled
 rectangles
-recti
 rectified
 rectifier
 rectifiers
@@ -90762,7 +90746,6 @@ reticule
 reticules
 reticulum
 reticulums
-retie
 retied
 reties
 retiform
@@ -110953,7 +110936,6 @@ teratomas
 teratomata
 terbic
 terbium
-terce
 tercel
 tercelet
 tercelets
@@ -112245,7 +112227,6 @@ tiebreaker
 tied
 tieless
 tier
-tierce
 tierced
 tiercel
 tiercels
@@ -114435,7 +114416,6 @@ tributes
 tricameral
 tricar
 tricars
-trice
 triced
 triceps
 tricepses
@@ -118860,7 +118840,6 @@ unrights
 unrigs
 unrimed
 unringed
-unrip
 unripe
 unripened
 unripeness

@@ -9012,7 +9012,6 @@ bedder
 bedders
 bedding
 beddings
-bede
 bedeafen
 bedeafened
 bedeafens
@@ -9040,7 +9039,6 @@ bedews
 bedfast
 bedfellow
 bedfellows
-bedide
 bedight
 bedighting
 bedights
@@ -10606,7 +10604,6 @@ biscachas
 biscuit
 biscuits
 biscuity
-bise
 bisect
 bisected
 bisecting
@@ -28868,7 +28865,6 @@ diazo
 diazoes
 diazonium
 diazos
-dib
 dibasic
 dibbed
 dibber
@@ -28880,7 +28876,6 @@ dibbler
 dibblers
 dibbles
 dibbling
-dibs
 dibutyl
 dicacity
 dicast
@@ -29013,10 +29008,8 @@ didymous
 didynamian
 didynamous
 die
-dieb
 dieback
 diebacks
-diebs
 died
 diedral
 diedrals
@@ -65427,8 +65420,6 @@ meringue
 meringues
 merino
 merinos
-meris
-merism
 meristem
 meristems
 meristic
@@ -66272,14 +66263,11 @@ milting
 miltonia
 miltonias
 milvine
-mim
 mimbar
 mimbars
 mime
 mimed
 mimeograph
-mimer
-mimers
 mimes
 mimesis
 mimester
@@ -66568,7 +66556,6 @@ mirror
 mirrored
 mirroring
 mirrors
-mirs
 mirth
 mirthful
 mirthfully
@@ -91603,7 +91590,6 @@ rids
 riebeckite
 riempie
 riempies
-riems
 rieve
 rieved
 riever
@@ -91734,7 +91720,6 @@ rime
 rimed
 rimer
 rimers
-rimes
 rimier
 rimiest
 riming
@@ -100748,7 +100733,6 @@ smelting
 smeltings
 smelts
 smeuse
-smew
 smews
 smicker
 smickering
@@ -100778,7 +100762,6 @@ smilingly
 smilings
 smilodon
 smilodons
-smir
 smirch
 smirched
 smirches
@@ -108357,7 +108340,6 @@ sweetwoods
 sweetwort
 sweetworts
 sweety
-sweir
 sweirness
 sweirt
 swelchie
@@ -108489,7 +108471,6 @@ swipes
 swiping
 swipple
 swipples
-swire
 swires
 swirl
 swirled
@@ -124102,8 +124083,6 @@ weltering
 welters
 welting
 welts
-wem
-wems
 wench
 wenched
 wencher
@@ -125902,7 +125881,6 @@ wricking
 wricks
 wried
 wrier
-wries
 wriest
 wriggle
 wriggled

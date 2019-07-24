@@ -4979,7 +4979,6 @@ araise
 araks
 aralia
 aralias
-arame
 araneid
 araneids
 araneous
@@ -5158,7 +5157,6 @@ areal
 areas
 areaway
 areaways
-areca
 arecas
 ared
 aredd
@@ -22982,7 +22980,6 @@ corsage
 corsages
 corsair
 corsairs
-corse
 corselet
 corselets
 corselette
@@ -34180,7 +34177,6 @@ emitting
 emma
 emmas
 emmenology
-emmer
 emmet
 emmetrope
 emmetropes
@@ -47555,7 +47551,6 @@ gulph
 gulphs
 gulping
 gulps
-guly
 gum
 gumbo
 gumboil
@@ -47664,7 +47659,6 @@ gunyah
 guppies
 guppy
 gups
-gur
 gurdwara
 gurdwaras
 gurge
@@ -47677,7 +47671,6 @@ gurgoyle
 gurgoyles
 gurjun
 gurjuns
-gurl
 gurlet
 gurn
 gurnard
@@ -62211,7 +62204,6 @@ louring
 louringly
 lourings
 lours
-loury
 louse
 loused
 louses
@@ -62613,7 +62605,6 @@ lurdans
 lure
 lured
 lures
-lurgy
 lurid
 luridly
 luridness
@@ -62830,7 +62821,6 @@ l‰ndlers
 ma
 maaed
 maaing
-maar
 maars
 maas
 macabre
@@ -62864,7 +62854,6 @@ macaw
 macaws
 macchie
 mace
-macer
 macerate
 macerated
 macerates
@@ -63904,14 +63893,12 @@ maqui
 maquillage
 maquis
 mar
-mara
 marabou
 marabous
 marabout
 marabouts
 maraca
 maracas
-marae
 maraes
 maraging
 marah
@@ -63942,7 +63929,6 @@ marbliest
 marbling
 marblings
 marbly
-marc
 marcantant
 marcasite
 marcato
@@ -64969,12 +64955,10 @@ meekly
 meekness
 meemie
 meemies
-meer
 meered
 meering
 meerkat
 meerkats
-meers
 meerschaum
 meet
 meeting
@@ -65391,7 +65375,6 @@ merels
 merely
 merengue
 merengues
-meres
 meresman
 meresmen
 merest
@@ -65466,7 +65449,6 @@ merrymaker
 merrymakes
 merryman
 merrymen
-merse
 mersion
 mersions
 merycism
@@ -73101,7 +73083,6 @@ onanistic
 onanists
 onboard
 once
-oncers
 oncidium
 oncidiums
 oncogene
@@ -88295,6 +88276,7 @@ recompose
 recomposed
 recomposes
 recompress
+recon
 reconcile
 reconciled
 reconciler
@@ -89612,7 +89594,6 @@ remint
 reminted
 reminting
 remints
-remise
 remised
 remises
 remising
@@ -92122,7 +92103,6 @@ rockweed
 rocky
 rococo
 rococos
-rocs
 rod
 rodded
 rodding
@@ -92165,7 +92145,6 @@ rogueship
 roguing
 roguish
 roguishly
-roguy
 roil
 roiled
 roilier
@@ -99438,7 +99417,6 @@ sissified
 sissoo
 sissoos
 sissy
-sist
 sisted
 sister
 sistered
@@ -101980,7 +101958,6 @@ sonata
 sonatas
 sonatina
 sonatinas
-sonce
 sondage
 sondages
 sonde
@@ -105262,7 +105239,6 @@ stilting
 stiltings
 stiltish
 stilts
-stilty
 stime
 stimed
 stimes
@@ -106416,7 +106392,6 @@ styleless
 styles
 stylet
 stylets
-styli
 styliform
 styling
 stylise
@@ -126664,7 +126639,6 @@ yucking
 yucks
 yucky
 yuft
-yug
 yuga
 yugas
 yugs

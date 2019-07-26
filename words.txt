@@ -2969,7 +2969,6 @@ altruism
 altruist
 altruistic
 altruists
-alts
 aludel
 aludels
 alula
@@ -6556,9 +6555,7 @@ auk
 auklet
 auklets
 auks
-aula
 aularian
-aulas
 auld
 aulder
 auldest
@@ -28569,7 +28566,6 @@ dewaters
 dewed
 dewier
 dewiest
-dewily
 dewiness
 dewing
 dewitt
@@ -36504,7 +36500,6 @@ etiquette
 etiquettes
 etnas
 ettins
-ettle
 ettled
 ettles
 ettling
@@ -52645,7 +52640,6 @@ ileostomy
 ileum
 ileus
 ileuses
-ilex
 ilexes
 iliac
 iliacus
@@ -55987,7 +55981,6 @@ ivresse
 ivy
 iwis
 ixia
-ixtle
 izard
 izards
 izzard
@@ -59645,7 +59638,6 @@ lassoed
 lassoes
 lassoing
 lassos
-lassu
 lassus
 last
 lastage
@@ -93763,7 +93755,6 @@ salpingian
 salpinx
 salpinxes
 salps
-sals
 salsa
 salse
 salses
@@ -93809,7 +93800,6 @@ saltos
 saltpeter
 saltpetre
 salts
-saltus
 saltuses
 salty
 salubrious
@@ -94429,12 +94419,9 @@ sauger
 saugers
 saugh
 saughs
-saul
 saulie
 saulies
-sauls
 sault
-saults
 sauna
 saunas
 saunter
@@ -94455,12 +94442,10 @@ saury
 sausage
 sausages
 saussurite
-saut
 sauted
 sauting
 sautoir
 sautoirs
-sauts
 savable
 savage
 savaged
@@ -100562,7 +100547,6 @@ slushiest
 slushing
 slushy
 slusing
-sluts
 slutteries
 sluttery
 sluttish
@@ -109341,7 +109325,6 @@ talaq
 talar
 talaria
 talars
-talas
 talayot
 talayots
 talbot
@@ -109951,7 +109934,6 @@ tasks
 taskwork
 taslet
 taslets
-tass
 tasse
 tassel
 tasseled
@@ -110053,7 +110035,6 @@ tauric
 tauriform
 taurine
 tauromachy
-taus
 taut
 tauted
 tauten
@@ -110382,7 +110363,6 @@ tegument
 tegumental
 teguments
 teichopsia
-teil
 teils
 teinded
 teinding
@@ -115693,7 +115673,6 @@ tusks
 tusky
 tussah
 tussahs
-tussal
 tusseh
 tussehs
 tusser
@@ -120460,7 +120439,6 @@ usurps
 usury
 usward
 ut
-utas
 utensil
 utensils
 uterectomy
@@ -123976,7 +123954,6 @@ weightings
 weightless
 weights
 weighty
-weil
 weils
 weir
 weird
@@ -124777,7 +124754,6 @@ wieldiest
 wieldiness
 wielding
 wields
-wieldy
 wienie
 wienies
 wife
@@ -124846,7 +124822,6 @@ wildoat
 wildoats
 wilds
 wile
-wiled
 wileful
 wiles
 wilful
@@ -126332,7 +126307,6 @@ yede
 yegg
 yeggman
 yeggmen
-yeld
 yeldrock
 yeldrocks
 yelk

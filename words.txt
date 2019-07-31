@@ -14609,7 +14609,6 @@ cafeteria
 cafeterias
 cafetiere
 cafetieres
-caff
 caffein
 caffeine
 caffeinism
@@ -16435,7 +16434,6 @@ catchweeds
 catchword
 catchwords
 catchy
-cate
 catechesis
 catechetic
 catechise
@@ -30746,7 +30744,6 @@ document
 documental
 documented
 documents
-dod
 doddard
 dodded
 dodder
@@ -30782,7 +30779,6 @@ dodmans
 dodo
 dodoes
 dodos
-dods
 doe
 doek
 doeks
@@ -30810,7 +30806,6 @@ dogbolts
 dogcart
 dogcarts
 dogdays
-doges
 dogeship
 dogfish
 dogfishes
@@ -31250,10 +31245,8 @@ dosimetry
 dosing
 dosiology
 dosology
-doss
 dossal
 dossals
-dossed
 dossel
 dossels
 dosser
@@ -32146,7 +32139,6 @@ dsobo
 dsobos
 dsomo
 dsomos
-dsos
 duad
 duads
 dual
@@ -33210,7 +33202,6 @@ eddied
 eddies
 eddish
 eddishes
-eddo
 eddoes
 eddy
 eddying
@@ -36505,7 +36496,6 @@ ettles
 ettling
 etude
 etudes
-etuis
 etwee
 etwees
 etyma
@@ -44573,7 +44563,6 @@ geordies
 georgette
 georgic
 georgics
-geos
 geoscience
 geosphere
 geostatic
@@ -96395,12 +96384,10 @@ segmenting
 segments
 segno
 segnos
-sego
 segol
 segolate
 segolates
 segols
-segos
 segreant
 segregable
 segregate
@@ -99456,7 +99443,6 @@ situation
 situations
 situla
 situlae
-situs
 situtunga
 situtungas
 sitzkrieg
@@ -105145,7 +105131,6 @@ stickybeak
 stickying
 stiction
 stied
-sties
 stiff
 stiffen
 stiffened
@@ -109091,7 +109076,6 @@ tacahout
 tacahouts
 tacamahac
 tacamahacs
-tace
 taces
 tacet
 tach

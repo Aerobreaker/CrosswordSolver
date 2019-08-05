@@ -58,6 +58,10 @@ def get_words(words):
         A set (hash set) of words which were in the provided input
     """
     from itertools import chain
+    #First, convert all arguments to strings
+    words = [i if isinstance(i, str) else (','.join(i) if hasattr(i, '__iter__')
+                                           else str(i))
+             for i in words]
     #Split on spaces, then chain the resulting arrays together
     #Join into a single string delimited by comma
     words = ','.join(chain.from_iterable(i.split() for i in words))

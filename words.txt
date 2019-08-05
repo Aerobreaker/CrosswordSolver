@@ -2473,7 +2473,6 @@ aleuron
 aleurone
 alevin
 alevins
-alew
 alewashed
 alewife
 alewives
@@ -28405,7 +28404,6 @@ detuned
 detunes
 detuning
 deuce
-deuced
 deucedly
 deuces
 deuterate
@@ -32184,7 +32182,6 @@ ducatoon
 ducatoons
 ducats
 ducdame
-duce
 duces
 duchess
 duchesse
@@ -33274,8 +33271,6 @@ educative
 educator
 educators
 educatory
-educe
-educed
 educement
 educements
 educes
@@ -39121,7 +39116,6 @@ fervour
 fescue
 fescues
 fess
-fesse
 fesses
 fesswise
 fest
@@ -44305,7 +44299,6 @@ gemmules
 gemmy
 gemologist
 gemology
-gemot
 gemots
 gems
 gemsbok
@@ -47027,7 +47020,6 @@ groinings
 groins
 groma
 gromas
-gromet
 gromets
 grommet
 grommets
@@ -47078,7 +47070,6 @@ grossing
 grossly
 grossness
 grossular
-grot
 grotesque
 grotesques
 grots
@@ -62708,7 +62699,6 @@ luxurists
 luxury
 luzern
 lyams
-lyart
 lycee
 lycees
 lyceum
@@ -67413,7 +67403,6 @@ mofette
 mofettes
 mofussil
 mofussils
-mog
 moggan
 moggans
 moggie
@@ -68270,7 +68259,6 @@ morsels
 morses
 morsure
 morsures
-mort
 mortal
 mortalise
 mortalised
@@ -71005,7 +70993,6 @@ nirly
 nirvana
 nirvanas
 niseis
-nisse
 nisses
 nisuses
 nit
@@ -72056,7 +72043,6 @@ oarswoman
 oarswomen
 oarweed
 oarweeds
-oary
 oases
 oasis
 oast
@@ -74011,7 +73997,6 @@ otalgia
 otalgy
 otaries
 otarine
-otary
 other
 othergates
 otherguess
@@ -92454,7 +92439,6 @@ rostrums
 rosulate
 rosy
 rot
-rotal
 rotaplane
 rotaplanes
 rotaries
@@ -96401,7 +96385,6 @@ seguidilla
 seicento
 seiche
 seiches
-seifs
 seigneur
 seigneurie
 seigneurs
@@ -96422,7 +96405,6 @@ seiners
 seines
 seining
 seinings
-seise
 seised
 seises
 seisin
@@ -101052,7 +101034,6 @@ sneeringly
 sneerings
 sneers
 sneery
-snees
 sneesh
 sneeshes
 sneeshing
@@ -114851,7 +114832,6 @@ trod
 trodden
 trode
 trodes
-trog
 trogged
 trogging
 troglodyte
@@ -122889,7 +122869,6 @@ wadsetter
 wadsetters
 wadsetting
 wady
-wae
 waeful
 waeness
 waesome
@@ -123067,12 +123046,10 @@ waldo
 waldoes
 waldos
 waldrapp
-wale
 waled
 waler
 walers
 wales
-wali
 walies
 waling
 walis
@@ -124167,7 +124144,6 @@ whaup
 whaups
 whaur
 whaurs
-wheal
 wheals
 wheat
 wheatear

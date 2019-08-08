@@ -36889,7 +36889,6 @@ evulsions
 evzone
 evzones
 ewe
-ewer
 ewers
 ewes
 ewk
@@ -115784,7 +115783,6 @@ tweeling
 tweels
 tweenies
 tweeny
-tweer
 tweers
 tweet
 tweeted
@@ -120885,7 +120883,6 @@ variegate
 variegated
 variegates
 variegator
-varier
 variers
 varies
 varietal
@@ -123873,7 +123870,6 @@ weepingly
 weepings
 weeps
 weepy
-weer
 weeting
 weetless
 weever
@@ -124025,7 +124021,6 @@ wergild
 wergilds
 wernerite
 wersh
-wert
 werwolf
 werwolves
 west

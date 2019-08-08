@@ -292,28 +292,41 @@ class Layout(InstanceTracker):
             layout: The grid (list of lists) to parse into a Layout
         """
         from itertools import chain
+        def clean_edges(matrix):
+            from collections import deque
+            matrix = deque(matrix)
+            while not any(matrix[0]):
+                matrix.popleft()
+            while not any(matrix[-1]):
+                matrix.pop()
+            return matrix
+        self._layout = layout
+        #Remove empty rows from the top and bottom
+        layout = clean_edges(layout)
+        #Transpose, then remove empty columns from left and right
+        layout = clean_edges(zip(*layout))
+        #Transpose back
+        layout = list(zip(*layout))
         #For convenience, push all of the rows out to match the longest row
         length = max(len(row) for row in layout)
         for row_ind, row in enumerate(layout):
             if len(row) < length:
-                layout[row_ind].extend([0]*(length-len(row)))
-        self._layout = layout
+                layout[row_ind] = row + (0,) * (length-len(row))
+        self._layout = tuple(layout)
         self.slots = {}
         self.extras = set()
-        layout = []
+        layout = [[[(None, 0)] * 2 for _ in range(length)] for _ in layout]
         #Iterate through the rows groupwise, creating and logging Slots with a
         #right directionality
         for row_ind, row in enumerate(self._layout):
-            row_slot = [[(None, 0), (None, 0)] for _ in range(length)]
             col_ind = 0
             for val, count in group_count(row):
                 if val and count >= MIN_LEN:
                     slot = Slot(count, position=(row_ind, col_ind))
                     self.slots.setdefault(count, []).append(slot)
                     for i in range(count):
-                        row_slot[col_ind+i][0] = (slot, i)
+                        layout[row_ind][col_ind+i][0] = (slot, i)
                 col_ind += count
-            layout.append(row_slot)
         #Iterate through the columns groupwise, creating and logging Slots with
         #a down directionality
         for col_ind, col in enumerate(zip(*self._layout)):

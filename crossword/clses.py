@@ -301,17 +301,18 @@ class Layout(InstanceTracker):
                 matrix.pop()
             return matrix
         self._layout = layout
+        #In order to transpose properly, push all of the rows out to match the
+        #longest row
+        length = max(len(row) for row in layout)
+        for row_ind, row in enumerate(layout):
+            if len(row) < length:
+                layout[row_ind] = tuple(row) + (0,) * (length-len(row))
         #Remove empty rows from the top and bottom
         layout = clean_edges(layout)
         #Transpose, then remove empty columns from left and right
         layout = clean_edges(zip(*layout))
         #Transpose back
         layout = list(zip(*layout))
-        #For convenience, push all of the rows out to match the longest row
-        length = max(len(row) for row in layout)
-        for row_ind, row in enumerate(layout):
-            if len(row) < length:
-                layout[row_ind] = row + (0,) * (length-len(row))
         self._layout = tuple(layout)
         self.slots = {}
         self.extras = set()

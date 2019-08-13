@@ -2264,7 +2264,6 @@ aitch
 aitchbone
 aitchbones
 aitches
-aitu
 aitus
 aizle
 aizles
@@ -14193,12 +14192,10 @@ busks
 busky
 busman
 busmen
-buss
 bussed
 busses
 bussing
 bussings
-bussu
 bussus
 bust
 bustard
@@ -85857,7 +85854,6 @@ qanat
 qanats
 qasida
 qasidas
-qat
 qawwal
 qawwali
 qawwals
@@ -85873,7 +85869,6 @@ qiviut
 qiviuts
 qoph
 qophs
-qua
 quack
 quacked
 quackery
@@ -86117,7 +86112,6 @@ quashing
 quasi
 quassia
 quassias
-quat
 quatch
 quatched
 quatches

@@ -968,7 +968,6 @@ acrotism
 acrylic
 acrylics
 act
-acta
 actability
 actable
 acted
@@ -3238,6 +3237,7 @@ amildar
 amildars
 amine
 amines
+amino
 amir
 amirs
 amiss
@@ -17188,7 +17188,6 @@ chaddars
 chador
 chadors
 chads
-chaeta
 chaetae
 chaetodon
 chaetodons
@@ -17666,7 +17665,6 @@ chatoyance
 chatoyancy
 chatoyant
 chats
-chatta
 chattas
 chatted
 chattel
@@ -33065,7 +33063,6 @@ echoless
 echopraxia
 echopraxis
 echovirus
-echt
 eclair
 eclairs
 eclampsia
@@ -41143,7 +41140,6 @@ fomenting
 foments
 fomes
 fomites
-fon
 fond
 fonda
 fondant
@@ -42519,7 +42515,6 @@ frocked
 frocking
 frockless
 frocks
-froe
 froes
 frog
 frogbit
@@ -43056,7 +43051,6 @@ furrows
 furrowy
 furry
 furs
-furth
 further
 furthered
 furtherer
@@ -51516,7 +51510,6 @@ huddup
 hue
 hued
 hueless
-huer
 hues
 huff
 huffed
@@ -51828,7 +51821,6 @@ hurryings
 hurst
 hursts
 hurt
-hurter
 hurters
 hurtful
 hurtfully
@@ -60954,7 +60946,6 @@ lilted
 lilting
 lilts
 lily
-lima
 limacel
 limacels
 limaceous
@@ -63342,7 +63333,6 @@ males
 malevolent
 malfeasant
 malformed
-mali
 malic
 malice
 maliced
@@ -63662,7 +63652,6 @@ manholes
 manhood
 manhunt
 manhunts
-mani
 mania
 maniac
 maniacal
@@ -66242,7 +66231,6 @@ mimsey
 mimsy
 mimulus
 mimuluses
-mina
 minacious
 minacity
 minae
@@ -67684,7 +67672,6 @@ mongrelize
 mongrelly
 mongrels
 mongs
-monial
 monials
 monicker
 monickers
@@ -73631,7 +73618,6 @@ oreweed
 oreweeds
 orexis
 orexises
-orfe
 orfes
 organ
 organa
@@ -88854,7 +88840,6 @@ refringing
 refroze
 refrozen
 refs
-reft
 refuel
 refuelled
 refuelling
@@ -90842,7 +90827,6 @@ retune
 retuned
 retunes
 retuning
-returf
 returfed
 returfing
 returfs
@@ -93179,7 +93163,6 @@ rusty
 rut
 rutabaga
 rutaceous
-ruth
 ruthenic
 ruthenious
 ruthenium
@@ -109051,9 +109034,7 @@ tacahouts
 tacamahac
 tacamahacs
 taces
-tacet
 tach
-tache
 taches
 tachinid
 tachinids
@@ -109181,7 +109162,6 @@ tagrags
 tags
 taguan
 taguans
-taha
 tahas
 tahina
 tahinas
@@ -109928,7 +109908,6 @@ tatamis
 tatary
 tater
 taters
-tath
 tathed
 tathing
 taths
@@ -111287,7 +111266,6 @@ theatrics
 theave
 theaves
 thebaine
-theca
 thecae
 thecal
 thecate
@@ -114099,7 +114077,6 @@ trees
 treeship
 treetop
 treetops
-tref
 trefa
 trefoil
 trefoiled

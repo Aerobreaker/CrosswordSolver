@@ -1905,7 +1905,6 @@ agentive
 agents
 ageratum
 ages
-agger
 aggers
 agglutinin
 aggrace
@@ -3732,7 +3731,6 @@ anent
 anerly
 aneroid
 aneroids
-anes
 anesthesia
 anesthetic
 anestrum
@@ -6568,7 +6566,6 @@ aumbries
 aumbry
 aumil
 aumils
-aunes
 aunt
 auntie
 aunties
@@ -28021,7 +28018,6 @@ derriËres
 derry
 derth
 derths
-derv
 dervish
 dervishes
 desalinate
@@ -30488,7 +30484,6 @@ diurnally
 diurnals
 diuturnal
 diuturnity
-div
 diva
 divagate
 divagated
@@ -30534,7 +30529,6 @@ divesting
 divestment
 divests
 divesture
-divi
 dividable
 dividant
 divide
@@ -30550,7 +30544,6 @@ dividings
 dividivi
 dividual
 dividuous
-divied
 divies
 divination
 divinator
@@ -33391,7 +33384,6 @@ egestion
 egestive
 egests
 egg
-eggar
 eggars
 eggcup
 eggcups
@@ -43287,7 +43279,6 @@ gaffs
 gag
 gaga
 gagaku
-gage
 gaged
 gages
 gagged
@@ -55515,7 +55506,6 @@ irenicon
 irenicons
 irenics
 ires
-irid
 iridaceous
 iridal
 iridectomy
@@ -55938,7 +55928,6 @@ itinerated
 itinerates
 its
 itself
-ivied
 ivies
 ivoried
 ivories
@@ -59026,7 +59015,6 @@ laggards
 lagged
 laggen
 laggens
-lagger
 laggers
 laggin
 lagging
@@ -59576,7 +59564,6 @@ laserdisks
 lasers
 laserwort
 laserworts
-lases
 lash
 lashed
 lasher
@@ -62487,7 +62474,6 @@ lunarist
 lunarists
 lunars
 lunary
-lunas
 lunate
 lunated
 lunatic
@@ -62507,7 +62493,6 @@ lunchroom
 lunchrooms
 lunchtime
 lunchtimes
-lunes
 lunette
 lunettes
 lung
@@ -70029,7 +70014,6 @@ neaffe
 neaffes
 nealed
 nealing
-neals
 neanic
 neap
 neaped
@@ -86845,7 +86829,6 @@ ragee
 rageful
 ragers
 rages
-ragg
 ragga
 ragged
 raggedly
@@ -86856,7 +86839,6 @@ raggees
 raggery
 ragging
 raggings
-raggle
 raggled
 raggles
 raggling
@@ -93705,7 +93687,6 @@ salpinx
 salpinxes
 salps
 salsa
-salse
 salses
 salsifies
 salsify
@@ -93753,7 +93734,6 @@ saltuses
 salty
 salubrious
 salubrity
-salue
 saluki
 salukis
 salutarily
@@ -93993,7 +93973,6 @@ sannyasi
 sannyasin
 sannyasins
 sannyasis
-sans
 sansei
 sanseis
 sanserif
@@ -96001,10 +95980,8 @@ seamster
 seamsters
 seamstress
 seamy
-sean
 seaned
 seaning
-seans
 seaplane
 seaplanes
 seaport
@@ -96588,7 +96565,6 @@ semsems
 semuncia
 semuncial
 semuncias
-sena
 senaries
 senarii
 senarius
@@ -96632,7 +96608,6 @@ sennight
 sennights
 sennit
 sennits
-sensa
 sensate
 sensation
 sensations
@@ -99877,7 +99852,6 @@ sladang
 sladangs
 slade
 slades
-slaes
 slag
 slagged
 slaggier
@@ -99914,8 +99888,6 @@ slanderers
 slandering
 slanderous
 slanders
-slane
-slanes
 slang
 slanged
 slangier
@@ -100414,7 +100386,6 @@ sludgiest
 sludgy
 slued
 slueing
-slues
 slug
 slugfest
 slugfests
@@ -100480,7 +100451,6 @@ slurries
 slurring
 slurry
 slurs
-sluse
 slused
 sluses
 slush
@@ -118833,7 +118803,6 @@ unscrupled
 unseal
 unsealed
 unsealing
-unseals
 unseam
 unseamed
 unseaming
@@ -120331,8 +120300,6 @@ ushers
 ushership
 usherships
 using
-usnea
-usneas
 usquebaugh
 ustion
 ustulation
@@ -121776,7 +121743,6 @@ vicuÒas
 vid
 vidame
 vidames
-vide
 videlicet
 videnda
 videndum
@@ -122034,7 +122000,6 @@ viragoes
 viragoish
 viragos
 viral
-vired
 virelay
 virelays
 virement
@@ -122064,7 +122029,6 @@ virgules
 viricidal
 viricide
 viricides
-virid
 viridian
 viridite
 viridity

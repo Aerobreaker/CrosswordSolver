@@ -2322,7 +2322,6 @@ alarum
 alarumed
 alaruming
 alarums
-alary
 alas
 alases
 alastrim
@@ -17005,7 +17004,6 @@ centurions
 century
 ceorl
 ceorls
-cep
 cepaceous
 cephalad
 cephalagra
@@ -17071,7 +17069,6 @@ ceria
 ceric
 ceriferous
 cering
-ceriph
 ceriphs
 cerise
 cerium
@@ -31208,7 +31205,6 @@ dorsiflex
 dorsigrade
 dorsum
 dorsums
-dort
 dorted
 dorter
 dorters
@@ -40599,7 +40595,6 @@ floppiness
 flopping
 floppy
 flops
-flor
 flora
 florae
 floral
@@ -42567,7 +42562,6 @@ frontwards
 frontways
 frontwise
 frore
-frorn
 frory
 frost
 frostbite
@@ -61919,7 +61913,6 @@ lonicera
 loo
 loobies
 looby
-loof
 loofa
 loofah
 loofahs
@@ -63271,7 +63264,6 @@ malanders
 malapert
 malapertly
 malapropos
-malar
 malaria
 malarial
 malarian
@@ -64024,7 +64016,6 @@ marlins
 marlite
 marls
 marlstone
-marly
 marm
 marmalade
 marmalades
@@ -69887,7 +69878,6 @@ nativity
 natrium
 natrolite
 natron
-nats
 natter
 nattered
 natterer
@@ -71947,7 +71937,6 @@ nyaffs
 nyalas
 nyanza
 nyanzas
-nyas
 nyases
 nybble
 nybbles
@@ -73116,7 +73105,6 @@ oocyte
 oocytes
 oodles
 oodlins
-oof
 oofiness
 oofs
 ooftish
@@ -77676,7 +77664,6 @@ peccaries
 peccary
 peccavi
 peccavis
-pech
 peched
 peching
 pechs
@@ -87007,7 +86994,6 @@ rallyists
 ram
 ramakin
 ramakins
-ramal
 ramate
 ramble
 rambled
@@ -92121,13 +92107,11 @@ rollocking
 rollocks
 rollout
 rolls
-rom
 romaika
 romaikas
 romaine
 romaines
 romaji
-romal
 romals
 roman
 romance
@@ -92225,7 +92209,6 @@ roominess
 rooming
 rooms
 roomy
-roon
 roons
 roop
 rooped
@@ -93971,7 +93954,6 @@ sansei
 sanseis
 sanserif
 sanserifs
-sant
 santal
 santalin
 santals
@@ -97431,7 +97413,6 @@ shamrocks
 shams
 shamus
 shamuses
-shan
 shanachie
 shanachies
 shandies
@@ -97532,7 +97513,6 @@ shaster
 shasters
 shastra
 shastras
-shat
 shatter
 shattered
 shattering
@@ -100923,7 +100903,6 @@ snatchiest
 snatchily
 snatching
 snatchy
-snath
 snathe
 snathes
 snaths
@@ -109502,7 +109481,6 @@ tangs
 tangun
 tanguns
 tangy
-tanh
 tanist
 tanistry
 tanists
@@ -109545,7 +109523,6 @@ tanrec
 tanrecs
 tans
 tansies
-tansy
 tantalate
 tantalates
 tantalic
@@ -109818,7 +109795,6 @@ tarweeds
 tarwhine
 tarwhines
 taseometer
-tash
 tashed
 tashes
 tashing

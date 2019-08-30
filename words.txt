@@ -87339,7 +87339,6 @@ ratan
 ratans
 rataplan
 rataplans
-ratas
 ratbag
 ratbags
 ratch
@@ -94282,7 +94281,6 @@ saturnine
 saturnism
 satyagraha
 satyr
-satyra
 satyral
 satyrals
 satyras
@@ -109644,7 +109642,6 @@ tarantella
 tarantism
 tarantula
 tarantulas
-taras
 tarboggin
 tarboggins
 tarboosh
@@ -110023,8 +110020,6 @@ tayassuid
 tayassuids
 tayberries
 tayberry
-tayra
-tayras
 tazza
 tazzas
 tazze

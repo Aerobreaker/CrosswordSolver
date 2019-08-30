@@ -21,14 +21,11 @@ class _AutoFlag:
         """Get value from autoflag"""
         return self._value
 
-    def enable(self):
+    def enable(self, silent=False):
         """Enable the autoflag"""
         self._value = True
-        for cls, (method, args, kwargs) in self.classes.items():
-            if hasattr(cls, 'instances') and method:
-                for obj in cls.instances:
-                    if hasattr(obj, method):
-                        getattr(obj, method)(*args, **kwargs)
+        if not silent:
+            self.refresh()
 
     def disable(self):
         """Disable the autoflag"""
@@ -37,7 +34,7 @@ class _AutoFlag:
     #Disable pylint flags: kwarg before varargs (this is fine, why is this even
     #a pylint error?), missing docstring (I don't need one, I'm just creating
     #this function for the signature)
-    def publish(self, cls, refresh_method=None, *args, **kwargs): #pylint: disable=keyword-arg-before-vararg, missing-docstring
+    def publish(self, cls, refresh_method='', *args, **kwargs): #pylint: disable=keyword-arg-before-vararg, missing-docstring
         pass
 
     #Disable pylint flags: inconsistent return statements (I know - when used as
@@ -50,7 +47,7 @@ class _AutoFlag:
     @nodoc_wraps(publish)
     def publish(self, *args, **kwargs): #pylint: disable=inconsistent-return-statements, function-redefined
         """Publish a class to be auto-refreshed when the auto flag is toggled"""
-        refresh_method = kwargs.pop('refresh_method', None)
+        refresh_method = kwargs.pop('refresh_method', '')
         cls = kwargs.pop('cls', None)
         newargs = []
         for arg in args:
@@ -80,25 +77,34 @@ class _AutoFlag:
         collect()
         for cls, (method, args, kwargs) in self.classes.items():
             for obj in cls.instances:
-                if tester(obj):
+                if tester(obj) and hasattr(obj, method):
                     getattr(obj, method)(*args, **kwargs)
 
-    def auto_class(self, *auto_methods, test_method=''):
+    def auto_class(self, *auto_methods, test_method='', nauto_methods=()):
         """Decorator to automatically refresh after specified methods"""
         from functools import wraps
         auto_self = self
-        def wrapper(method, test_method):
+        def wrapper(method, test_method='', no_refresh=False):
             @wraps(method)
-            def wrapped(self, *args, _refresh=True, **kwargs):
-                method(self, *args, **kwargs)
-                if auto_self and _refresh:
-                    auto_self.refresh(getattr(self, test_method))
+            def wrapped(self, *args, **kwargs):
+                refresh = bool(auto_self)
+                auto_self.disable()
+                outp = method(self, *args, **kwargs)
+                if refresh:
+                    auto_self.enable(silent=True)
+                    if not no_refresh:
+                        auto_self.refresh(getattr(self, test_method))
+                return outp
             return wrapped
         def auto(cls):
             for method in auto_methods:
                 meth = getattr(cls, method, None)
                 if meth and hasattr(cls, test_method):
                     setattr(cls, method, wrapper(meth, test_method))
+            for method in nauto_methods:
+                meth = getattr(cls, method, None)
+                if meth:
+                    setattr(cls, method, wrapper(meth, no_refresh=True))
             return cls
         return auto
 
@@ -275,7 +281,7 @@ class Slot(InstanceTracker):
 
 _ = ('clear', 'set_letter', 'rem_letter', 'set_extra', 'rem_extra', 'set_word',
      'rem_word')
-@_AUTO_ON.auto_class(*_, test_method='_test')
+@_AUTO_ON.auto_class(*_, test_method='_test', nauto_methods=('solve',))
 @export
 class Layout(InstanceTracker):
     """Creates a Layout object to find and track slots in the provided board.
@@ -396,7 +402,7 @@ class Layout(InstanceTracker):
     def clear(self):
         """Removes all words and letters from a Layout."""
         for slot in self.all_slots:
-            slot.clear(_refresh=False)
+            slot.clear()
         self.extras.clear()
 
     def set_letter(self, letter, row, column):
@@ -417,7 +423,7 @@ class Layout(InstanceTracker):
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
             if slot:
-                slot.set_letter(ind, letter, _refresh=False)
+                slot.set_letter(ind, letter)
 
     def rem_letter(self, row, column):
         """Removes a letter from a specified position.
@@ -436,7 +442,7 @@ class Layout(InstanceTracker):
             raise KeyError('target position does not contain a letter')
         for slot, ind in slots:
             if slot:
-                slot.rem_letter(ind, _refresh=False)
+                slot.rem_letter(ind)
 
     def set_extra(self, *words):
         """Flags a word as an extra word when solving."""
@@ -471,9 +477,9 @@ class Layout(InstanceTracker):
         if not slots:
             raise KeyError('target position does not contain a word')
         if not direction:
-            slots[0].set_word(word, _refresh=False)
+            slots[0].set_word(word)
         else:
-            slots[direction].set_word(word, _refresh=False)
+            slots[direction].set_word(word)
 
     def rem_word(self, row, col, direction=None):
         """Remove a word from a slot.
@@ -495,9 +501,9 @@ class Layout(InstanceTracker):
         if not slots:
             raise KeyError('target position does not contain a word')
         if not direction:
-            slots[0].rem_word(_refresh=False)
+            slots[0].rem_word()
         else:
-            slots[direction].rem_word(_refresh=False)
+            slots[direction].rem_word()
 
     def solve(self,
               words,
@@ -544,9 +550,7 @@ class Layout(InstanceTracker):
         #change slot_stack from a list to a deque or priority queue.  It is not
         #known if there is a heuristic which can be used to prioritize the slots
         #for djikstra, though
-        slot_stack = []
-        checked = set()
-        solutions = []
+        slot_stack, solutions, checked = [], [], set()
         used_words = set(self.extras)
         #Iterate through the slots and flag any that already have a word as
         #having been checked
@@ -591,8 +595,7 @@ class Layout(InstanceTracker):
                 else:
                     ext = set(chain.from_iterable(words.values())) - used_words
                     ext |= self.extras
-                    solution = Solution(self.layout, ext)
-                    solutions.append(solution)
+                    solutions.append(Solution(self.layout, ext))
                     return
             #Get the remaining words that can fit into the slot
             slot_words = words[len(slot)] - used_words
@@ -604,7 +607,7 @@ class Layout(InstanceTracker):
                     used_words.add(word)
                     checked.add(slot)
                     #Put the word into the slot
-                    slot.set_word(word, _refresh=False)
+                    slot.set_word(word)
                     #Flag the overlaps for processing next
                     for other in slot.overlaps:
                         if other not in checked:
@@ -616,7 +619,7 @@ class Layout(InstanceTracker):
                     used_words.discard(word)
                     checked.discard(slot)
                     #Remove the word from the Slot
-                    slot.rem_word(_refresh=False)
+                    slot.rem_word()
         #Start the recursive solution
         solve()
         #Return ALL the solutions

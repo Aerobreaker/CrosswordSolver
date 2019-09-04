@@ -10105,7 +10105,6 @@ bibulously
 bicameral
 bicarb
 biccies
-biccy
 biceps
 bicepses
 bichord
@@ -18854,7 +18853,6 @@ cicatrize
 cicatrized
 cicatrizes
 cicelies
-cicely
 cicero
 cicerone
 cicerones
@@ -54389,7 +54387,6 @@ inlets
 inlier
 inliers
 inline
-inly
 inlying
 inmate
 inmates
@@ -60340,7 +60337,6 @@ leniently
 lenients
 lenified
 lenifies
-lenify
 lenifying
 lenis
 lenition
@@ -61084,7 +61080,6 @@ liners
 lines
 linesman
 linesmen
-liney
 ling
 linga
 lingam
@@ -61173,7 +61168,6 @@ lintseed
 lintseeds
 lintwhite
 linty
-liny
 lion
 lioncel
 lioncels
@@ -73828,7 +73822,6 @@ osculum
 osculums
 oshac
 oshacs
-osier
 osiered
 osiers
 osiery
@@ -99253,7 +99246,6 @@ sirens
 sires
 sirgang
 sirgangs
-siri
 siriasis
 sirih
 sirihs
@@ -122008,7 +122000,6 @@ virions
 viroid
 virologist
 virology
-virose
 viroses
 virosis
 virtu
@@ -122076,7 +122067,6 @@ vises
 visibility
 visible
 visibly
-visie
 visies
 visile
 visiles
@@ -122356,7 +122346,6 @@ vocule
 vocules
 vodka
 vodkas
-voes
 voetganger
 voetstoots
 vogie

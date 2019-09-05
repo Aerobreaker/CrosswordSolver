@@ -1638,7 +1638,6 @@ aerotrain
 aerotrains
 aerotropic
 aeruginous
-aery
 aesces
 aesculin
 aesir
@@ -7108,7 +7107,6 @@ ayelp
 ayenbite
 ayes
 ayont
-ayre
 ayres
 ayrie
 ayries
@@ -16698,7 +16696,6 @@ caviares
 caviars
 cavicorn
 cavicorns
-cavie
 cavies
 cavil
 cavilled
@@ -37815,14 +37812,12 @@ eying
 eyne
 eyot
 eyots
-eyra
 eyras
 eyre
 eyres
 eyrie
 eyries
 eyrir
-eyry
 fa
 fab
 fabaceous
@@ -60005,7 +60000,6 @@ learning
 learns
 learnt
 lears
-leary
 leasable
 lease
 leaseback
@@ -87512,7 +87506,6 @@ rayah
 rayahs
 rayed
 raying
-rayle
 rayles
 rayless
 raylet
@@ -120879,7 +120872,6 @@ vat
 vatable
 vatful
 vatfuls
-vatic
 vaticide
 vaticides
 vaticinal
@@ -126036,8 +126028,6 @@ yardstick
 yardsticks
 yardwand
 yardwands
-yare
-yarely
 yarer
 yarest
 yarmulka

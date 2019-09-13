@@ -1,5 +1,5 @@
 """Create package-level functions and classes for use in crossword solvers."""
-from functools import wraps, WRAPPER_ASSIGNMENTS, WRAPPER_UPDATES
+from functools import wraps
 
 
 from crossword.globs import export
@@ -21,13 +21,6 @@ def auto(enabled=True):
     if prev and not enabled:
         _AUTO_ON.disable()
     return prev, enabled
-
-
-def nodoc_wraps(wrapped,
-                assigned=tuple(set(WRAPPER_ASSIGNMENTS)-{'__doc__'}),
-                updated=WRAPPER_UPDATES):
-    """Like functools.wraps but without updating __doc__.  See wraps for more"""
-    return wraps(wrapped, assigned, updated)
 
 
 @export

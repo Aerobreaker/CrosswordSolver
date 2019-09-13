@@ -6881,7 +6881,6 @@ avertible
 avertiment
 averting
 averts
-aves
 avgas
 avgolemono
 avian
@@ -6914,7 +6913,6 @@ avine
 avion
 avionic
 avionics
-avise
 avised
 avisement
 avises
@@ -23032,7 +23030,6 @@ cosechs
 cosed
 coseismal
 coseismic
-coses
 cosets
 cosh
 coshed
@@ -23086,7 +23083,6 @@ cosmotron
 cosmotrons
 cosponsor
 cosponsors
-coss
 cosses
 cosset
 cosseted
@@ -33757,7 +33753,6 @@ eloquence
 eloquences
 eloquent
 eloquently
-elpee
 elpees
 else
 elsewhere
@@ -60109,7 +60104,6 @@ leeches
 leeching
 leek
 leeks
-leeped
 leeping
 leer
 leered
@@ -93683,7 +93677,6 @@ saltires
 saltish
 saltishly
 saltless
-saltly
 saltness
 salto
 saltoed
@@ -99907,7 +99900,6 @@ slatterns
 slatters
 slattery
 slatting
-slaty
 slaughter
 slaughters
 slave
@@ -101412,7 +101404,6 @@ socle
 socles
 socman
 socmen
-socs
 sod
 soda
 sodaic
@@ -110232,7 +110223,6 @@ telae
 telamon
 telamones
 telary
-teld
 telecamera
 telecast
 telecasted
@@ -120435,7 +120425,6 @@ vagaries
 vagarious
 vagarish
 vagary
-vagi
 vagile
 vagility
 vagina
@@ -120949,11 +120938,9 @@ veers
 veery
 vees
 veg
-vega
 vegan
 veganism
 vegans
-vegas
 vegeburger
 veges
 vegetable

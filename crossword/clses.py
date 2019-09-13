@@ -3,8 +3,7 @@ from math import inf
 
 
 from crossword.globs import Direction, MIN_LEN, export
-from crossword.funcs import (group_count, get_words, InstanceTracker,
-                             nodoc_wraps)
+from crossword.funcs import group_count, get_words, InstanceTracker, wraps
 
 
 __all__ = ['inf']
@@ -25,28 +24,28 @@ class _AutoFlag:
         """Enable the autoflag"""
         self._value = True
         if not silent:
-            self.refresh()
+            self.refresh(lambda obj: True)
 
     def disable(self):
         """Disable the autoflag"""
         self._value = False
 
     #Disable pylint flags: kwarg before varargs (this is fine, why is this even
-    #a pylint error?), missing docstring (I don't need one, I'm just creating
-    #this function for the signature)
-    def publish(self, cls, refresh_method='', *args, **kwargs): #pylint: disable=keyword-arg-before-vararg, missing-docstring
+    #a pylint error?)
+    def publish(self, cls, refresh_method='', *args, **kwargs): #pylint: disable=keyword-arg-before-vararg
+        """Publish a class to be auto-refreshed when the auto flag is toggled"""
         pass
 
     #Disable pylint flags: inconsistent return statements (I know - when used as
     #a wrapper, it needs to return a function; when called with a class arg,
     #there's no need to return anything), method already defined (yeah, exactly;
-    #I want this functionality with the original signature)
+    #I want this functionality with the original signature), missing-docstring
+    #(um, it wraps another function, it gets the docstring from there, duh?)
     #Idea: Perhaps just return the wrapper function in all cases?  It can still
     #be called directly with:
     #_AutoFlag().publish(refresh_method, *args, **kwargs)(cls)
-    @nodoc_wraps(publish)
-    def publish(self, *args, **kwargs): #pylint: disable=inconsistent-return-statements, function-redefined
-        """Publish a class to be auto-refreshed when the auto flag is toggled"""
+    @wraps(publish)
+    def publish(self, *args, **kwargs): #pylint: disable=inconsistent-return-statements, function-redefined, missing-docstring
         refresh_method = kwargs.pop('refresh_method', '')
         cls = kwargs.pop('cls', None)
         newargs = []
@@ -71,7 +70,7 @@ class _AutoFlag:
         """Un-publish a class to be auto-refreshed."""
         self.classes.pop(cls, None)
 
-    def refresh(self, tester=lambda obj: True):
+    def refresh(self, tester):
         """Refreshes all published classes"""
         from gc import collect
         collect()
@@ -82,18 +81,18 @@ class _AutoFlag:
 
     def auto_class(self, *auto_methods, test_method='', nauto_methods=()):
         """Decorator to automatically refresh after specified methods"""
-        from functools import wraps
         auto_self = self
         def wrapper(method, test_method='', no_refresh=False):
             @wraps(method)
             def wrapped(self, *args, **kwargs):
                 refresh = bool(auto_self)
                 auto_self.disable()
+                tester = getattr(self, test_method, lambda obj: True)
                 outp = method(self, *args, **kwargs)
                 if refresh:
                     auto_self.enable(silent=True)
                     if not no_refresh:
-                        auto_self.refresh(getattr(self, test_method))
+                        auto_self.refresh(tester)
                 return outp
             return wrapped
         def auto(cls):

@@ -4111,7 +4111,6 @@ answering
 answerless
 answers
 ant
-anta
 antacid
 antacids
 antae
@@ -4509,7 +4508,6 @@ aphthae
 aphthous
 aphyllous
 aphylly
-apian
 apiarian
 apiaries
 apiarist
@@ -6157,7 +6155,6 @@ ataghans
 atalaya
 ataman
 atamans
-atap
 ataps
 ataractic
 ataraxia
@@ -14090,7 +14087,6 @@ burrs
 burrstone
 burrstones
 burry
-burs
 bursa
 bursae
 bursal
@@ -17008,7 +17004,6 @@ cephalopod
 cephalous
 cepheid
 cepheids
-ceps
 ceraceous
 ceramal
 ceramals
@@ -36213,7 +36208,6 @@ espressos
 esprit
 espumoso
 espumosos
-espy
 espying
 esquire
 esquires
@@ -39812,7 +39806,6 @@ firstly
 firsts
 firth
 firths
-fisc
 fiscal
 fiscally
 fiscals
@@ -59875,6 +59868,7 @@ lazurite
 lazy
 lazzarone
 lazzaroni
+lea
 leach
 leachate
 leachates
@@ -66131,7 +66125,6 @@ millstones
 millwright
 milometer
 milometers
-milor
 milord
 milords
 milors
@@ -68441,7 +68434,6 @@ moulinet
 moulinets
 moulins
 mouls
-moult
 moulted
 moulten
 moulting
@@ -69664,7 +69656,6 @@ nanosecond
 nans
 naoses
 nap
-napa
 napalm
 nape
 naperies
@@ -77261,7 +77252,6 @@ patiences
 patient
 patiently
 patients
-patin
 patina
 patinae
 patinas
@@ -79469,7 +79459,6 @@ phytotoxin
 phytotron
 phytotrons
 pi
-pia
 piacevole
 piacular
 piaffe
@@ -80081,7 +80070,6 @@ pinpointed
 pinpoints
 pins
 pint
-pinta
 pintable
 pintables
 pintado
@@ -85602,7 +85590,6 @@ pyelitis
 pyelogram
 pyelograms
 pyemia
-pyes
 pyet
 pyets
 pygal
@@ -91234,7 +91221,6 @@ rhumb
 rhumba
 rhumbas
 rhumbs
-rhus
 rhuses
 rhyme
 rhymed
@@ -93033,7 +93019,6 @@ rushiness
 rushing
 rushlight
 rushlights
-rushy
 rusine
 rusk
 rusks
@@ -95843,7 +95828,6 @@ scuzzy
 scybala
 scybalous
 scybalum
-scye
 scyes
 scyphi
 scyphiform
@@ -96337,8 +96321,6 @@ selachian
 selachians
 seladang
 seladangs
-selah
-selahs
 selcouth
 seldom
 seldomness
@@ -97529,10 +97511,8 @@ sheafed
 sheafing
 sheafs
 sheafy
-sheal
 shealing
 shealings
-sheals
 shear
 sheared
 shearer
@@ -97545,7 +97525,6 @@ shearman
 shearmen
 shears
 shearwater
-sheas
 sheath
 sheathe
 sheathed
@@ -97722,7 +97701,6 @@ sherris
 sherry
 sherwani
 sherwanis
-shes
 shetland
 shetlands
 sheuch
@@ -99168,7 +99146,6 @@ sinusoid
 sinusoidal
 sinusoids
 sip
-sipe
 siped
 sipes
 siphon
@@ -102889,7 +102866,6 @@ sphygmoid
 sphygmus
 sphygmuses
 spial
-spic
 spica
 spicae
 spicas
@@ -108416,7 +108392,6 @@ sycamine
 sycamines
 sycamore
 sycamores
-syce
 sycee
 sycomore
 sycomores
@@ -108770,7 +108745,6 @@ syntonized
 syntonizes
 syntonous
 syntony
-sype
 syped
 sypes
 sypher
@@ -109128,7 +109102,6 @@ tainting
 taintless
 taints
 tainture
-taipan
 taipans
 tairas
 taisch
@@ -109379,7 +109352,6 @@ tamps
 tamworth
 tamworths
 tan
-tana
 tanadar
 tanadars
 tanager
@@ -112352,7 +112324,6 @@ tiresome
 tiresomely
 tiring
 tirings
-tirl
 tirled
 tirling
 tirls
@@ -115411,7 +115382,6 @@ turkeys
 turkis
 turkises
 turlough
-turm
 turmeric
 turmerics
 turmoil
@@ -116079,7 +116049,6 @@ ultimately
 ultimates
 ultimatum
 ultimatums
-ultimo
 ultra
 ultrabasic
 ultrafiche
@@ -126159,7 +126128,6 @@ yeomanly
 yeomanry
 yeomen
 yep
-yeps
 yerba
 yerbas
 yerded

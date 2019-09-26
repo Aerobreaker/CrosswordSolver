@@ -941,7 +941,7 @@ class Checker(InstanceTracker):
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
         #Convert to a set to remove duplicates, add in new words to set
-        lines = set().union(*(set(i.strip().split()) for i in lines), words)
+        lines = set(' '.join(i.strip() for i in lines).split()) | words
         if self._case:
             self._words |= words
         else:
@@ -958,7 +958,7 @@ class Checker(InstanceTracker):
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
         #Convert to a set to remove duplicates, remove target words from set
-        lines = set().union(*(set(i.strip().split()) for i in lines))
+        lines = set(' '.join(i.strip() for i in lines).split())
         if self._case:
             self._words -= words
             lines -= words

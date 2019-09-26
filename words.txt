@@ -1656,7 +1656,6 @@ aetiology
 afar
 afara
 afaras
-afear
 afeard
 afeared
 afearing
@@ -1669,7 +1668,6 @@ affably
 affair
 affaire
 affairs
-affear
 affeard
 affeare
 affeared
@@ -9001,7 +8999,6 @@ bedecking
 bedecks
 bedeguar
 bedeguars
-bedel
 bedell
 bedells
 bedels
@@ -10147,7 +10144,6 @@ bidon
 bidons
 bidonville
 bids
-bield
 bields
 bieldy
 biennial
@@ -17043,7 +17039,6 @@ cerebric
 cerebritis
 cerebrum
 cerebrums
-cered
 cerement
 cerements
 ceremonial
@@ -23868,7 +23863,6 @@ creatural
 creature
 creaturely
 creatures
-cred
 credal
 credence
 credences
@@ -25112,7 +25106,6 @@ curls
 curly
 curmudgeon
 curmurring
-curney
 curns
 currach
 currachs
@@ -26341,14 +26334,12 @@ debauches
 debauching
 debbies
 debby
-debel
 debelled
 debelling
 debels
 debenture
 debentured
 debentures
-debile
 debilitate
 debility
 debit
@@ -32479,7 +32470,6 @@ durative
 duratives
 durbar
 durbars
-dure
 dured
 dures
 duress
@@ -33208,7 +33198,6 @@ edifies
 edify
 edifying
 edifyingly
-edile
 ediles
 edit
 edite
@@ -38945,7 +38934,6 @@ fennels
 fennish
 fenny
 fens
-fent
 fents
 fenugreek
 fenugreeks
@@ -42004,8 +41992,6 @@ fracture
 fractured
 fractures
 fracturing
-frae
-fraena
 fraenum
 frag
 fragged
@@ -42234,7 +42220,6 @@ fremds
 fremescent
 fremitus
 fremituses
-frena
 french
 frenetic
 frenetical
@@ -47152,7 +47137,6 @@ grudges
 grudging
 grudgingly
 grudgings
-grue
 grued
 grueing
 gruel
@@ -47593,7 +47577,6 @@ gurgoyles
 gurjun
 gurjuns
 gurlet
-gurn
 gurnard
 gurnards
 gurned
@@ -57951,7 +57934,6 @@ kilovolt
 kilovolts
 kilowatt
 kilowatts
-kilp
 kilps
 kilt
 kilted
@@ -58093,7 +58075,6 @@ kippers
 kipping
 kipps
 kips
-kir
 kirbeh
 kirbehs
 kirbigrip
@@ -61254,7 +61235,6 @@ liripipe
 liripipes
 liripoop
 liripoops
-lirk
 lirked
 lirking
 lirks
@@ -62397,7 +62377,6 @@ luminists
 luminosity
 luminous
 luminously
-lumme
 lummes
 lummies
 lummox
@@ -62475,7 +62454,6 @@ lunker
 lunkers
 lunkhead
 lunkheads
-lunt
 lunted
 lunting
 lunts
@@ -68890,7 +68868,6 @@ mumms
 mummy
 mummying
 mummyings
-mump
 mumped
 mumper
 mumpers
@@ -69548,7 +69525,6 @@ naeves
 naevi
 naevoid
 naevus
-naff
 naffness
 nag
 nagana
@@ -70400,7 +70376,6 @@ nests
 net
 netball
 netes
-netful
 netfuls
 nether
 nethermore
@@ -80188,7 +80163,6 @@ piraÒa
 piraÒas
 piripiri
 piripiris
-pirl
 pirls
 pirnie
 pirnies
@@ -86137,7 +86111,6 @@ queries
 querimony
 querist
 querists
-quern
 querns
 quernstone
 querulous
@@ -86733,7 +86706,6 @@ raduliform
 radwaste
 rafale
 rafales
-raff
 raffia
 raffias
 raffinate
@@ -91336,7 +91308,6 @@ richts
 ricin
 ricing
 ricinoleic
-rick
 rickburner
 ricked
 ricker
@@ -115182,7 +115153,6 @@ tulips
 tulle
 tulwar
 tulwars
-tum
 tumble
 tumbled
 tumbledown
@@ -115217,7 +115187,6 @@ tumorous
 tumors
 tumour
 tumours
-tump
 tumped
 tumping
 tumps
@@ -117926,7 +117895,6 @@ unled
 unleisured
 unless
 unlessoned
-unlet
 unlettable
 unlettered
 unlicensed
@@ -120020,7 +119988,6 @@ urceolus
 urceoluses
 urchin
 urchins
-urdee
 urea
 uredia
 uredine
@@ -126204,7 +126171,6 @@ yird
 yirded
 yirding
 yirds
-yirk
 yirked
 yirking
 yirks

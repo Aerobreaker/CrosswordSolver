@@ -14093,7 +14093,6 @@ bursars
 bursarship
 bursary
 burschen
-burse
 burses
 bursiform
 bursitis
@@ -32735,7 +32734,6 @@ dzho
 dzhos
 dziggetai
 dziggetais
-dzo
 dzos
 each
 eachwhere
@@ -55391,7 +55389,6 @@ iodised
 iodises
 iodising
 iodism
-iodize
 iodized
 iodizes
 iodizing
@@ -70939,7 +70936,6 @@ nitty
 nitwit
 nitwits
 nitwitted
-nival
 niveous
 nix
 nixes
@@ -106370,7 +106366,6 @@ subeditors
 subedits
 subentire
 subequal
-suber
 suberate
 suberates
 suberect
@@ -121746,9 +121741,7 @@ vimana
 vimanas
 vimineous
 vims
-vina
 vinaceous
-vinal
 vinas
 vinasse
 vincible
@@ -121805,7 +121798,6 @@ vintners
 vintries
 vintry
 vints
-viny
 vinyl
 vinylidene
 viol

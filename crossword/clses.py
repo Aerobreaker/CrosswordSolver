@@ -1,5 +1,6 @@
 """Create classes for use in crossword solvers."""
 from math import inf
+from weakref import WeakKeyDictionary
 
 
 from crossword.globs import Direction, MIN_LEN, export
@@ -109,7 +110,7 @@ class _AutoFlag:
 
 
 _AUTO_ON = _AutoFlag()
-_CHECKER_SIGNATURES = {}
+_CHECKER_SIGNATURES = WeakKeyDictionary()
 
 
 _ = ('set_word', 'rem_word', 'set_letter', 'rem_letter', 'clear')

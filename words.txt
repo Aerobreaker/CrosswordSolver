@@ -1986,7 +1986,6 @@ aglimmer
 aglitter
 aglossia
 aglow
-agma
 agmas
 agnail
 agnails
@@ -4413,7 +4412,6 @@ apathaton
 apathetic
 apathy
 apatite
-apay
 apayd
 apaying
 apays
@@ -5180,7 +5178,6 @@ argala
 argalas
 argali
 argalis
-argand
 argands
 argans
 argemone
@@ -9654,7 +9651,6 @@ berdache
 berdaches
 berdash
 berdashes
-bere
 bereave
 bereaved
 bereaven
@@ -12831,7 +12827,6 @@ brede
 breded
 bredes
 breding
-bree
 breech
 breeched
 breeches
@@ -12864,7 +12859,6 @@ brehon
 brehons
 breloque
 breloques
-breme
 brens
 brent
 brere
@@ -16044,7 +16038,6 @@ carsey
 carseys
 carsick
 cart
-carta
 cartage
 cartages
 cartas
@@ -25696,7 +25689,6 @@ dafter
 daftest
 daftly
 daftness
-dag
 dagaba
 dagabas
 dagga
@@ -25798,9 +25790,7 @@ damaged
 damages
 damaging
 damagingly
-daman
 damans
-damar
 damars
 damascene
 damascened
@@ -25967,7 +25957,6 @@ dare
 dared
 dareful
 dares
-darg
 darics
 daring
 daringly
@@ -28396,7 +28385,6 @@ devastated
 devastates
 devastator
 devastavit
-devel
 develled
 develling
 develop
@@ -30561,7 +30549,6 @@ divorcing
 divorcive
 divot
 divots
-divs
 divulgate
 divulgated
 divulgates
@@ -31095,7 +31082,6 @@ doorstop
 doorstops
 doorway
 doorways
-dop
 dopa
 dopamine
 dopant
@@ -33445,7 +33431,6 @@ eightsomes
 eightvo
 eightvos
 eighty
-eigne
 eikon
 eikons
 eirenic
@@ -33776,7 +33761,6 @@ eluvium
 eluviums
 elvan
 elvanite
-elver
 elvers
 elves
 elvish
@@ -35717,7 +35701,6 @@ epocha
 epochal
 epochas
 epochs
-epode
 epodes
 epodic
 eponychium
@@ -36535,8 +36518,6 @@ eunuchized
 eunuchizes
 eunuchoid
 eunuchs
-euoi
-euois
 euonymin
 euonymus
 euonymuses
@@ -36825,7 +36806,6 @@ evolve
 evolved
 evolvement
 evolvent
-evolver
 evolvers
 evolves
 evolving
@@ -38766,7 +38746,6 @@ feeling
 feelingly
 feelings
 feels
-feer
 feers
 fees
 feet
@@ -38956,7 +38935,6 @@ feracity
 feral
 feralised
 feralized
-fere
 feres
 feretories
 feretory
@@ -39094,6 +39072,7 @@ fetch
 fetched
 fetches
 fetching
+fete
 feted
 fetial
 fetich
@@ -40280,7 +40259,6 @@ fleeciest
 fleecing
 fleecy
 fleeing
-fleer
 fleered
 fleerer
 fleerers
@@ -42188,7 +42166,6 @@ freest
 freestone
 freestones
 freestyler
-freet
 freets
 freety
 freeware
@@ -43696,7 +43673,6 @@ garbology
 garbos
 garbs
 garbure
-garda
 gardai
 gardant
 garden
@@ -44644,7 +44620,6 @@ ghettoizes
 ghettos
 ghillie
 ghillies
-ghis
 ghost
 ghosted
 ghostier
@@ -46269,7 +46244,6 @@ gralloch
 gralloched
 grallochs
 gram
-grama
 gramary
 gramarye
 gramash
@@ -46297,7 +46271,6 @@ grand
 grandad
 grandaddy
 grandads
-grandam
 grandams
 grandchild
 granddad
@@ -46954,7 +46927,6 @@ grommet
 grommets
 gromwell
 gromwells
-groof
 groofs
 groom
 groomed
@@ -50071,7 +50043,6 @@ hierophant
 hieroscopy
 hierurgies
 hierurgy
-hies
 higgle
 higgled
 higgler
@@ -57564,7 +57535,6 @@ kelts
 kelty
 kelvin
 kelvins
-kemp
 kemped
 kemper
 kempers
@@ -57594,12 +57564,10 @@ kenoticist
 kens
 kenspeck
 kenspeckle
-kent
 kented
 kenting
 kentledge
 kents
-kep
 kephalin
 kepi
 kepis
@@ -58413,7 +58381,6 @@ knurly
 knurr
 knurrs
 knurs
-knut
 knuts
 ko
 koala
@@ -60086,7 +60053,6 @@ leeward
 leeway
 leeways
 left
-lefte
 leftie
 lefties
 leftish
@@ -63514,8 +63480,6 @@ maneuvers
 manful
 manfully
 manfulness
-mang
-manga
 mangabeira
 mangabey
 mangabeys
@@ -63839,7 +63803,6 @@ maremmas
 mares
 mareschal
 mareschals
-marg
 margaric
 margarin
 margarine
@@ -68875,7 +68838,6 @@ mumps
 mumpsimus
 mums
 mumsy
-mun
 munch
 munched
 muncher
@@ -68923,7 +68885,6 @@ munnions
 munshi
 munshis
 munster
-munt
 muntin
 munting
 muntings
@@ -69690,7 +69651,6 @@ narcotize
 narcotized
 narcotizes
 narcs
-nard
 narded
 narding
 nardoo
@@ -70408,7 +70368,6 @@ networkers
 networking
 networks
 neuks
-neum
 neume
 neumes
 neums
@@ -72834,7 +72793,6 @@ ollas
 ollavs
 oloroso
 olorosos
-olpe
 olpes
 olycook
 olykoek
@@ -73134,8 +73092,6 @@ opaquest
 opaquing
 opcode
 opcodes
-ope
-oped
 open
 openable
 opencast
@@ -76774,7 +76730,6 @@ parkward
 parkwards
 parkway
 parkways
-parky
 parlance
 parlances
 parlando
@@ -77393,19 +77348,16 @@ pavone
 pavonian
 pavonine
 paw
-pawa
 pawas
 pawaw
 pawaws
 pawed
 pawing
-pawk
 pawkier
 pawkiest
 pawkily
 pawkiness
 pawks
-pawky
 pawls
 pawn
 pawnbroker
@@ -78039,7 +77991,6 @@ penitency
 penitent
 penitently
 penitents
-penk
 penknife
 penknives
 penks
@@ -86759,7 +86710,6 @@ raging
 ragingly
 raglan
 raglans
-ragman
 ragmen
 ragout
 ragouted
@@ -86932,7 +86882,6 @@ ramblingly
 ramblings
 rambutan
 rambutans
-ramcat
 ramcats
 rameal
 ramean
@@ -88543,14 +88492,12 @@ refaces
 refacing
 refashion
 refashions
-refect
 refected
 refecting
 refection
 refections
 refectory
 refects
-refel
 refelled
 refelling
 refer
@@ -88627,7 +88574,6 @@ reflective
 reflector
 reflectors
 reflects
-reflet
 reflets
 reflex
 reflexed
@@ -110647,7 +110593,6 @@ teratomas
 teratomata
 terbic
 terbium
-tercel
 tercelet
 tercelets
 tercels
@@ -111862,7 +111807,6 @@ tibiotarsi
 tibouchina
 tic
 ticals
-ticca
 tices
 tich
 tiches
@@ -115259,7 +115203,6 @@ tunnings
 tunny
 tuns
 tuny
-tupek
 tupeks
 tupelo
 tupelos
@@ -115920,7 +115863,6 @@ udders
 udometer
 udometers
 udometric
-udos
 ueys
 ufologist
 ufologists
@@ -117805,7 +117747,6 @@ unkennel
 unkennels
 unkent
 unkept
-unket
 unkid
 unkind
 unkinder
@@ -121349,7 +121290,6 @@ vertus
 vervain
 vervains
 verve
-vervel
 vervels
 verves
 vervet
@@ -121952,7 +121892,6 @@ viscous
 viscum
 viscus
 vise
-vised
 viseing
 vises
 visibility
@@ -122308,7 +122247,6 @@ volcanizes
 volcano
 volcanoes
 vole
-voled
 voleries
 volery
 voles
@@ -125979,7 +125917,6 @@ yawningly
 yawnings
 yawns
 yawny
-yawp
 yawped
 yawper
 yawpers

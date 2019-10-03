@@ -11,7 +11,6 @@ aargh
 aarrghh
 aasvogel
 aasvogels
-aba
 abaca
 abacas
 abaci
@@ -337,6 +336,7 @@ abruption
 abruptions
 abruptly
 abruptness
+abs
 abscess
 abscessed
 abscesses
@@ -3553,8 +3553,6 @@ anamneses
 anamnesis
 anamnestic
 anamorphic
-anan
-anana
 ananas
 ananases
 anandrous
@@ -3927,7 +3925,6 @@ anlace
 anlaces
 anlage
 anlages
-anna
 annal
 annalise
 annalised
@@ -7824,7 +7821,6 @@ banc
 banco
 bancs
 band
-banda
 bandage
 bandaged
 bandages
@@ -14374,7 +14370,6 @@ cabals
 cabana
 cabaret
 cabarets
-cabas
 cabases
 cabbage
 cabbages
@@ -16120,7 +16115,6 @@ caryatids
 caryopses
 caryopsis
 carÍme
-casa
 casas
 casbah
 casbahs
@@ -16584,7 +16578,6 @@ caulks
 caulome
 caulomes
 cauls
-causa
 causal
 causality
 causally
@@ -51773,7 +51766,6 @@ husks
 husky
 huso
 husos
-huss
 hussar
 hussars
 husses
@@ -56126,7 +56118,6 @@ jark
 jarkman
 jarkmen
 jarks
-jarl
 jarls
 jarool
 jarools
@@ -56769,7 +56760,6 @@ jotun
 jotunn
 jotunns
 jotuns
-joual
 jougs
 jouisance
 jouk
@@ -57055,7 +57045,6 @@ jupati
 jupatis
 jupon
 jupons
-jura
 jural
 jurally
 jurant
@@ -61920,7 +61909,6 @@ loquacity
 loquat
 loquats
 loquitur
-loran
 lorans
 lorate
 lorcha
@@ -91135,7 +91123,6 @@ rhumb
 rhumba
 rhumbas
 rhumbs
-rhuses
 rhyme
 rhymed
 rhymeless
@@ -93033,7 +93020,6 @@ rˆntgen
 rˆntgenise
 rˆntgenize
 rˆntgens
-sab
 sabadilla
 sabaton
 sabatons
@@ -94161,7 +94147,6 @@ satyrical
 satyrid
 satyrids
 satyrs
-sauba
 saubas
 sauce
 sauced

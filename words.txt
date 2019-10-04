@@ -94,7 +94,6 @@ abductor
 abductors
 abducts
 abeam
-abear
 abearing
 abears
 abed
@@ -192,7 +191,6 @@ ablauts
 ablaze
 able
 ablest
-ablet
 ablets
 ablins
 abloom
@@ -2209,10 +2207,8 @@ airlines
 airman
 airmanship
 airmen
-airn
 airned
 airning
-airns
 airplane
 airplanes
 airplay
@@ -4973,7 +4969,6 @@ arars
 araucaria
 araucarias
 arb
-arba
 arbalest
 arbalester
 arbalests
@@ -5259,7 +5254,6 @@ aripple
 arise
 arisen
 arises
-arish
 arishes
 arising
 arisings
@@ -5516,7 +5510,6 @@ arsenites
 arses
 arsheen
 arsheens
-arshin
 arshine
 arshines
 arshins
@@ -7477,7 +7470,6 @@ baffs
 baffy
 baft
 bag
-bagarre
 bagarres
 bagasse
 bagassosis
@@ -8539,7 +8531,6 @@ batch
 batched
 batches
 batching
-bate
 bateau
 bateaux
 bated
@@ -8617,7 +8608,6 @@ battalion
 battalions
 battas
 batted
-battel
 batteled
 batteler
 battelers
@@ -9192,7 +9182,6 @@ befuddling
 beg
 begad
 began
-begar
 begat
 beget
 begets
@@ -9656,7 +9645,6 @@ bereft
 beres
 beret
 berets
-berg
 bergama
 bergamas
 bergamask
@@ -10890,10 +10878,8 @@ blasts
 blastula
 blastular
 blastulas
-blat
 blatant
 blatantly
-blate
 blather
 blathered
 blatherer
@@ -31729,7 +31715,6 @@ dredger
 dredgers
 dredges
 dredging
-dreed
 dreeing
 drees
 dreg
@@ -33388,7 +33373,6 @@ egret
 egrets
 eh
 eident
-eider
 eiderdown
 eiderdowns
 eiders
@@ -39093,7 +39077,6 @@ fetishizes
 fetlock
 fetlocked
 fetlocks
-fetor
 fetoscopy
 fetta
 fettas
@@ -47959,7 +47942,6 @@ hailshots
 hailstone
 hailstones
 haily
-hain
 haique
 haiques
 hair
@@ -48581,12 +48563,10 @@ harmosts
 harmosty
 harmotome
 harms
-harn
 harness
 harnessed
 harnesses
 harnessing
-harns
 haroset
 haroseth
 harp
@@ -50140,7 +50120,6 @@ him
 himation
 himations
 himself
-hin
 hind
 hindberry
 hinder
@@ -50171,7 +50150,6 @@ hinnied
 hinnies
 hinny
 hinnying
-hins
 hint
 hinted
 hinterland
@@ -50254,7 +50232,6 @@ hirudinean
 hirudinoid
 hirundine
 his
-hisn
 hispid
 hispidity
 hiss
@@ -50593,7 +50570,6 @@ hollows
 holly
 hollyhock
 hollyhocks
-holm
 holmia
 holmic
 holmium
@@ -50629,7 +50605,6 @@ hols
 holster
 holstered
 holsters
-holt
 holts
 holy
 holystone
@@ -50801,7 +50776,6 @@ homuncule
 homuncules
 homunculi
 homunculus
-homy
 honcho
 honchos
 hond
@@ -68238,7 +68212,6 @@ mothery
 mothier
 mothiest
 moths
-mothy
 motif
 motifs
 motile
@@ -69489,7 +69462,6 @@ naiad
 naiades
 naiads
 naiant
-naif
 naik
 naiks
 nail
@@ -87026,10 +86998,8 @@ rangiest
 ranginess
 ranging
 rangy
-rani
 raniform
 ranine
-ranis
 ranivorous
 rank
 ranked
@@ -87343,7 +87313,6 @@ ravenously
 ravens
 ravers
 raves
-ravin
 ravine
 ravined
 ravines
@@ -87351,7 +87320,6 @@ raving
 ravingly
 ravings
 ravining
-ravins
 ravioli
 raviolis
 ravish
@@ -88266,7 +88234,6 @@ redealing
 redeals
 redealt
 redecorate
-reded
 rededicate
 redeem
 redeemable
@@ -88510,7 +88477,6 @@ referring
 refers
 reffed
 reffing
-reffo
 reffos
 refigure
 refigured
@@ -91519,7 +91485,6 @@ rinkhalses
 rinking
 rinks
 rinning
-rins
 rinsable
 rinse
 rinsed
@@ -97330,7 +97295,6 @@ sharkings
 sharks
 sharkskin
 sharkskins
-sharn
 sharny
 sharp
 sharped
@@ -98983,7 +98947,6 @@ singulars
 singult
 singults
 singultus
-sinh
 sinical
 sinicise
 sinicised
@@ -108920,7 +108883,6 @@ taffies
 taffrail
 taffrails
 taffy
-tafia
 tafias
 tag
 tagetes
@@ -111398,7 +111360,6 @@ tholing
 tholoi
 tholos
 tholus
-thon
 thonder
 thong
 thonged
@@ -111758,7 +111719,6 @@ thymiest
 thymine
 thymocyte
 thymocytes
-thymol
 thymus
 thymy
 thyratron
@@ -112708,7 +112668,6 @@ tontiners
 tontines
 tonus
 tonuses
-tony
 too
 took
 tool
@@ -121667,7 +121626,6 @@ vimanas
 vimineous
 vims
 vinaceous
-vinas
 vinasse
 vincible
 vincula
@@ -121707,7 +121665,6 @@ vinology
 vinos
 vinosity
 vinous
-vins
 vint
 vintage
 vintaged
@@ -126179,7 +126136,6 @@ yonis
 yonker
 yonkers
 yonks
-yont
 yoof
 yoop
 yoops

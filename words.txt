@@ -13333,7 +13333,6 @@ browsing
 browsings
 browst
 browsts
-brrr
 bruchid
 bruchids
 brucine
@@ -35691,8 +35690,6 @@ epopoeia
 epopoeias
 epopt
 epopts
-epos
-eposes
 epoxide
 epoxides
 epoxies
@@ -39818,7 +39815,6 @@ fistular
 fistulas
 fistulose
 fistulous
-fisty
 fit
 fitch
 fitche
@@ -49856,7 +49852,6 @@ hevea
 heveas
 hew
 hewed
-hewer
 hewers
 hewgh
 hewing
@@ -73104,7 +73099,6 @@ operons
 operose
 operosely
 operosity
-opes
 ophicleide
 ophidian
 ophidians
@@ -73269,7 +73263,6 @@ opuscula
 opuscule
 opuscules
 opusculum
-opuses
 or
 orach
 orache
@@ -78718,8 +78711,6 @@ peskier
 peskiest
 peskily
 pesky
-peso
-pesos
 pessaries
 pessary
 pessima
@@ -82161,7 +82152,6 @@ posers
 poses
 poseur
 poseurs
-poseuse
 poseuses
 posey
 posh
@@ -82197,7 +82187,6 @@ posits
 posnet
 posnets
 posology
-poss
 posse
 posses
 possess
@@ -82412,7 +82401,6 @@ potshards
 potsherd
 potsherds
 potstone
-pott
 pottage
 pottages
 potted
@@ -82436,7 +82424,6 @@ pottle
 pottles
 potto
 pottos
-potts
 potty
 pouch
 pouched
@@ -84635,7 +84622,6 @@ psoriatic
 psoric
 psst
 pssts
-pst
 psts
 psych
 psyche
@@ -96508,7 +96494,6 @@ sepoy
 sepoys
 seppuku
 seppukus
-seps
 sepses
 sepsis
 septa
@@ -102037,7 +102022,6 @@ sourpuss
 sourpusses
 sours
 sousaphone
-souse
 soused
 souses
 sousing
@@ -102637,7 +102621,6 @@ spending
 spendings
 spends
 spent
-speos
 speoses
 sperling
 sperlings
@@ -103513,7 +103496,6 @@ spudding
 spuddy
 spuds
 spued
-spues
 spuilzie
 spuilzied
 spuilzies
@@ -108233,7 +108215,6 @@ swozzle
 swozzles
 swum
 swung
-swy
 sybarite
 sybarites
 sybaritic
@@ -111198,7 +111179,6 @@ theurgical
 theurgist
 theurgists
 theurgy
-thew
 thewed
 thewes
 thewless
@@ -119661,7 +119641,6 @@ uprushing
 ups
 upsadaisy
 upscale
-upsee
 upsend
 upsending
 upsends
@@ -123710,7 +123689,6 @@ weta
 wetas
 wetback
 wetbacks
-wether
 wethers
 wetland
 wetlands
@@ -124751,7 +124729,6 @@ wispiest
 wisping
 wisps
 wispy
-wist
 wistaria
 wistarias
 wisteria
@@ -124760,7 +124737,6 @@ wistful
 wistfully
 wistiti
 wistitis
-wistly
 wit
 witan
 witblits
@@ -126262,7 +126238,6 @@ yuppy
 yups
 yurt
 yurts
-ywis
 zabaglione
 zabaione
 zabaiones

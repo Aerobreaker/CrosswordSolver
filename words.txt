@@ -3240,7 +3240,6 @@ ammeters
 ammiral
 ammirals
 ammo
-ammon
 ammonal
 ammonia
 ammoniac
@@ -15009,6 +15008,7 @@ camisoles
 camlet
 camlets
 cammed
+camo
 camogie
 camomile
 camomiles
@@ -18969,7 +18969,6 @@ circumvent
 circus
 circuses
 circusy
-cires
 cirls
 cirque
 cirques
@@ -24143,7 +24142,6 @@ crippled
 crippledom
 cripples
 crippling
-crise
 crises
 crisis
 crisp
@@ -24564,7 +24562,6 @@ crusades
 crusading
 crusado
 crusados
-cruse
 cruses
 cruset
 crusets
@@ -24576,7 +24573,6 @@ crushers
 crushes
 crushing
 crushingly
-crusie
 crusies
 crust
 crusta
@@ -25109,7 +25105,6 @@ cursedness
 curser
 cursers
 curses
-cursi
 cursing
 cursings
 cursitor
@@ -30918,7 +30913,6 @@ dominoes
 dominos
 domy
 don
-dona
 donah
 donahs
 donaries
@@ -35868,7 +35862,6 @@ erica
 ericaceous
 ericas
 ericoid
-erics
 erigeron
 erigerons
 eringo
@@ -37197,7 +37190,6 @@ exogenous
 exomion
 exomions
 exomis
-exon
 exonerate
 exonerated
 exonerates
@@ -51330,7 +51322,6 @@ howtowdie
 howtowdies
 howzat
 howzats
-hox
 hoy
 hoyden
 hoydenhood
@@ -52200,7 +52191,6 @@ iceman
 icemen
 icepack
 icepacks
-icers
 ices
 ichabod
 ichneumon
@@ -63362,7 +63352,6 @@ manciple
 manciples
 mancus
 mancuses
-mand
 mandala
 mandalas
 mandamus
@@ -63394,7 +63383,6 @@ mandolin
 mandoline
 mandolines
 mandolins
-mandom
 mandora
 mandoras
 mandorla
@@ -78990,7 +78978,6 @@ phenotypes
 phenotypic
 phenyl
 phenylic
-pheon
 pheons
 pheromone
 pheromones
@@ -79060,7 +79047,6 @@ phloxes
 phlyctaena
 phlyctena
 phlyctenae
-pho
 phobia
 phobias
 phobic
@@ -79082,7 +79068,6 @@ phohs
 pholades
 pholas
 pholidosis
-phon
 phonal
 phonate
 phonated
@@ -81235,7 +81220,6 @@ pogos
 pogrom
 pogroms
 pogy
-poh
 pohs
 pohutukawa
 poignancy
@@ -86030,7 +86014,6 @@ queueings
 queues
 queuing
 queuings
-quey
 queys
 quibble
 quibbled
@@ -92538,7 +92521,6 @@ rucksack
 rucksacks
 ruckus
 ruckuses
-rucs
 ructation
 ruction
 ructions
@@ -95594,7 +95576,6 @@ scuppered
 scuppering
 scuppers
 scups
-scur
 scurf
 scurfier
 scurfiest
@@ -96647,7 +96628,6 @@ seriately
 seriatim
 seriation
 seriations
-seric
 sericeous
 sericin
 sericite
@@ -106756,7 +106736,6 @@ suckling
 sucklings
 sucks
 sucrase
-sucre
 sucres
 sucrier
 sucrose
@@ -119845,7 +119824,6 @@ uredium
 uredo
 uredosorus
 uredospore
-ureic
 ureide
 uremia
 uremic
@@ -125916,7 +125894,6 @@ yelpers
 yelping
 yelpings
 yelps
-yelt
 yelts
 yen
 yenned
@@ -126007,7 +125984,6 @@ yirds
 yirked
 yirking
 yirks
-yite
 yites
 ylke
 ylkes

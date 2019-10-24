@@ -50571,7 +50571,6 @@ holotypic
 holozoic
 holp
 holpen
-hols
 holster
 holstered
 holsters
@@ -61912,7 +61911,6 @@ losels
 loser
 losers
 loses
-losh
 loshes
 losing
 losingly
@@ -72708,7 +72706,6 @@ olivets
 olivine
 ollamh
 ollamhs
-ollas
 ollavs
 oloroso
 olorosos
@@ -75270,7 +75267,6 @@ ownerships
 owning
 owns
 owrelay
-ows
 owsen
 ox
 oxalate
@@ -100063,7 +100059,6 @@ sloughiest
 sloughing
 sloughs
 sloughy
-slove
 sloven
 slovenlier
 slovenlike
@@ -102062,7 +102057,6 @@ sowfing
 sowfs
 sowing
 sowings
-sowl
 sowle
 sowled
 sowles
@@ -122151,7 +122145,6 @@ volplane
 volplaned
 volplanes
 volplaning
-vols
 volt
 volta
 voltage
@@ -123201,12 +123194,9 @@ waviness
 waving
 wavings
 wavy
-wawl
 wawled
 wawling
 wawlings
-wawls
-waws
 wax
 waxberries
 waxberry
@@ -125228,7 +125218,6 @@ worthy
 wortle
 wortles
 worts
-wos
 wosbird
 wosbirds
 wost

@@ -1518,7 +1518,6 @@ adynamia
 adynamic
 adyta
 adytum
-adz
 adze
 adzes
 adzuki
@@ -11928,7 +11927,6 @@ boomtowns
 boon
 boondocks
 boondoggle
-boong
 boongs
 boons
 boor
@@ -13905,7 +13903,6 @@ burbling
 burblings
 burbot
 burbots
-burd
 burdash
 burdashes
 burden
@@ -33717,7 +33714,6 @@ elutriator
 eluvial
 eluvium
 eluviums
-elvan
 elvanite
 elvers
 elves
@@ -42022,7 +42018,6 @@ frati
 fratricide
 fratries
 fratry
-frau
 fraud
 fraudful
 fraudfully
@@ -61424,7 +61419,6 @@ lobings
 lobiped
 loblollies
 loblolly
-lobo
 lobos
 lobose
 lobotomies
@@ -70201,7 +70195,6 @@ nerka
 nerkas
 nerks
 neroli
-nerval
 nervate
 nervation
 nervations
@@ -71968,7 +71961,6 @@ oboe
 oboes
 oboist
 oboists
-obol
 obolary
 oboli
 obols
@@ -81837,7 +81829,6 @@ pooris
 poorish
 poorly
 poorness
-poort
 poortith
 poorts
 poorwill
@@ -84010,7 +84001,6 @@ pronuclei
 pronucleus
 pronuncio
 pronuncios
-proo
 prooemion
 prooemions
 prooemium
@@ -84299,7 +84289,6 @@ protist
 protistic
 protists
 protium
-proto
 protocol
 protocols
 protogine
@@ -91971,7 +91960,6 @@ rooming
 rooms
 roomy
 roons
-roop
 rooped
 rooping
 roopit
@@ -92279,7 +92267,6 @@ roundsman
 roundsmen
 roundure
 roundures
-roup
 rouped
 roupier
 roupiest

@@ -62125,7 +62125,6 @@ lucern
 lucerne
 lucernes
 lucerns
-luces
 lucid
 lucidity
 lucidly
@@ -71480,8 +71479,6 @@ nucleotide
 nucleus
 nuclide
 nuclides
-nucule
-nucules
 nudation
 nudations
 nude
@@ -95465,7 +95462,6 @@ scug
 scugged
 scugging
 scugs
-scul
 sculk
 sculked
 sculking
@@ -116293,7 +116289,6 @@ unceasing
 uncensored
 uncensured
 uncertain
-unces
 uncessant
 unchain
 unchained
@@ -116517,7 +116512,6 @@ uncurses
 uncursing
 uncurtain
 uncurtains
-uncus
 uncustomed
 uncut
 undam

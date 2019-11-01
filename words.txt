@@ -2092,7 +2092,6 @@ aguti
 agutis
 ah
 aha
-ahas
 ahead
 aheap
 aheight
@@ -15844,7 +15843,6 @@ carlish
 carload
 carlock
 carlot
-carls
 carmagnole
 carman
 carmen
@@ -16129,7 +16127,6 @@ casernes
 caserns
 cases
 cash
-cashaw
 cashaws
 cashbox
 cashboxes
@@ -16672,7 +16669,6 @@ caw
 cawed
 cawing
 cawings
-cawk
 cawker
 cawkers
 caws
@@ -17555,7 +17551,6 @@ chartulary
 charwoman
 charwomen
 chary
-chas
 chase
 chased
 chaser
@@ -17646,7 +17641,6 @@ chaw
 chawdron
 chawed
 chawing
-chaws
 chaya
 chayas
 chayote
@@ -37711,8 +37705,6 @@ eyestrain
 eyestrains
 eyewink
 eyewinks
-eying
-eyne
 eyots
 eyras
 eyre
@@ -47243,9 +47235,7 @@ guffaws
 guffie
 guffies
 guffs
-guga
 gugas
-guggle
 guggled
 guggles
 guggling
@@ -47787,6 +47777,7 @@ hackneyman
 hackneymen
 hackneys
 hacks
+hacksaw
 hacqueton
 hacquetons
 had
@@ -47948,10 +47939,8 @@ hajj
 hajjes
 hajji
 hajjis
-haka
 hakam
 hakams
-hakas
 hake
 hakes
 hakim
@@ -48605,7 +48594,6 @@ hasheesh
 hashes
 hashing
 hashish
-hask
 haslet
 haslets
 hasp
@@ -50105,7 +50093,6 @@ hinds
 hindsight
 hindsights
 hindward
-hing
 hinge
 hinged
 hinges
@@ -51875,7 +51862,6 @@ hydrozoan
 hydrozoans
 hydrozoon
 hydrozoons
-hye
 hyena
 hyenas
 hyetal
@@ -51899,7 +51885,6 @@ hygrophyte
 hygroscope
 hygrostat
 hygrostats
-hying
 hyke
 hykes
 hyle
@@ -57313,7 +57298,6 @@ kavass
 kavasses
 kawed
 kawing
-kaws
 kayak
 kayaks
 kayle
@@ -58548,8 +58532,6 @@ kvetcher
 kvetchers
 kvetches
 kvetching
-kwacha
-kwachas
 kwakiutl
 kwakiutls
 kwanza
@@ -58751,7 +58733,6 @@ lacrimoso
 lacrosse
 lacrymal
 lacrymator
-lacs
 lactarian
 lactarians
 lactase
@@ -87268,7 +87249,6 @@ rawish
 rawly
 rawness
 rawns
-raws
 rax
 raxed
 raxes
@@ -94147,7 +94127,6 @@ savvies
 savvy
 savvying
 saw
-sawah
 sawahs
 sawder
 sawdered
@@ -94528,7 +94507,6 @@ scavengers
 scavengery
 scavenges
 scavenging
-scaw
 scaws
 scawtite
 scazon
@@ -94772,7 +94750,6 @@ schuss
 schussed
 schusses
 schussing
-schwa
 schwas
 sciaenid
 sciaenoid
@@ -95153,7 +95130,6 @@ scrauch
 scrauched
 scrauching
 scrauchs
-scraw
 scrawl
 scrawled
 scrawler
@@ -97266,7 +97242,6 @@ shavie
 shavies
 shaving
 shavings
-shaw
 shawed
 shawing
 shawl
@@ -98221,7 +98196,6 @@ shuttle
 shuttled
 shuttles
 shuttling
-shwa
 shwas
 shy
 shyer
@@ -99166,7 +99140,6 @@ skating
 skatings
 skatole
 skats
-skaw
 skaws
 skean
 skeans
@@ -107653,7 +107626,6 @@ swabbies
 swabbing
 swabby
 swabs
-swack
 swad
 swaddies
 swaddle
@@ -122390,7 +122362,6 @@ wackiness
 wacko
 wackoes
 wackos
-wacks
 wacky
 wad
 wadded
@@ -122572,7 +122543,6 @@ waivode
 waivodes
 waiwode
 waiwodes
-wakas
 wake
 waked
 wakeful

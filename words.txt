@@ -1889,7 +1889,6 @@ agenda
 agendas
 agendum
 agendums
-agene
 agent
 agented
 agential
@@ -44206,7 +44205,6 @@ genetrixes
 genets
 genette
 genettes
-geneva
 genevas
 genial
 genialise
@@ -69372,7 +69370,6 @@ nadirs
 naebody
 naething
 naethings
-naeve
 naeves
 naevi
 naevoid
@@ -120312,7 +120309,6 @@ vaneless
 vanes
 vanessa
 vanessas
-vang
 vangs
 vanguard
 vanguards
@@ -120600,7 +120596,6 @@ vedettes
 veduta
 vedute
 vee
-veena
 veenas
 veep
 veeps
@@ -120728,7 +120723,6 @@ velveting
 velvetings
 velvets
 velvety
-venae
 venal
 venality
 venally
@@ -120789,7 +120783,6 @@ venewe
 venewes
 veney
 veneys
-venge
 vengeable
 vengeance
 vengeances

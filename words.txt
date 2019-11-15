@@ -2170,6 +2170,7 @@ airdrome
 airdromes
 aired
 airers
+airfare
 airfield
 airfields
 airflow
@@ -17430,7 +17431,6 @@ chapters
 chaptrel
 chaptrels
 char
-chara
 charabanc
 charabancs
 characid
@@ -31688,7 +31688,6 @@ dredgers
 dredges
 dredging
 dreeing
-drees
 dreggier
 dreggiest
 dregginess
@@ -35935,7 +35934,6 @@ errors
 errs
 ersatz
 ersatzes
-erses
 erstwhile
 erubescent
 erubescite
@@ -39122,7 +39120,6 @@ fiancees
 fiances
 fianchetti
 fianchetto
-fiar
 fiars
 fiasco
 fiascoes
@@ -39656,7 +39653,6 @@ firepot
 firepots
 fireproof
 fireproofs
-firer
 firers
 fires
 fireship
@@ -42240,7 +42236,6 @@ friendlily
 friendly
 friends
 friendship
-frier
 friers
 fries
 frieze
@@ -47693,7 +47688,6 @@ gˆthite
 ha
 haaf
 haafs
-haar
 haars
 habanera
 habaneras
@@ -77576,7 +77570,6 @@ pedreroes
 pedreros
 pedro
 pedros
-peds
 peduncle
 peduncles
 peduncular
@@ -78488,14 +78481,12 @@ perron
 perrons
 perruque
 perruquier
-perse
 persecute
 persecuted
 persecutes
 persecutor
 perseities
 perseity
-perses
 persevere
 persevered
 perseveres
@@ -82796,7 +82787,6 @@ predoom
 predoomed
 predooming
 predooms
-preed
 preeing
 preemie
 preemies
@@ -82804,7 +82794,6 @@ preen
 preened
 preening
 preens
-prees
 prefab
 prefabs
 preface
@@ -83080,7 +83069,6 @@ prescript
 prescripts
 prescutum
 prescutums
-prese
 preselect
 preselects
 presell
@@ -83107,7 +83095,6 @@ preserver
 preservers
 preserves
 preserving
-preses
 preset
 presets
 presetting
@@ -88162,7 +88149,6 @@ redemptory
 redeploy
 redeployed
 redeploys
-redes
 redescend
 redescends
 redescribe
@@ -89750,7 +89736,6 @@ reproves
 reproving
 reprovings
 reps
-repses
 reptant
 reptation
 reptations
@@ -91210,7 +91195,6 @@ rieves
 rieving
 rife
 rifeness
-rifer
 rifest
 riff
 riffle
@@ -96511,7 +96495,6 @@ seraskiers
 serdab
 serdabs
 sere
-sered
 serein
 sereins
 serenade
@@ -96533,7 +96516,6 @@ serenes
 serenest
 serening
 serenity
-seres
 serf
 serfage
 serfdom
@@ -102451,11 +102433,9 @@ speel
 speeled
 speeling
 speels
-speer
 speered
 speering
 speerings
-speers
 speir
 speired
 speiring
@@ -102547,8 +102527,6 @@ spermogone
 spermous
 sperms
 sperrylite
-sperse
-spersed
 sperses
 spersing
 sperst
@@ -103278,7 +103256,6 @@ spreathed
 spreathes
 spreathing
 spree
-spreed
 spreeing
 sprees
 sprent

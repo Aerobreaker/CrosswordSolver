@@ -15387,7 +15387,6 @@ canzonetta
 canzoni
 caoutchouc
 cap
-capa
 capability
 capable
 capabler
@@ -50874,7 +50873,6 @@ hooters
 hooting
 hootnanny
 hoots
-hoove
 hooven
 hoover
 hoovered
@@ -51635,7 +51633,6 @@ hurry
 hurrying
 hurryingly
 hurryings
-hurst
 hursts
 hurt
 hurters
@@ -58348,7 +58345,6 @@ koolah
 koolahs
 koori
 koories
-kop
 kopeck
 kopecks
 kopek
@@ -61481,6 +61477,7 @@ locksmith
 locksmiths
 lockstep
 lockstitch
+lockup
 loco
 locoed
 locoes
@@ -61933,7 +61930,6 @@ lounges
 lounging
 loungingly
 loungings
-loup
 loupe
 louped
 loupen
@@ -65502,7 +65498,6 @@ meuse
 meused
 meuses
 meusing
-meve
 mew
 mewed
 mewing
@@ -70507,7 +70502,6 @@ niderings
 nides
 nidget
 nidgets
-nidi
 nidicolous
 nidificate
 nidified
@@ -70732,7 +70726,6 @@ nitery
 nites
 nithing
 nithings
-nitid
 nitinol
 niton
 nitpick
@@ -73454,7 +73447,6 @@ orisons
 orleans
 orlop
 orlops
-ormer
 ormers
 ormolu
 ormolus
@@ -75341,7 +75333,6 @@ pa
 pabular
 pabulous
 pabulum
-paca
 pacable
 pacas
 pacation
@@ -77334,7 +77325,6 @@ peal
 pealed
 pealing
 peals
-pean
 peaned
 peaning
 peans
@@ -80818,7 +80808,6 @@ ploughland
 ploughman
 ploughmen
 ploughs
-plouk
 ploukie
 plouks
 plouter
@@ -81332,7 +81321,6 @@ politics
 polities
 politique
 polity
-polk
 polka
 polkas
 polked
@@ -82356,7 +82344,6 @@ pouftah
 pouftahs
 poufter
 poufters
-pouk
 pouke
 pouked
 poukes
@@ -84786,7 +84773,6 @@ pulicides
 puling
 pulingly
 pulings
-pulk
 pulka
 pulkas
 pulkha
@@ -92833,7 +92819,6 @@ ruthful
 ruthfully
 ruthless
 ruthlessly
-ruths
 rutilant
 rutilated
 rutile
@@ -115551,7 +115536,6 @@ tympans
 tympanum
 tympanums
 tympany
-tynd
 tyned
 tyning
 typal
@@ -119426,7 +119410,6 @@ upload
 uploaded
 uploading
 uploads
-uplock
 uplocked
 uplocking
 uplocks
@@ -122115,7 +122098,6 @@ volvas
 volvate
 volvulus
 volvuluses
-vomer
 vomerine
 vomers
 vomica

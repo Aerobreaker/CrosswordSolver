@@ -19647,7 +19647,6 @@ clippies
 clipping
 clippings
 clips
-clipt
 clique
 cliques
 cliquey
@@ -33685,7 +33684,6 @@ eludes
 eluding
 eluent
 eluents
-elul
 elusion
 elusions
 elusive
@@ -60339,7 +60337,6 @@ levigated
 levigates
 levigating
 levigation
-levin
 levins
 levirate
 leviration
@@ -60578,7 +60575,6 @@ lies
 lieu
 lieus
 lieutenant
-lieve
 liever
 lievest
 life
@@ -60950,7 +60946,6 @@ linkman
 linkmen
 links
 linkwork
-linn
 linnet
 linnets
 linns
@@ -61890,7 +61885,6 @@ lotah
 lotahs
 lotas
 loth
-lotic
 lotion
 lotions
 lotos
@@ -70012,7 +70006,6 @@ neighing
 neighs
 neist
 neither
-neive
 neives
 nekton
 nektons
@@ -70314,7 +70307,6 @@ neutrinos
 neutron
 neutrons
 neutrophil
-nevel
 nevelled
 nevelling
 nevels
@@ -70525,7 +70517,6 @@ niello
 nielloed
 nielloing
 niellos
-nieve
 nieves
 niffer
 niffered
@@ -79354,7 +79345,6 @@ picnicking
 picnicky
 picnics
 picosecond
-picot
 picoted
 picotee
 picotees
@@ -79605,7 +79595,6 @@ pilgrimers
 pilgrimise
 pilgrimize
 pilgrims
-pili
 piliferous
 piliform
 piling
@@ -81401,7 +81390,6 @@ polonizes
 polonizing
 polony
 polos
-polt
 polted
 poltfeet
 poltfoot
@@ -112597,7 +112585,6 @@ topfull
 tophaceous
 tophi
 tophus
-topi
 topiarian
 topiaries
 topiarist
@@ -120752,14 +120739,12 @@ venging
 venial
 veniality
 venially
-venin
 venins
 venire
 venireman
 venires
 venison
 venite
-vennel
 vennels
 venography
 venom

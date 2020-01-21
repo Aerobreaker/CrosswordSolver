@@ -32323,7 +32323,6 @@ dunnies
 dunning
 dunnish
 dunnite
-dunno
 dunnock
 dunnocks
 dunny
@@ -70864,7 +70863,6 @@ noduled
 nodules
 nodulose
 nodulous
-nodus
 noel
 noels
 noesis
@@ -100740,7 +100738,6 @@ snobling
 snoblings
 snobocracy
 snobs
-snod
 snodded
 snodding
 snoddit

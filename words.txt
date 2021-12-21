@@ -2110,7 +2110,6 @@ ahull
 ahungered
 ahungry
 ai
-aias
 aiblins
 aid
 aidance
@@ -2575,7 +2574,6 @@ alipeds
 aliphatic
 aliquant
 aliquot
-alisma
 alismas
 aliunde
 alive
@@ -2810,7 +2808,6 @@ almanac
 almanacs
 almandine
 almandines
-almas
 almeh
 almehs
 almeries
@@ -3230,7 +3227,6 @@ amities
 amitosis
 amitotic
 amity
-amlas
 amman
 ammans
 ammeter
@@ -33261,7 +33257,6 @@ effusions
 effusive
 effusively
 eftest
-efts
 eftsoons
 egad
 egads
@@ -34776,7 +34771,6 @@ enhydritic
 enhydros
 enhydroses
 enhydrous
-eniac
 eniacs
 enigma
 enigmas
@@ -38769,7 +38763,6 @@ felt
 felted
 felting
 feltings
-felts
 felty
 felucca
 feluccas
@@ -38972,7 +38965,6 @@ fescues
 fess
 fesses
 fesswise
-fest
 festa
 festal
 festally
@@ -39576,7 +39568,6 @@ finked
 finking
 finks
 finless
-finnac
 finnacs
 finnan
 finnans
@@ -42666,7 +42657,6 @@ fullest
 fulling
 fullish
 fullness
-fulls
 fully
 fulmar
 fulmars
@@ -42954,7 +42944,6 @@ fussily
 fussiness
 fussing
 fussy
-fust
 fustanella
 fustet
 fustets
@@ -58963,8 +58952,6 @@ lames
 lamest
 lameter
 lameters
-lamia
-lamias
 lamiger
 lamigers
 lamina
@@ -59031,7 +59018,6 @@ lampreys
 lamps
 lampshade
 lampshades
-lams
 lanate
 lance
 lanced
@@ -60731,7 +60717,6 @@ limaceous
 limaciform
 limacine
 limail
-limas
 limation
 limax
 limaÁon
@@ -62544,7 +62529,6 @@ ma
 maaed
 maaing
 maars
-maas
 macabre
 macaco
 macacos
@@ -63123,7 +63107,6 @@ malingered
 malingerer
 malingers
 malingery
-malis
 malism
 malison
 malisons
@@ -63952,7 +63935,6 @@ marybud
 marybuds
 marzipan
 marzipans
-masa
 masala
 mascara
 mascaras
@@ -69384,7 +69366,6 @@ nailing
 nailings
 nailless
 nails
-nain
 nainsook
 naira
 nairas
@@ -69767,7 +69748,6 @@ neaffe
 neaffes
 nealed
 nealing
-neanic
 neap
 neaped
 neaping
@@ -93299,7 +93279,6 @@ sallyport
 sallyports
 salmagundi
 salmagundy
-salmi
 salmis
 salmon
 salmonella
@@ -104408,7 +104387,6 @@ stelas
 stele
 stelene
 steles
-stell
 stellar
 stellate
 stellated
@@ -105777,7 +105755,6 @@ stuffings
 stuffs
 stuffy
 stuggy
-stull
 stulls
 stulms
 stultified
@@ -109837,7 +109814,6 @@ teff
 teffs
 tefillah
 tefillin
-tefs
 tegmen
 tegmenta
 tegmental

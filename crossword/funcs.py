@@ -11,10 +11,10 @@ __all__ = []
 @export
 def auto(enabled=True):
     """Enable or disable automatic updates of dependant classes."""
-    #Disable pylint flags: Cyclic import (I know, but it's necessary; that's why
-    #the import is inside the function - so that when the function gets called,
-    #this module is already imported and there won't be problems)
-    from crossword.clses import _AUTO_ON #pylint: disable=cyclic-import
+    # Disable pylint flags: Cyclic import (I know, but it's necessary; that's why
+    # the import is inside the function - so that when the function gets called,
+    # this module is already imported and there won't be problems)
+    from crossword.clses import _AUTO_ON  # pylint: disable=cyclic-import
     prev = bool(_AUTO_ON)
     if enabled and not prev:
         _AUTO_ON.enable()
@@ -26,9 +26,9 @@ def auto(enabled=True):
 @export
 def group_count(iterable):
     """Groups an iterable by values and counts the lengths of the groups."""
-    #Groupby splits it into groups.  But the items consists of each individual
-    #element in the group.  So convert to a list and read the length of said
-    #list
+    # Groupby splits it into groups.  But the items consists of each individual
+    # element in the group.  So convert to a list and read the length of said
+    # list
     from itertools import groupby
     for grp, items in groupby(iterable):
         yield grp, len(list(items))
@@ -51,15 +51,15 @@ def get_words(words):
         A set (hash set) of words which were in the provided input
     """
     from itertools import chain
-    #First, convert all arguments to strings
+    # First, convert all arguments to strings
     words = [i if isinstance(i, str) else (','.join(i) if hasattr(i, '__iter__')
                                            else str(i))
              for i in words]
-    #Split on spaces, then chain the resulting arrays together
-    #Join into a single string delimited by comma
+    # Split on spaces, then chain the resulting arrays together
+    # Join into a single string delimited by comma
     words = ','.join(chain.from_iterable(i.split() for i in words))
-    #Split out the joined string by comma (to also split any single words which
-    #contained a comma).  Ignore empty strings.
+    # Split out the joined string by comma (to also split any single words which
+    # contained a comma).  Ignore empty strings.
     return set(i for i in words.split(',') if i)
 
 
@@ -78,14 +78,14 @@ class InstanceTrackerProperties(type):
         return list(cls._instances.values())
 
 
-#Disable pylint flags: too few public methods (this is only here as a template
-#for other classes to inherit from; public methods are unnecessary)
+# Disable pylint flags: too few public methods (this is only here as a template
+# for other classes to inherit from; public methods are unnecessary)
 @export
-class InstanceTracker(metaclass=InstanceTrackerProperties): #pylint: disable=too-few-public-methods
-    """Creates a class which tracks it's instances"""
-    #Disable pylint flags: unused argument (yeah, I don't need them here but I
-    #have to take them so they can be passed to __init__)
-    def __new__(cls, *args, **kwargs): #pylint: disable=unused-argument
+class InstanceTracker(metaclass=InstanceTrackerProperties):  # pylint: disable=too-few-public-methods
+    """Creates a class which tracks its instances"""
+    # Disable pylint flags: unused argument (yeah, I don't need them here but I
+    # have to take them so they can be passed to __init__)
+    def __new__(cls, *args, **kwargs):  # pylint: disable=unused-argument
         """Create a new object and log the object in the instances"""
         new = super().__new__(cls)
         cls._instances[id(new)] = new

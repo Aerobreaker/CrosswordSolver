@@ -31,22 +31,22 @@ class _AutoFlag:
         """Disable the autoflag"""
         self._value = False
 
-    #Disable pylint flags: kwarg before varargs (this is fine, why is this even
-    #a pylint error?)
-    def publish(self, cls, refresh_method='', *args, **kwargs): #pylint: disable=keyword-arg-before-vararg
+    # Disable pylint flags: kwarg before varargs (this is fine, why is this even
+    # a pylint error?)
+    def publish(self, cls, refresh_method='', *args, **kwargs):  # pylint: disable=keyword-arg-before-vararg
         """Publish a class to be auto-refreshed when the auto flag is toggled"""
         pass
 
-    #Disable pylint flags: inconsistent return statements (I know - when used as
-    #a wrapper, it needs to return a function; when called with a class arg,
-    #there's no need to return anything), method already defined (yeah, exactly;
-    #I want this functionality with the original signature), missing-docstring
-    #(um, it wraps another function, it gets the docstring from there, duh?)
-    #Idea: Perhaps just return the wrapper function in all cases?  It can still
-    #be called directly with:
-    #_AutoFlag().publish(refresh_method, *args, **kwargs)(cls)
+    # Disable pylint flags: inconsistent return statements (I know - when used as
+    # a wrapper, it needs to return a function; when called with a class arg,
+    # there's no need to return anything), method already defined (yeah, exactly;
+    # I want this functionality with the original signature), missing-docstring
+    # (um, it wraps another function, it gets the docstring from there, duh?)
+    # Idea: Perhaps just return the wrapper function in all cases?  It can still
+    # be called directly with:
+    # _AutoFlag().publish(refresh_method, *args, **kwargs)(cls)
     @wraps(publish)
-    def publish(self, *args, **kwargs): #pylint: disable=inconsistent-return-statements, function-redefined, missing-docstring
+    def publish(self, *args, **kwargs):  # pylint: disable=inconsistent-return-statements, function-redefined, missing-docstring
         refresh_method = kwargs.pop('refresh_method', '')
         cls = kwargs.pop('cls', None)
         newargs = []
@@ -82,20 +82,21 @@ class _AutoFlag:
 
     def auto_class(self, *auto_methods, test_method='', nauto_methods=()):
         """Decorator to automatically refresh after specified methods"""
-        auto_self = self
-        def wrapper(method, test_method='', no_refresh=False):
+
+        def wrapper(method, testing_method='', no_refresh=False):
             @wraps(method)
-            def wrapped(self, *args, **kwargs):
-                refresh = bool(auto_self)
-                auto_self.disable()
-                tester = getattr(self, test_method, lambda obj: True)
-                outp = method(self, *args, **kwargs)
+            def wrapped(method_self, *args, **kwargs):
+                refresh = bool(self)
+                self.disable()
+                tester = getattr(method_self, testing_method, lambda obj: True)
+                outp = method(method_self, *args, **kwargs)
                 if refresh:
-                    auto_self.enable(silent=True)
+                    self.enable(silent=True)
                     if not no_refresh:
-                        auto_self.refresh(tester)
+                        self.refresh(tester)
                 return outp
             return wrapped
+
         def auto(cls):
             for method in auto_methods:
                 meth = getattr(cls, method, None)
@@ -106,6 +107,7 @@ class _AutoFlag:
                 if meth:
                     setattr(cls, method, wrapper(meth, no_refresh=True))
             return cls
+
         return auto
 
 
@@ -113,8 +115,7 @@ _AUTO_ON = _AutoFlag()
 _CHECKER_SIGNATURES = WeakKeyDictionary()
 
 
-_ = ('set_word', 'rem_word', 'set_letter', 'rem_letter', 'clear')
-@_AUTO_ON.auto_class(*_, test_method='_test')
+@_AUTO_ON.auto_class('set_word', 'rem_word', 'set_letter', 'rem_letter', 'clear', test_method='_test')
 @export
 class Slot(InstanceTracker):
     """Creates a slot to track an opening to put a word into.
@@ -129,6 +130,8 @@ class Slot(InstanceTracker):
         overlaps: Dictionary of overlapping slots
         word: The word which has been inserted into the Slot
     """
+    __slots__ = 'attributes', 'overlaps', 'word', '_word', '_empty', 'has_word'
+
     def __init__(self, size, position=(0, 0), direction=Direction.RIGHT):
         """Initializes a Slot object to track an open slot for a word.
 
@@ -152,9 +155,9 @@ class Slot(InstanceTracker):
                                                                  position,
                                                                  direction)
 
-    #__hash__ and __eq__ are used to identify an object.  Two objects are
-    #considered duplicates if the hashes are the same and they compare equal to
-    #one another.
+    # __hash__ and __eq__ are used to identify an object.  Two objects are
+    # considered duplicates if the hashes are the same and they compare equal to
+    # one another.
 
     def __hash__(self):
         """Returns a hash for the Slot object."""
@@ -190,13 +193,13 @@ class Slot(InstanceTracker):
         """
         if len(word) != len(self) or self.has_word:
             return False
-        #Overlap dictionary has the slots as keys and the index of the overlap
-        #as values.  Slot1.overlaps[Slot2] == index in Slot1 at which the
-        #overlap occurs.
+        # Overlap dictionary has the slots as keys and the index of the overlap
+        # as values.  Slot1.overlaps[Slot2] == index in Slot1 at which the
+        # overlap occurs.
         for other, other_ind in self.overlaps.items():
             ind = other.overlaps[self]
-            #If other has a letter in the overlap and it doesn't match the
-            #letter which will be overlapping, the word won't fit
+            # If other has a letter in the overlap and it doesn't match the
+            # letter which will be overlapping, the word won't fit
             if other[other_ind] and other[other_ind] != word[ind]:
                 return False
         for cur, new in zip(self.word, word):
@@ -279,18 +282,20 @@ class Slot(InstanceTracker):
         self.has_word = False
 
 
-_ = ('clear', 'set_letter', 'rem_letter', 'set_extra', 'rem_extra', 'set_word',
-     'rem_word')
-@_AUTO_ON.auto_class(*_, test_method='_test', nauto_methods=('solve',))
+@_AUTO_ON.auto_class('clear', 'set_letter', 'rem_letter', 'set_extra', 'rem_extra', 'set_word', 'rem_word',
+                     test_method='_test',
+                     nauto_methods=('solve',))
 @export
 class Layout(InstanceTracker):
     """Creates a Layout object to find and track slots in the provided board.
 
     Attributes:
         layout: Grid which mimics the original, but with pointers to the
-                appropriate slots and indicies from which to draw letters
+                appropriate slots and indices from which to draw letters
         slots: Dictionary of Slots indexed by length
     """
+    __slots__ = 'layout', '_layout', 'slots', 'all_slots', 'extras'
+
     def __init__(self, layout):
         """Initializes a Layout object with the provided layout.
 
@@ -298,6 +303,7 @@ class Layout(InstanceTracker):
             layout: The grid (list of lists) to parse into a Layout
         """
         from itertools import chain
+
         def clean_edges(matrix):
             from collections import deque
             matrix = deque(matrix)
@@ -306,25 +312,26 @@ class Layout(InstanceTracker):
             while not any(matrix[-1]):
                 matrix.pop()
             return matrix
+
         self._layout = layout
-        #In order to transpose properly, push all of the rows out to match the
-        #longest row
+        # In order to transpose properly, push all the rows out to match the
+        # longest row
         length = max(len(row) for row in layout)
         for row_ind, row in enumerate(layout):
             if len(row) < length:
                 layout[row_ind] = tuple(row) + (0,) * (length-len(row))
-        #Remove empty rows from the top and bottom
+        # Remove empty rows from the top and bottom
         layout = clean_edges(layout)
-        #Transpose, then remove empty columns from left and right
+        # Transpose, then remove empty columns from left and right
         layout = clean_edges(zip(*layout))
-        #Transpose back
+        # Transpose back
         layout = list(zip(*layout))
         self._layout = tuple(layout)
         self.slots = {}
         self.extras = set()
         layout = [[[(None, 0)] * 2 for _ in range(length)] for _ in layout]
-        #Iterate through the rows groupwise, creating and logging Slots with a
-        #right directionality
+        # Iterate through the rows groupwise, creating and logging Slots with a
+        # right directionality
         for row_ind, row in enumerate(self._layout):
             col_ind = 0
             for val, count in group_count(row):
@@ -334,8 +341,8 @@ class Layout(InstanceTracker):
                     for i in range(count):
                         layout[row_ind][col_ind+i][0] = (slot, i)
                 col_ind += count
-        #Iterate through the columns groupwise, creating and logging Slots with
-        #a down directionality
+        # Iterate through the columns groupwise, creating and logging Slots with
+        # a down directionality
         for col_ind, col in enumerate(zip(*self._layout)):
             row_ind = 0
             for val, count in group_count(col):
@@ -350,12 +357,12 @@ class Layout(InstanceTracker):
                             slot.add_overlap(i, *overlap)
                         layout[row_ind+i][col_ind][1] = (slot, i)
                 row_ind += count
-        #Save off the dict of slots and the layout of slots
+        # Save off the dict of slots and the layout of slots
         self.layout = layout
         self.all_slots = set(chain.from_iterable(self.slots.values()))
 
     def __repr__(self):
-        """Returns an internal represntation of the Layout."""
+        """Returns an internal representation of the Layout."""
         return 'Layout(layout={})'.format(self._layout)
 
     def __len__(self):
@@ -386,9 +393,9 @@ class Layout(InstanceTracker):
             if rgt and lft:
                 return rgt, lft
             if rgt:
-                return (rgt,)
+                return rgt,
             if lft:
-                return (lft,)
+                return lft,
             return ()
         return [self[key, i] for i in range(len(self.layout[key]))]
 
@@ -462,7 +469,7 @@ class Layout(InstanceTracker):
         Args:
             word: The word to insert into the slot
             row: The row at which to insert
-            col: The dolumn at which to insert
+            col: The column at which to insert
             direction: If the specified row and column contain more than one
                  slot, dir must be the directionality of the desired slot.
                  Otherwise, it is ignored
@@ -485,8 +492,8 @@ class Layout(InstanceTracker):
         """Remove a word from a slot.
 
         Args:
-            row: The row at which to insert
-            col: The dolumn at which to insert
+            row: The row at which to remove
+            col: The column at which to remove
             direction: If the specified row and column contain more than one
                  slot, dir must be the directionality of the desired slot.
                  Otherwise, it is ignored
@@ -529,100 +536,101 @@ class Layout(InstanceTracker):
             ValueError: Duplicate words detected in the Layout pre-solution.
         """
         from itertools import chain
-        #Available words = words at length - used words
-        #Available slots = slots - checked slots
-        #Algo:
-            #1. Get next slot
-            #2. If no next, get a slot with fewest options
-            #3. If no slots, append solution
-            #4. Fill slot
-            #5. Prioritize intersections
-            #6. Solve intersections
-            #7. Next word
-            #8. Stop
-        #First, turn the listings of words at each length into sets
+        # Available words = words at length - used words
+        # Available slots = slots - checked slots
+        # Algo:
+        #     1. Get next slot
+        #     2. If no next, get a slot with fewest options
+        #     3. If no slots, append solution
+        #     4. Fill slot
+        #     5. Prioritize intersections
+        #     6. Solve intersections
+        #     7. Next word
+        #     8. Stop
+        # First, turn the listings of words at each length into sets
         words = {k: set(v) for k, v in words.items()}
         for length in self.slots:
             if len(self.slots[length]) > len(words.get(length, [])):
                 raise KeyError(('not enough {} letter words to fit the '
                                 'available slots').format(length))
-        #This is currently a recursive DFS.  To switch to BFS or djikstra,
-        #change slot_stack from a list to a deque or priority queue.  It is not
-        #known if there is a heuristic which can be used to prioritize the slots
-        #for djikstra, though
-        slot_stack, solutions, checked = [], [], set()
+        # This is currently a recursive DFS.  To switch to BFS or Djikstra,
+        # change slot_stack from a list to a deque or priority queue.  It is not
+        # known if there is a heuristic which can be used to prioritize the slots
+        # for Djikstra, though
+        slot_stack = []
+        solutions = []
+        checked = set()
         used_words = set(self.extras)
-        #Iterate through the slots and flag any that already have a word as
-        #having been checked
+        # Iterate through the slots and flag any that already have a word as
+        # having been checked
         for slot in self.all_slots:
             if slot.has_word:
                 if slot.word in used_words:
-                    errstr = 'Duplicate word "{}" detected!'.format(slot.word)
-                    raise ValueError(errstr)
+                    err_str = 'Duplicate word "{}" detected!'.format(slot.word)
+                    raise ValueError(err_str)
                 checked.add(slot)
                 used_words.add(slot.word)
-        #Define a function to get a Slot with the fewest number of possible
-        #words left in the dictionary
+
+        # Define a function to get a Slot with the fewest number of possible
+        # words left in the dictionary
         def get_fewest(open_slots):
             min_cnt = inf
-            for slot in open_slots:
-                words_left = len(words[len(slot)]-used_words)
+            out = None
+            for current_slot in open_slots:
+                words_left = len(words[len(current_slot)]-used_words)
                 if words_left and words_left < min_cnt:
-                    out = slot
+                    out = current_slot
                     min_cnt = words_left
             return out
-        #Define a function to recursively solve the Layout
+
+        # Define a function to recursively solve the Layout
         def solve(indent=2):
             if limit is not None and len(solutions) >= limit:
                 return
-            #Find the open slots
+            # Find the open slots
             open_slots = self.all_slots - checked
-            slot = None
-            #If there are intersections to be processed
+            current_slot = None
+            # If there are intersections to be processed
             if slot_stack:
-                slot = slot_stack.pop()
-                #Consume already checked Slots.  If none remain, break out.
-                while slot in checked:
-                    if not slot_stack:
-                        slot = None
-                        break
-                    slot = slot_stack.pop()
-            if not slot:
-                #If there are open slots, get the one with the fewest words left
+                # Consume already checked Slots.  If none remain, break out.
+                while (current_slot := (slot_stack or [None]).pop()) in checked:
+                    pass
+            if not current_slot:
+                # If there are open slots, get the one with the fewest words left
                 if open_slots:
-                    slot = get_fewest(open_slots)
-                #If no open slots, log the solution and return
+                    current_slot = get_fewest(open_slots)
+                # If no open slots, log the solution and return
                 else:
                     ext = set(chain.from_iterable(words.values())) - used_words
                     ext |= self.extras
                     solutions.append(Solution(self.layout, ext))
                     return
-            #Get the remaining words that can fit into the slot
-            slot_words = words[len(slot)] - used_words
-            #Iterate through the remaining words
+            # Get the remaining words that can fit into the slot
+            slot_words = words[len(current_slot)] - used_words
+            # Iterate through the remaining words
             for word in slot_words:
-                #If the word can fit into the slot
-                if slot.check_word(word):
-                    #Log the word as used and the slot as checked
+                # If the word can fit into the slot
+                if current_slot.check_word(word):
+                    # Log the word as used and the slot as checked
                     used_words.add(word)
-                    checked.add(slot)
-                    #Put the word into the slot
-                    slot.set_word(word)
-                    #Flag the overlaps for processing next
-                    for other in slot.overlaps:
+                    checked.add(current_slot)
+                    # Put the word into the slot
+                    current_slot.set_word(word)
+                    # Flag the overlaps for processing next
+                    for other in current_slot.overlaps:
                         if other not in checked:
                             slot_stack.append(other)
-                    #Recursively solve the next Slot
+                    # Recursively solve the next Slot
                     solve(indent+2)
-                    #Remove the word from the used words and the slot from
-                    #checked slots
+                    # Remove the word from the used words and the slot from
+                    # checked slots
                     used_words.discard(word)
-                    checked.discard(slot)
-                    #Remove the word from the Slot
-                    slot.rem_word()
-        #Start the recursive solution
+                    checked.discard(current_slot)
+                    # Remove the word from the Slot
+                    current_slot.rem_word()
+        # Start the recursive solution
         solve()
-        #Return ALL the solutions
+        # Return ALL the solutions
         return solutions
 
 
@@ -635,6 +643,8 @@ class Solution(InstanceTracker):
         data_vertical: Transposed version of data
         extra: The leftover "extra" words
     """
+    __slots__ = '_layout', 'data', 'data_vertical', 'extra'
+
     def __init__(self, layout, extra=None):
         """Initializes a Solution object with the specified Layout object.
 
@@ -646,8 +656,8 @@ class Solution(InstanceTracker):
         self._layout = []
         self.data = ['']
         data_vertical = []
-        #Log _layout as an alternative to the Layout object used, for internal
-        #representation of the Solution object
+        # Log _layout as an alternative to the Layout object used, for internal
+        # representation of the Solution object
         for row in layout:
             new_row = [' ']
             _layout = []
@@ -657,8 +667,8 @@ class Solution(InstanceTracker):
                 if not dslot:
                     dslot, dind = [''], 0
                 let = rslot[rind] or dslot[dind] or ' '
-                #Log the letter and the index 0 so that the Solution has all of
-                #the data needed to construct an identical Solution
+                # Log the letter and the index 0 so that the Solution has all
+                # the data needed to construct an identical Solution
                 _layout.append((let, 0))
                 new_row.append(let)
             data_vertical.append(new_row)
@@ -674,13 +684,12 @@ class Solution(InstanceTracker):
             self.extra = None
 
     def __repr__(self):
-        """Returns an internal represntation of the Solution."""
+        """Returns an internal representation of the Solution."""
         return 'Solution(layout={}, extra={})'.format(self._layout, self.extra)
 
     def disp(self, include_extra=True):
         """Yields lines in the provided layout with the letters filled in."""
-        for line in self.data:
-            yield line
+        yield from self.data
         if self.extra and include_extra:
             yield 'Bonus words: {}'.format(', '.join(self.extra))
 
@@ -689,9 +698,9 @@ class Solution(InstanceTracker):
         print('\n'.join(self.disp(include_extra)))
 
 
-#Disable pylint flags: no value for cls argument (yeah, I'm using the hidden
-#wrapper version which has an undocumented signature)
-@_AUTO_ON.publish(refresh_method='refresh') #pylint: disable=no-value-for-parameter
+# Disable pylint flags: no value for cls argument (yeah, I'm using the hidden
+# wrapper version which has an undocumented signature)
+@_AUTO_ON.publish(refresh_method='refresh')  # pylint: disable=no-value-for-parameter
 @export
 class Solver(InstanceTracker):
     """Creates a Solver to determine possible words and layouts.
@@ -702,13 +711,15 @@ class Solver(InstanceTracker):
     out.
 
     Attributes:
-        checker: The spell checker used to generate words
-        layout: The layout of the word openings in matrix format
-        letters: The letters used to create words
-        maxlen: The largest word size which will be generated
-        minlen: The smallest word size which will be generated
-        words: Dictionary of words which can be made, ordered by length
+        checker: The spell checker used to generate words.
+        layout: The layout of the word openings in matrix format.
+        letters: The letters used to create words.
+        maxlen: The largest word size which will be generated.
+        minlen: The smallest word size which will be generated.
+        words: Dictionary of words which can be made, ordered by length.
     """
+    __slots__ = 'checker', 'letters', 'layout', '_lengths', 'solutions', '_signature', 'words'
+
     def __init__(self,
                  checker,
                  letters=None,
@@ -717,13 +728,13 @@ class Solver(InstanceTracker):
         """Initializes a Solver object to find words and fit them into a layout.
 
         Args:
-            checker: Spell checker used to build words
-            letters: The letters to use to generate words
-            layout: Optional.  The layout of letter openings in a grid format
-            minlen: Optional.  The minimum word length to generate.  0 or less
-                    gets changed to MIN_LEN.  Defaults to 0
+            checker: Spell checker used to build words.
+            letters: The letters to use to generate words.
+            layout: Optional.  The layout of letter openings in a grid format.
+            minlen: Optional.  The minimum word length to generate.  0 or fewer
+                    gets changed to MIN_LEN.  Defaults to 0.
             maxlen: Optional.  The maximum word length to generate.  Defaults to
-                    infinite
+                    infinite.
         Raises:
             ValueError: The maximum length provided is less than the minimum
                 length provided
@@ -735,8 +746,8 @@ class Solver(InstanceTracker):
         self.solutions = []
         if lengths[0] < 1:
             lengths[0] = MIN_LEN
-        #Check this after, so that __repr__ can be evaluated in an error trap
-        #if an error occurs during __init__
+        # Check this after, so that __repr__ can be evaluated in an error trap
+        # if an error occurs during __init__
         if lengths[1] < lengths[0]:
             raise ValueError('maximum length is less than minimum length')
         self._signature = None
@@ -745,20 +756,19 @@ class Solver(InstanceTracker):
 
     def __repr__(self):
         """Returns an internal representation for the object."""
-        reprstr = 'Solver(letters={}, checker={}, layout={}, lengths={})'
-        return reprstr.format(repr(self.letters),
-                              repr(self.checker),
-                              repr(self.layout),
-                              repr(self._lengths))
+        return (f'Solver(letters={self.letters!r}, '
+                f'checker={self.checker!r}, '
+                f'layout={self.layout!r}, '
+                f'lengths={self._lengths!r}')
 
     def print(self):
         """Prints the words in the Solver."""
-        #Iterate through the words in key value pairs
+        # Iterate through the words in key value pairs
         for length in sorted(self.words):
             words = self.words[length]
-            #Sort in place - that way, future sorts don't suffer in efficiency
+            # Sort in place - that way, future sorts don't suffer in efficiency
             words.sort()
-            #Print the length, and then the words delimited by ", "
+            # Print the length, and then the words delimited by ", "
             print('{}: {}'.format(length, ', '.join(words)))
 
     def _refresh_words(self):
@@ -769,48 +779,47 @@ class Solver(InstanceTracker):
         if self.letters:
             count = len(self.letters)
             lengths = set(range(self.minlen, min(count, self.maxlen)+1))
-            #nPr = n! / (n-r)!
+            # nPr = n! / (n-r)!
             perm = sum(factorial(count)/factorial(count-num) for num in lengths)
-            #If letter restrictions and number of permutations exceeds length of
-            #dictionary, loop through dict to see which words can be built
+            # If letter restrictions and number of permutations exceeds length of
+            # dictionary, loop through dict to see which words can be built
             if perm > len(self.checker.words):
                 avail = Counter(self.letters)
                 for word in self.checker.words:
                     wordlen = len(word)
                     if wordlen in lengths and not Counter(word) - avail:
                         words.setdefault(wordlen, set()).add(word)
-            #If letter restrictions and permutations < dictionary length, loop
-            #through permutations to see which of them are words
+            # If letter restrictions and permutations < dictionary length, loop
+            # through permutations to see which of them are words
             else:
                 perms = chain.from_iterable(((i, ''.join(j))
-                                             for j in permutations(self.letters,
-                                                                   i))
+                                             for j in permutations(self.letters, i))
                                             for i in lengths)
                 for length, word in perms:
                     if self.checker.check_word(word):
                         words.setdefault(length, set()).add(word)
-        #If no letter restrictions, grab all words within the length limits
+        # If no letter restrictions, grab all words within the length limits
         else:
             for word in self.checker.words:
                 wordlen = len(word)
                 if self.minlen <= wordlen <= self.maxlen:
                     words.setdefault(wordlen, set()).add(word)
-        #Can sort keys and words here, but for speed, sort at print time
+        # Can sort keys and words here, but for speed, sort at print time
         self.words = {key: list(val) for key, val in words.items()}
         self._signature = _CHECKER_SIGNATURES[self.checker]
-
 
     def refresh(self):
         """Generates words which can be created.
 
         Used to re-compute possible words after updating the spell checker.
         """
-        #Check the checker to see if it's been updated
-        #If the checker has been updated, find all the words again
+        # Check the checker to see if it's been updated
+        # If the checker has been updated, find all the words again
         if self._signature is not _CHECKER_SIGNATURES[self.checker]:
             self._refresh_words()
+        # For speed, cap the number of solutions at the previous count or 50, whichever is larger
         if self.layout:
-            self.solve(max(len(getattr(self, 'solutions', [])), 50))
+            self.solve(max(len(self.solutions), 50))
 
     def solve(self, limit=None):
         """Fits possible words into the layout.
@@ -818,12 +827,9 @@ class Solver(InstanceTracker):
         Args:
             limit: Optional.  Limit to the number of solutions to find.  None
                    indicates no limit.  Defaults to None.
-            maxstack: Optional.  Limit to the number of stack frames which will
-                      be used while solving.  None indicates no limit.  Defaults
-                      to None.
 
         Returns:
-            A list of possible matrixes with words filled in such that there
+            A list of possible matrices with words filled in such that there
             will be no conflicting letters and all letters will form words
         """
         self.solutions = self.layout.solve(self.words, limit)
@@ -834,6 +840,8 @@ class Solver(InstanceTracker):
         Args:
             num: Optional.  The number of solutions to print.  None indicates
                  that all solutions are to be printed.  Defaults to None.
+            include_extra: Optional.  Boolean indicating whether to include
+                           extra words in the solutions.
         """
         if num is None:
             for sol in self.solutions:
@@ -882,6 +890,8 @@ class Checker(InstanceTracker):
         case: Boolean indicating the case sensitivity of the Checker
         words: Sorted list of the words in the Checker
     """
+    __slots__ = '_wordfile', '_encoding', '_words', '_case'
+
     def __init__(self, wordfile, encoding='utf8', case=False):
         """Initializes a Checker object with the specified word file.
 
@@ -937,28 +947,28 @@ class Checker(InstanceTracker):
 
     def add(self, *words):
         """Adds one or more words to the Checker and it's word file."""
-        #Split out individual words
+        # Split out individual words
         words = get_words(words)
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
-        #Convert to a set to remove duplicates, add in new words to set
+        # Convert to a set to remove duplicates, add in new words to set
         lines = set(' '.join(i.strip() for i in lines).split()) | words
         if self._case:
             self._words |= words
         else:
             self._words |= set(i.lower() for i in words)
-        #Sort and write to the file
+        # Sort and write to the file
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
         _CHECKER_SIGNATURES[self] = object()
 
     def remove(self, *words):
         """Removes one or more words from the Checker and it's word file."""
-        #Split out individual words
+        # Split out individual words
         words = get_words(words)
         with open(self._wordfile, 'r', encoding=self._encoding) as file:
             lines = file.readlines()
-        #Convert to a set to remove duplicates, remove target words from set
+        # Convert to a set to remove duplicates, remove target words from set
         lines = set(' '.join(i.strip() for i in lines).split())
         if self._case:
             self._words -= words
@@ -967,7 +977,7 @@ class Checker(InstanceTracker):
             words = set(i.lower() for i in words)
             self._words -= words
             lines -= set(i for i in lines if i.lower() in words)
-        #Sort and write to the file
+        # Sort and write to the file
         with open(self._wordfile, 'w', encoding=self._encoding) as file:
             file.write('\n'.join(sorted(lines)))
         _CHECKER_SIGNATURES[self] = object()
@@ -975,8 +985,8 @@ class Checker(InstanceTracker):
     @property
     def words(self):
         """Returns a set of words in the Checker."""
-        #Let the other side take care of sorting the words
-        #Still keep this as a property so that Checker.words can't be set
+        # Let the other side take care of sorting the words
+        # Still keep this as a property so that Checker.words can't be set
         return self._words
 
     @property

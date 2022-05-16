@@ -50,7 +50,6 @@ class Solver(Solver):
             minlen = kwargs.pop('minlen', None)
             maxlen = kwargs.pop('maxlen', None)
         newargs = []
-        newkwargs = {}
         for arg in args:
             if not checker and isinstance(arg, Checker.__bases__[0]):
                 checker = arg
